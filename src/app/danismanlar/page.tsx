@@ -10,8 +10,8 @@ import { advisorsPageCopy } from "@/lib/site-copy";
 import { getServerSiteLanguage } from "@/lib/site-preferences-server";
 
 export const metadata: Metadata = {
-  title: "Danışmanlar | PortföySatış",
-  description: "PortföySatış uzman danışman ekibi ve odak bölgeleri.",
+  title: "Danışmanlar | Econi Invest",
+  description: "Econi Invest uzman danışman ekibi ve odak bölgeleri.",
 };
 
 export default async function DanismanlarPage() {
@@ -41,7 +41,7 @@ export default async function DanismanlarPage() {
 
             return (
               <article key={advisor.id} className="luxury-card overflow-hidden p-5">
-                <div className="mb-5 overflow-hidden rounded-[1.35rem] border border-[#deceb7] bg-[#f9f2e7]">
+                <div className="mb-5 overflow-hidden rounded-[1.35rem] border border-[#deceb7] bg-white">
                   <Image
                     src={advisor.image}
                     alt={advisor.name}
@@ -62,7 +62,7 @@ export default async function DanismanlarPage() {
                 <div className="mt-4 flex flex-wrap gap-2 text-sm">
                   <a
                     href={phoneHref}
-                    className="rounded-full border border-[#d6c5a8] bg-white px-4 py-2 font-semibold text-[#4f4435] transition hover:bg-[#f6edde]"
+                    className="rounded-full border border-[#d6c5a8] bg-white px-4 py-2 font-semibold text-[#4f4435] transition hover:bg-white"
                   >
                     {copy.call}
                   </a>
@@ -76,7 +76,7 @@ export default async function DanismanlarPage() {
                   </a>
                   <a
                     href={`mailto:${advisor.email}`}
-                    className="rounded-full border border-[#d8ceb8] bg-[#faf7f2] px-4 py-2 font-semibold text-[#5f5446] transition hover:bg-[#f1e8db]"
+                    className="rounded-full border border-[#d8ceb8] bg-white px-4 py-2 font-semibold text-[#5f5446] transition hover:bg-white"
                   >
                     {copy.email}
                   </a>

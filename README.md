@@ -1,4 +1,4 @@
-# PortföySatış
+# Econi Invest
 
 Satış odaklı emlak sitesi için hazırlanmış Next.js uygulaması.
 

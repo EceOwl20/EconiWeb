@@ -439,7 +439,7 @@ export function PortfolioProjectCenter({
                   companyFilter: event.target.value,
                 }))
               }
-              placeholder="Örn. Rodina, Signature Estates, XYZ İnşaat"
+              placeholder="Örn. Rodina, Econi Invest, XYZ İnşaat"
               className="input mt-3 h-12"
             />
             <p className="mt-2 text-xs text-slate-500">
@@ -674,10 +674,10 @@ export function PortfolioProjectCenter({
       ) : null}
 
       {canDelete && pendingApprovalCount > 0 ? (
-        <section className="mt-5 rounded-[1.75rem] border border-sky-200 bg-sky-50/70 p-4 sm:p-5">
+        <section className="mt-5 rounded-[1.75rem] border border-[rgba(102,165,87,0.28)] bg-[rgba(102,165,87,0.08)] p-4 sm:p-5">
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div className="max-w-2xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-700">Onay Kuyruğu</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand-accent-strong)]">Onay Kuyruğu</p>
               <h3 className="mt-2 text-lg font-semibold text-slate-900">Yönetici onayı bekleyen portföyler</h3>
               <p className="mt-1 text-sm text-slate-600">
                 Yeni girilen ilanlar önce bu kuyruğa düşer. Buradan hızlıca yayına alabilir, taslağa çekebilir veya
@@ -685,14 +685,14 @@ export function PortfolioProjectCenter({
               </p>
             </div>
 
-            <div className="rounded-full border border-sky-200 bg-white px-4 py-2 text-sm font-semibold text-sky-800">
+            <div className="rounded-full border border-[rgba(102,165,87,0.28)] bg-white px-4 py-2 text-sm font-semibold text-[var(--brand-accent-strong)]">
               {pendingApprovalCount} kayıt bekliyor
             </div>
           </div>
 
           <div className="mt-4 grid gap-3 lg:grid-cols-2">
             {pendingApprovalProperties.map((property) => (
-              <article key={property.id} className="rounded-[1.4rem] border border-sky-200 bg-white p-4">
+              <article key={property.id} className="rounded-[1.4rem] border border-[rgba(102,165,87,0.28)] bg-white p-4">
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
@@ -842,7 +842,7 @@ export function PortfolioProjectCenter({
                             >
                               {normalizePropertyPublicationStatus(property.publicationStatus)}
                             </span>
-                            <span className="rounded-full bg-sky-100 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-sky-800">
+                            <span className="rounded-full bg-[rgba(102,165,87,0.12)] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--brand-accent-strong)]">
                               {property.marketStatus ?? "Hazır"}
                             </span>
                             <span

@@ -116,14 +116,14 @@ export function UserManagement({
 
     return (
     <section className="space-y-6">
-      <article className="admin-card p-6 sm:p-7">
+      <article className="rounded-2xl border border-[var(--line)] bg-white p-6 shadow-sm">
         <span className="admin-kicker">Ekip Yetkileri</span>
-        <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-900">Kullanıcı Yönetimi</h2>
-        <p className="mt-3 text-sm leading-6 text-slate-600">
+        <h2 className="mt-4 text-3xl font-semibold tracking-tight text-[var(--brand-primary)]">Kullanıcı Yönetimi</h2>
+        <p className="mt-3 text-sm leading-6 text-[var(--ink-600)]">
           Panel kullanıcılarını oluşturun, rollerini belirleyin ve görünür hesapları yönetin.
         </p>
 
-        <div className="admin-note mt-4 px-4 py-3 text-sm text-slate-600">
+        <div className="admin-note mt-4 px-4 py-3 text-sm text-[var(--ink-600)]">
           {currentUser.role === "portal_admin"
             ? "Admin tüm rolleri ve danışman hesaplarını yönetebilir."
             : "Admin yeni admin, portföy yetkilisi, danışman ve içerik yükleyici hesapları oluşturabilir."}
@@ -135,7 +135,7 @@ export function UserManagement({
           <input required name="phone" placeholder="Telefon (+90 ...)" className="input" />
           <input required minLength={6} type="password" name="password" placeholder="Şifre" className="input" />
           <label className="md:col-span-2">
-            <span className="mb-1 block text-xs font-semibold uppercase tracking-[0.14em] text-slate-600">
+            <span className="mb-1 block text-xs font-semibold uppercase tracking-[0.14em] text-[var(--ink-600)]">
               Rol
             </span>
             <select
@@ -155,7 +155,7 @@ export function UserManagement({
 
           {requiresAdvisorSelection ? (
             <label className="md:col-span-2">
-              <span className="mb-1 block text-xs font-semibold uppercase tracking-[0.14em] text-slate-600">
+              <span className="mb-1 block text-xs font-semibold uppercase tracking-[0.14em] text-[var(--ink-600)]">
                 Bağlı Danışman
               </span>
               <select required name="advisorId" defaultValue="" className="input">
@@ -168,7 +168,7 @@ export function UserManagement({
                   </option>
                 ))}
               </select>
-              <p className="mt-2 text-xs text-slate-500">
+              <p className="mt-2 text-xs text-[var(--ink-500)]">
                 Danışman hesabı sadece seçilen danışmanın kendi taleplerini görür.
               </p>
             </label>
@@ -193,15 +193,15 @@ export function UserManagement({
         {status.type === "success" ? <p className="mt-3 text-sm text-emerald-700">{status.message}</p> : null}
       </article>
 
-      <article className="admin-card p-6">
+      <article className="rounded-2xl border border-[var(--line)] bg-white p-6 shadow-sm">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
-            <h3 className="text-lg font-semibold text-slate-900">Mevcut Kullanıcılar</h3>
-            <p className="mt-1 text-sm text-slate-600">Yalnızca bu hesabın görme yetkisi olan kullanıcılar listelenir.</p>
+            <h3 className="text-lg font-semibold text-[var(--brand-primary)]">Mevcut Kullanıcılar</h3>
+            <p className="mt-1 text-sm text-[var(--ink-600)]">Yalnızca bu hesabın görme yetkisi olan kullanıcılar listelenir.</p>
           </div>
 
-          <div className="admin-note w-full px-4 py-3 text-sm text-slate-600 md:w-[240px]">
-            Toplam kayıt: <strong className="text-slate-900">{users.length}</strong>
+          <div className="admin-note w-full px-4 py-3 text-sm text-[var(--ink-600)] md:w-[240px]">
+            Toplam kayıt: <strong className="text-[var(--brand-primary)]">{users.length}</strong>
           </div>
         </div>
 
@@ -216,7 +216,7 @@ export function UserManagement({
 
         <div className="mt-5 space-y-3">
           {filteredUsers.length === 0 ? (
-            <p className="rounded-xl border border-dashed border-slate-300 p-4 text-sm text-slate-500">
+            <p className="rounded-xl border border-dashed border-[var(--line-strong)] p-4 text-sm text-[var(--ink-500)]">
               {users.length === 0 ? "Henüz kullanıcı kaydı yok." : "Aramana uygun kullanıcı bulunamadı."}
             </p>
           ) : (
@@ -225,24 +225,24 @@ export function UserManagement({
               const isSelf = currentUser.id === user.id;
 
               return (
-                <article key={user.id} className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+                <article key={user.id} className="rounded-xl border border-[var(--line)] bg-white p-4">
                   <div className="flex flex-wrap items-start justify-between gap-3">
                     <div className="min-w-0 flex-1">
                       <div className="flex flex-wrap items-center gap-2">
-                        <span className="rounded-full bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.15em] text-slate-500">
+                        <span className="rounded-full bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.15em] text-[var(--ink-500)]">
                           {roleLabel(user.role)}
                         </span>
                         {isSelf ? (
-                          <span className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.15em] text-slate-500">
+                          <span className="rounded-full border border-[var(--line)] bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.15em] text-[var(--ink-500)]">
                             Aktif Hesap
                           </span>
                         ) : null}
                       </div>
-                      <p className="mt-2 text-lg font-semibold text-slate-900">{user.name}</p>
-                      <p className="text-sm text-slate-600">{user.email}</p>
-                      <p className="text-sm text-slate-500">{user.phone || "Telefon bilgisi yok"}</p>
+                      <p className="mt-2 text-lg font-semibold text-[var(--brand-primary)]">{user.name}</p>
+                      <p className="text-sm text-[var(--ink-600)]">{user.email}</p>
+                      <p className="text-sm text-[var(--ink-500)]">{user.phone || "Telefon bilgisi yok"}</p>
                       {user.advisorId ? (
-                        <p className="mt-1 text-sm text-slate-500">
+                        <p className="mt-1 text-sm text-[var(--ink-500)]">
                           Bağlı danışman: {advisorMap.get(user.advisorId)?.name ?? "Kayıt bulunamadı"}
                         </p>
                       ) : null}
@@ -252,7 +252,7 @@ export function UserManagement({
                       type="button"
                       disabled={!canDelete || deletingUserId === user.id}
                       onClick={() => void handleDelete(user)}
-                      className="cursor-pointer rounded-full border border-rose-200 bg-white px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-rose-700 transition hover:bg-rose-50 disabled:cursor-not-allowed disabled:border-slate-200 disabled:text-slate-400"
+                      className="cursor-pointer rounded-full border border-rose-200 bg-white px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-rose-700 transition hover:bg-rose-50 disabled:cursor-not-allowed disabled:border-[var(--line)] disabled:text-[var(--ink-400)]"
                       title={
                         isSelf
                           ? "Kendi hesabını silemezsin"

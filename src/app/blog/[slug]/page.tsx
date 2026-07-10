@@ -55,14 +55,14 @@ function listToneClass(tone: "default" | "accent" | "soft"): string {
 
 function quoteToneClass(tone: "default" | "accent" | "soft"): string {
   if (tone === "accent") {
-    return "border-[#d4bb8f] bg-[#fff8ed] text-[#694f24]";
+    return "border-[#d4bb8f] bg-white text-[#694f24]";
   }
 
   if (tone === "soft") {
-    return "border-[#d9d6ce] bg-[#f7f6f2] text-[#5a5247]";
+    return "border-[#d9d6ce] bg-white text-[#5a5247]";
   }
 
-  return "border-[#dfd4c0] bg-[#faf7f1] text-[#554c40]";
+  return "border-[#dfd4c0] bg-white text-[#554c40]";
 }
 
 function headingAnchor(text: string, index: number): string {
@@ -81,7 +81,7 @@ export async function generateMetadata({ params }: BlogDetailPageProps): Promise
   const post = getBlogPostBySlug(resolvedParams.slug);
 
   if (!post) {
-    return { title: "Blog Yazısı Bulunamadı | PortföySatış" };
+    return { title: "Blog Yazısı Bulunamadı | Econi Invest" };
   }
 
   return blogMetadata(post);
@@ -236,7 +236,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
                 if (block.type === "cta") {
                   return (
-                    <div key={`cta-${index}`} className="rounded-xl border border-[#dcccb0] bg-[#fcf4e4] px-4 py-4">
+                    <div key={`cta-${index}`} className="rounded-xl border border-[#dcccb0] bg-white px-4 py-4">
                       <a
                         href={block.href}
                         className="inline-flex rounded-full bg-[#2f271d] px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-[#f7e6c8]"
@@ -249,7 +249,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
                 if (block.type === "image") {
                   return (
-                    <figure key={`image-${index}`} className="overflow-hidden rounded-xl border border-[#dfd2bd] bg-[#f8f4eb]">
+                    <figure key={`image-${index}`} className="overflow-hidden rounded-xl border border-[#dfd2bd] bg-white">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src={block.src} alt={block.alt} className="h-auto w-full object-cover" loading="lazy" />
                       <figcaption className="space-y-1 px-4 py-3 text-xs text-[#5f5548]">
@@ -293,7 +293,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                 {post.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full border border-[#e2d5c2] bg-[#f9f4eb] px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#7b6744]"
+                    className="rounded-full border border-[#e2d5c2] bg-white px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#7b6744]"
                   >
                     {tag}
                   </span>

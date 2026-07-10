@@ -101,13 +101,13 @@ export function BlogSeoChecklist({
   const score = Math.round((passedCount / checks.length) * 100);
 
   return (
-    <section className="md:col-span-2 rounded-xl border border-[#d8c9b2] bg-[#fffaf1] p-4">
+    <section className="md:col-span-2 rounded-xl border border-[#d8c9b2] bg-white p-4">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#6f5a3d]">SEO Kontrol Paneli</p>
         <p className="text-sm font-semibold text-[#3a2f22]">Skor: {score}/100</p>
       </div>
 
-      <div className="mt-3 h-2 overflow-hidden rounded-full bg-[#eee2d1]">
+      <div className="mt-3 h-2 overflow-hidden rounded-full bg-[#e5e7eb]">
         <div className="h-full bg-[#b89155] transition-all" style={{ width: `${score}%` }} />
       </div>
 

@@ -48,7 +48,7 @@ export function getPropertyPublicationBadgeClass(status: PropertyPublicationStat
     case "Aktif":
       return "bg-emerald-100 text-emerald-800";
     case "Onay Bekliyor":
-      return "bg-sky-100 text-sky-800";
+      return "bg-[rgba(102,165,87,0.12)] text-[var(--brand-accent-strong)]";
     case "Taslak":
       return "bg-slate-200 text-slate-700";
     case "Satıldı":

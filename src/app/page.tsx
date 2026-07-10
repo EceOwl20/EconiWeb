@@ -17,9 +17,9 @@ import { homeListingSchema } from "@/lib/seo";
 import type { Property } from "@/lib/types";
 
 export const metadata: Metadata = {
-  title: "PortföySatış | Signature Estates",
+  title: "Econi Invest | Premium Emlak ve Yatırım Portföyleri",
   description:
-    "Premium emlak portföylerini çok sayfalı kurumsal yapıda keşfedin: portföyler, harita, danışmanlar, hizmetler ve iletişim.",
+    "Econi Invest ile premium emlak portföylerini, yatırım analizini ve danışman destekli satın alma sürecini keşfedin.",
 };
 
 type PopularLocationCard = {
@@ -186,7 +186,7 @@ export default async function HomePage() {
     {
       key: "signature-selection",
       title: "İstanbul & Ege",
-      subtitle: "Signature seçki koleksiyonu",
+      subtitle: "Econi Invest seçki koleksiyonu",
       href: "/portfoyler",
       image:
         signatureProperty?.coverImage ??
@@ -269,11 +269,11 @@ export default async function HomePage() {
 
       <main className="w-full pb-24">
         <section className="frame-wide mt-4 fade-up">
-          <div className="rounded-[2.15rem] border border-[#e3d6c3] bg-[linear-gradient(180deg,#fffdfa_0%,#f9f3e9_100%)] px-5 py-6 shadow-[0_32px_64px_-46px_rgba(22,30,42,0.22)] sm:px-7 sm:py-8 xl:px-10 xl:pt-10 xl:pb-14">
+          <div className="rounded-[2.15rem] border border-[#e3d6c3] bg-white px-5 py-6 shadow-[0_32px_64px_-46px_rgba(22,30,42,0.22)] sm:px-7 sm:py-8 xl:px-10 xl:pt-10 xl:pb-14">
             <div className="grid gap-7 xl:grid-cols-[minmax(0,0.82fr)_minmax(460px,1.18fr)] xl:items-center">
               <div className="max-w-xl">
                 <div className="flex gap-4">
-                  <span className="hidden w-[4px] rounded-full bg-[linear-gradient(180deg,var(--brand-accent)_0%,#d3ab76_100%)] sm:block" />
+                  <span className="hidden w-[4px] rounded-full bg-[linear-gradient(180deg,var(--brand-accent)_0%,#4f8f42_100%)] sm:block" />
                   <div>
                     <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[var(--brand-accent-strong)]">
                       {copy.heroKicker}
@@ -303,7 +303,7 @@ export default async function HomePage() {
                 </div>
               </div>
 
-              <div className="relative min-h-[18rem] overflow-hidden rounded-[1.8rem] border border-[#dfd0bd] bg-[#d8cab5] shadow-[0_30px_58px_-42px_rgba(20,24,32,0.3)] sm:min-h-[23rem] xl:min-h-[26.5rem]">
+              <div className="relative min-h-[18rem] overflow-hidden rounded-[1.8rem] border border-[#dfd0bd] bg-white shadow-[0_30px_58px_-42px_rgba(20,24,32,0.3)] sm:min-h-[23rem] xl:min-h-[26.5rem]">
                 <Image
                   src={heroImage}
                   alt={heroPropertyTitle}
@@ -358,10 +358,10 @@ export default async function HomePage() {
             ))}
           </div>
 
-          <div className="mt-7 grid gap-4 rounded-[1.6rem] border border-[#e2d7c8] bg-[rgba(255,252,247,0.92)] p-5 shadow-[0_22px_42px_-36px_rgba(18,24,36,0.18)] sm:grid-cols-3 sm:p-6">
+          <div className="mt-7 grid gap-4 rounded-[1.6rem] border border-[#e2d7c8] bg-white p-5 shadow-[0_22px_42px_-36px_rgba(18,24,36,0.18)] sm:grid-cols-3 sm:p-6">
             {trustItems.map((item) => (
               <div key={item.key} className="flex items-start gap-3">
-                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[rgba(201,124,78,0.1)] text-[var(--brand-accent-strong)]">
+                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[rgba(102,165,87,0.1)] text-[var(--brand-accent-strong)]">
                   <TrustIcon type={item.icon} />
                 </span>
                 <div>

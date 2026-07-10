@@ -45,7 +45,7 @@ function truncateText(value: string, limit: number) {
 function Metric({ icon, label, value }: MetricProps) {
   return (
     <div className="flex items-center gap-2 border-r border-dashed border-[#d9d1c5] pr-4 last:border-r-0 last:pr-0">
-      <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[#ddd0c0] bg-[#f7f2ea] text-[#5b4a36]">
+      <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[#ddd0c0] bg-white text-[#5b4a36]">
         {icon}
       </span>
       <div className="min-w-0">
@@ -192,9 +192,9 @@ export function PropertyCard({ property, advisor }: PropertyCardProps) {
   }
 
   return (
-    <article className="overflow-hidden rounded-[1.5rem] border border-[#dbcfbf] bg-[linear-gradient(180deg,#fffdfa_0%,#fbf7f0_100%)] shadow-[0_30px_60px_-40px_rgba(33,27,19,0.28)]">
+    <article className="overflow-hidden rounded-[1.5rem] border border-[#dbcfbf] bg-white shadow-[0_30px_60px_-40px_rgba(33,27,19,0.28)]">
       <div className="grid min-w-0 lg:grid-cols-[minmax(320px,44%)_minmax(0,1fr)] 2xl:grid-cols-[minmax(380px,48%)_minmax(0,1fr)]">
-        <div className="relative min-h-[320px] overflow-hidden bg-[#d8cab5] sm:min-h-[360px] lg:min-h-full">
+        <div className="relative min-h-[320px] overflow-hidden bg-white sm:min-h-[360px] lg:min-h-full">
           <Image
             src={activeImage}
             alt={propertyTitle}
@@ -293,7 +293,7 @@ export function PropertyCard({ property, advisor }: PropertyCardProps) {
                     className="flex min-w-0 items-center gap-3 rounded-[1rem] border border-[#e4d8c8] bg-white px-3 py-3"
                     title={item.value}
                   >
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#ddd0c0] bg-[#f7f2ea] text-[#5b4a36]">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#ddd0c0] bg-white text-[#5b4a36]">
                       <PropertyInfoIcon icon={item.icon} />
                     </span>
                     <p className="truncate text-sm font-semibold text-[#2f281f]">{item.value}</p>
@@ -313,7 +313,7 @@ export function PropertyCard({ property, advisor }: PropertyCardProps) {
                   {advisor.name}
                 </span>
               ) : null}
-              <span className="rounded-full border border-[#f1d3d5] bg-[#fff5f6] px-3 py-2 text-[11px] font-semibold text-[#8f262d]">
+              <span className="rounded-full border border-[#f1d3d5] bg-white px-3 py-2 text-[11px] font-semibold text-[#8f262d]">
                 {translateHeatingLabel(property.heating, language)}
               </span>
             </div>
@@ -335,7 +335,7 @@ export function PropertyCard({ property, advisor }: PropertyCardProps) {
                 href={quickHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-[1rem] border border-[#cfd6df] bg-white px-5 py-3 text-sm font-semibold text-[#344256] transition hover:border-[#a9b5c4] hover:bg-[#f6f8fb]"
+                className="inline-flex items-center justify-center gap-2 rounded-[1rem] border border-[#cfd6df] bg-white px-5 py-3 text-sm font-semibold text-[#344256] transition hover:border-[#a9b5c4] hover:bg-white"
               >
                 <ContactIcon />
                 {copy.quickContact}
@@ -343,7 +343,7 @@ export function PropertyCard({ property, advisor }: PropertyCardProps) {
             ) : phoneHref ? (
               <a
                 href={phoneHref}
-                className="inline-flex items-center justify-center gap-2 rounded-[1rem] border border-[#cfd6df] bg-white px-5 py-3 text-sm font-semibold text-[#344256] transition hover:border-[#a9b5c4] hover:bg-[#f6f8fb]"
+                className="inline-flex items-center justify-center gap-2 rounded-[1rem] border border-[#cfd6df] bg-white px-5 py-3 text-sm font-semibold text-[#344256] transition hover:border-[#a9b5c4] hover:bg-white"
               >
                 <ContactIcon />
                 {copy.callNow}
@@ -351,7 +351,7 @@ export function PropertyCard({ property, advisor }: PropertyCardProps) {
             ) : (
               <Link
                 href={`/ilan/${property.slug}`}
-                className="inline-flex items-center justify-center gap-2 rounded-[1rem] border border-[#cfd6df] bg-white px-5 py-3 text-sm font-semibold text-[#344256] transition hover:border-[#a9b5c4] hover:bg-[#f6f8fb]"
+                className="inline-flex items-center justify-center gap-2 rounded-[1rem] border border-[#cfd6df] bg-white px-5 py-3 text-sm font-semibold text-[#344256] transition hover:border-[#a9b5c4] hover:bg-white"
               >
                 <ContactIcon />
                 {copy.quickContact}
@@ -360,7 +360,7 @@ export function PropertyCard({ property, advisor }: PropertyCardProps) {
 
             <Link
               href={`/ilan/${property.slug}`}
-              className="inline-flex items-center justify-center rounded-[1rem] border border-[#e04f56] bg-white px-5 py-3 text-sm font-semibold tracking-[0.02em] text-[#cf1f2b] transition hover:bg-[#fff5f5]"
+              className="inline-flex items-center justify-center rounded-[1rem] border border-[#e04f56] bg-white px-5 py-3 text-sm font-semibold tracking-[0.02em] text-[#cf1f2b] transition hover:bg-white"
             >
               {copy.detailedInfo}
             </Link>

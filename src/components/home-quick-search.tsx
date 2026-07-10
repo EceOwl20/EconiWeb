@@ -276,7 +276,7 @@ export function HomeQuickSearch({
 
           <button
             type="submit"
-            className="inline-flex min-h-[3.15rem] items-center justify-center gap-2 rounded-[1rem] bg-[var(--brand-primary)] px-6 text-[14px] font-semibold text-white shadow-[0_18px_28px_-20px_rgba(29,56,92,0.65)] transition hover:-translate-y-0.5"
+            className="inline-flex min-h-[3.15rem] items-center justify-center gap-2 rounded-[1rem] bg-[var(--brand-primary)] px-6 text-[14px] font-semibold text-white shadow-[0_18px_28px_-20px_rgba(29,29,27,0.65)] transition hover:-translate-y-0.5"
           >
             <SearchIcon />
             {copy.submit}
@@ -333,16 +333,16 @@ export function HomeQuickSearch({
   }
 
   const wrapperClassName = isOverlay
-    ? "relative overflow-hidden rounded-[1.3rem] border border-white/18 bg-[rgba(255,250,244,0.8)] p-2.5 shadow-[0_28px_48px_-34px_rgba(8,14,22,0.48)] backdrop-blur-md sm:p-3 xl:px-4 xl:py-3"
-    : "relative overflow-hidden rounded-[1.55rem] border border-[var(--line-strong)] bg-[rgba(255,253,249,0.98)] p-4 shadow-[0_24px_48px_-38px_rgba(18,24,36,0.24)] backdrop-blur sm:p-5 xl:px-6 xl:py-5";
+    ? "relative overflow-hidden rounded-[1.3rem] border border-white/18 bg-white/85 p-2.5 shadow-[0_28px_48px_-34px_rgba(8,14,22,0.48)] backdrop-blur-md sm:p-3 xl:px-4 xl:py-3"
+    : "relative overflow-hidden rounded-[1.55rem] border border-[var(--line-strong)] bg-white p-4 shadow-[0_24px_48px_-38px_rgba(18,24,36,0.24)] backdrop-blur sm:p-5 xl:px-6 xl:py-5";
   const overlayGlowClassName = isOverlay
     ? "absolute inset-0 bg-[radial-gradient(circle_at_right_center,rgba(255,255,255,0.22),transparent_34%),radial-gradient(circle_at_left_top,rgba(201,124,78,0.12),transparent_28%)]"
-    : "absolute inset-0 bg-[radial-gradient(circle_at_right_center,rgba(29,56,92,0.08),transparent_32%),radial-gradient(circle_at_left_top,rgba(201,124,78,0.08),transparent_28%)]";
+    : "absolute inset-0 bg-[radial-gradient(circle_at_right_center,rgba(29,29,27,0.08),transparent_32%),radial-gradient(circle_at_left_top,rgba(102,165,87,0.08),transparent_28%)]";
   const inputClassName = isOverlay ? "input min-h-[2.75rem] px-3 text-[13px]" : "input min-h-14 px-4 text-base";
   const selectClassName = isOverlay ? "input min-h-[2.75rem] px-3 text-[13px]" : "input min-h-[3.25rem] px-4 text-[15px]";
   const actionButtonClassName = isOverlay
-    ? "inline-flex min-h-[2.75rem] items-center justify-center gap-2 rounded-[0.9rem] border border-[var(--line-strong)] bg-white px-3.5 text-[11px] font-semibold text-[var(--brand-primary)] transition hover:border-[var(--brand-accent)] hover:bg-[rgba(255,245,235,0.82)]"
-    : "inline-flex min-h-[3.25rem] items-center justify-center gap-2 rounded-[1rem] border border-[var(--line-strong)] bg-white px-4 text-[13px] font-semibold text-[var(--brand-primary)] transition hover:border-[var(--brand-accent)] hover:bg-[rgba(255,245,235,0.82)]";
+    ? "inline-flex min-h-[2.75rem] items-center justify-center gap-2 rounded-[0.9rem] border border-[var(--line-strong)] bg-white px-3.5 text-[11px] font-semibold text-[var(--brand-primary)] transition hover:border-[var(--brand-accent)] hover:bg-[rgba(102,165,87,0.08)]"
+    : "inline-flex min-h-[3.25rem] items-center justify-center gap-2 rounded-[1rem] border border-[var(--line-strong)] bg-white px-4 text-[13px] font-semibold text-[var(--brand-primary)] transition hover:border-[var(--brand-accent)] hover:bg-[rgba(102,165,87,0.08)]";
   const submitButtonClassName = isOverlay
     ? "btn-gold inline-flex min-h-[2.75rem] items-center justify-center gap-2 rounded-[0.9rem] px-4 text-[13px] font-semibold shadow-[0_20px_34px_-24px_rgba(192,118,68,0.55)] transition hover:-translate-y-0.5"
     : "btn-gold inline-flex min-h-[3.25rem] items-center justify-center gap-2 rounded-[1rem] px-6 text-[15px] font-semibold shadow-[0_22px_36px_-24px_rgba(192,118,68,0.55)] transition hover:-translate-y-0.5";
@@ -355,7 +355,7 @@ export function HomeQuickSearch({
         <div className="flex flex-col gap-2">
           <div className="flex flex-wrap items-center gap-2">
             <span className={`inline-flex rounded-full px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.22em] ${
-              isOverlay ? "bg-white/72 text-[var(--brand-primary)]" : "bg-[rgba(29,56,92,0.08)] text-[var(--brand-primary)]"
+              isOverlay ? "bg-white/72 text-[var(--brand-primary)]" : "bg-[rgba(102,165,87,0.1)] text-[var(--brand-primary)]"
             }`}>
               {copy.eyebrow}
             </span>

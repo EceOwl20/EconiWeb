@@ -9,14 +9,14 @@ type AdminNotificationCenterProps = {
 const notificationToneClass: Record<AdminNotification["tone"], string> = {
   urgent: "border-rose-200 bg-rose-50 text-rose-800",
   warning: "border-amber-200 bg-amber-50 text-amber-800",
-  info: "border-sky-200 bg-sky-50 text-sky-800",
+  info: "border-[rgba(102,165,87,0.28)] bg-[rgba(102,165,87,0.08)] text-[var(--brand-accent-strong)]",
   success: "border-emerald-200 bg-emerald-50 text-emerald-800",
 };
 
 const notificationDotClass: Record<AdminNotification["tone"], string> = {
   urgent: "bg-rose-500",
   warning: "bg-amber-500",
-  info: "bg-sky-500",
+  info: "bg-[var(--brand-green)]",
   success: "bg-emerald-500",
 };
 
@@ -27,7 +27,7 @@ export function AdminNotificationCenter({ notifications }: AdminNotificationCent
   return (
     <details className="group relative">
       <summary
-        className="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-[1rem] border border-[#e2e8f0] bg-white text-[#475569] shadow-[0_10px_20px_-18px_rgba(15,23,42,0.35)] transition hover:border-[#cbd5e1] hover:text-[#0f172a] group-open:border-[#1d4ed8] group-open:text-[#1d4ed8] [&::-webkit-details-marker]:hidden"
+        className="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-[1rem] border border-[var(--line)] bg-white text-[var(--ink-700)] shadow-[0_10px_20px_-18px_rgba(29,29,27,0.35)] transition hover:border-[var(--brand-green)] hover:text-[var(--brand-primary)] group-open:border-[var(--brand-green)] group-open:text-[var(--brand-green)] [&::-webkit-details-marker]:hidden"
         aria-label="Bildirim merkezini aç"
       >
         <BellIcon />
@@ -40,14 +40,14 @@ export function AdminNotificationCenter({ notifications }: AdminNotificationCent
         )}
       </summary>
 
-      <div className="absolute right-0 top-[calc(100%+0.75rem)] z-50 w-[min(380px,calc(100vw-2rem))] overflow-hidden rounded-[1.25rem] border border-[#e2e8f0] bg-white shadow-[0_24px_70px_-28px_rgba(15,23,42,0.35)]">
-        <div className="border-b border-[#e2e8f0] px-5 py-4">
+      <div className="absolute right-0 top-[calc(100%+0.75rem)] z-50 w-[min(380px,calc(100vw-2rem))] overflow-hidden rounded-[1.25rem] border border-[var(--line)] bg-white shadow-[0_24px_70px_-28px_rgba(29,29,27,0.35)]">
+        <div className="border-b border-[var(--line)] px-5 py-4">
           <div className="flex items-center justify-between gap-3">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#1d4ed8]">Bildirim Merkezi</p>
-              <h2 className="mt-1 text-base font-semibold text-[#0f172a]">Bekleyen işler</h2>
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand-accent-strong)]">Bildirim Merkezi</p>
+              <h2 className="mt-1 text-base font-semibold text-[var(--brand-primary)]">Bekleyen işler</h2>
             </div>
-            <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-[#475569]">
+            <span className="rounded-full bg-[rgba(102,165,87,0.1)] px-3 py-1 text-xs font-semibold text-[var(--ink-700)]">
               {total > 0 ? `${total} açık` : "Temiz"}
             </span>
           </div>
@@ -59,7 +59,7 @@ export function AdminNotificationCenter({ notifications }: AdminNotificationCent
               <Link
                 key={notification.id}
                 href={notification.href}
-                className={`block rounded-2xl border px-4 py-3 transition hover:-translate-y-0.5 hover:shadow-[0_16px_28px_-24px_rgba(15,23,42,0.45)] ${notificationToneClass[notification.tone]}`}
+                className={`block rounded-2xl border px-4 py-3 transition hover:-translate-y-0.5 hover:shadow-[0_16px_28px_-24px_rgba(29,29,27,0.32)] ${notificationToneClass[notification.tone]}`}
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
@@ -67,11 +67,11 @@ export function AdminNotificationCenter({ notifications }: AdminNotificationCent
                       <span className={`h-2.5 w-2.5 shrink-0 rounded-full ${notificationDotClass[notification.tone]}`} />
                       <p className="truncate text-sm font-semibold">{notification.title}</p>
                     </div>
-                    <p className="mt-1 text-sm leading-5 text-[#475569]">{notification.description}</p>
-                    {notification.meta ? <p className="mt-2 text-xs font-medium text-[#64748b]">{notification.meta}</p> : null}
+                    <p className="mt-1 text-sm leading-5 text-[var(--ink-700)]">{notification.description}</p>
+                    {notification.meta ? <p className="mt-2 text-xs font-medium text-[var(--ink-600)]">{notification.meta}</p> : null}
                   </div>
                   {notification.count > 0 ? (
-                    <span className="shrink-0 rounded-full bg-white/80 px-2.5 py-1 text-xs font-bold text-[#0f172a]">
+                    <span className="shrink-0 rounded-full bg-white/80 px-2.5 py-1 text-xs font-bold text-[var(--brand-primary)]">
                       {notification.count}
                     </span>
                   ) : null}
@@ -81,8 +81,8 @@ export function AdminNotificationCenter({ notifications }: AdminNotificationCent
           </div>
         </div>
 
-        <div className="border-t border-[#e2e8f0] bg-[#f8fafc] px-5 py-3">
-          <Link href="/yonetim-ofisi?tab=overview" className="text-sm font-semibold text-[#1d4ed8] hover:text-[#1e40af]">
+        <div className="border-t border-[var(--line)] bg-white px-5 py-3">
+          <Link href="/yonetim-ofisi?tab=overview" className="text-sm font-semibold text-[var(--brand-accent-strong)] hover:text-[var(--brand-primary)]">
             Genel bakışa git
           </Link>
         </div>

@@ -10,8 +10,8 @@ import { contactPageCopy } from "@/lib/site-copy";
 import { getServerSiteLanguage } from "@/lib/site-preferences-server";
 
 export const metadata: Metadata = {
-  title: "İletişim | PortföySatış",
-  description: "PortföySatış danışman ekibiyle iletişim kurun, talebinizi iletin.",
+  title: "İletişim | Econi Invest",
+  description: "Econi Invest danışman ekibiyle iletişim kurun, talebinizi iletin.",
 };
 
 export default async function IletisimPage() {
@@ -49,20 +49,20 @@ export default async function IletisimPage() {
 
             <div className="mt-4 space-y-2 text-sm text-[#5f5548]">
               <p><span className="font-semibold">{copy.phone}:</span> +90 212 900 00 01</p>
-              <p><span className="font-semibold">{copy.email}:</span> info@portfoysatis.com</p>
+              <p><span className="font-semibold">{copy.email}:</span> info@econiinvest.com</p>
               <p><span className="font-semibold">{copy.address}:</span> Levent, İstanbul</p>
             </div>
 
             <div className="mt-5 flex flex-wrap gap-2 text-sm">
               <a
                 href="tel:+902129000001"
-                className="rounded-full border border-[#d6c5a8] bg-white px-4 py-2 font-semibold text-[#4f4435] transition hover:bg-[#f6edde]"
+                className="rounded-full border border-[#d6c5a8] bg-white px-4 py-2 font-semibold text-[#4f4435] transition hover:bg-white"
               >
                 {copy.call}
               </a>
               <Link
                 href="/danismanlar"
-                className="rounded-full border border-[#ccb795] bg-[#faf6ee] px-4 py-2 font-semibold text-[#6d593b] transition hover:bg-[#f1e8db]"
+                className="rounded-full border border-[#ccb795] bg-white px-4 py-2 font-semibold text-[#6d593b] transition hover:bg-white"
               >
                 {copy.advisors}
               </Link>

@@ -60,7 +60,7 @@ export function SiteHeaderAuth({ initialUser = null }: SiteHeaderAuthProps) {
         <span className="hidden px-2 text-[var(--ink-500)] sm:inline">{roleLabel(user.role, language)}</span>
         <Link
           href="/yonetim-ofisi"
-          className="rounded-full bg-[var(--brand-primary)] px-3 py-2 font-semibold text-white transition hover:bg-[#27466e]"
+          className="rounded-full bg-[var(--brand-primary)] px-3 py-2 font-semibold text-white transition hover:bg-[#2a2a28]"
         >
           <span className="sm:hidden">{copy.authPanel}</span>
           <span className="hidden sm:inline">{copy.authManagement}</span>
@@ -68,7 +68,7 @@ export function SiteHeaderAuth({ initialUser = null }: SiteHeaderAuthProps) {
         <form action="/api/auth/logout" method="post">
           <button
             type="submit"
-            className="cursor-pointer rounded-full border border-[var(--line-strong)] px-3 py-2 font-semibold text-[var(--brand-primary)] transition hover:bg-[rgba(29,56,92,0.05)]"
+            className="cursor-pointer rounded-full border border-[var(--line-strong)] px-3 py-2 font-semibold text-[var(--brand-primary)] transition hover:bg-[rgba(102,165,87,0.08)]"
           >
             {copy.authLogout}
           </button>

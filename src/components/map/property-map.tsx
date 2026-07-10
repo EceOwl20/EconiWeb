@@ -16,7 +16,7 @@ const PropertyMapCanvas = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="h-[460px] animate-pulse rounded-2xl border border-[#d9cdbb] bg-[#f3ecdf]" />
+      <div className="h-[460px] animate-pulse rounded-2xl border border-[#d9cdbb] bg-white" />
     ),
   },
 );
@@ -158,7 +158,7 @@ export function PropertyMap({ portfolios }: PropertyMapProps) {
             className={`cursor-pointer rounded-full px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] transition ${
               mapStyle === style.key
                 ? "bg-[#17140f] text-white"
-                : "border border-[#d2c4af] bg-white text-[#6f5a3c] hover:bg-[#f1e6d5]"
+                : "border border-[#d2c4af] bg-white text-[#6f5a3c] hover:bg-white"
             }`}
           >
             {style.label}
@@ -182,7 +182,7 @@ export function PropertyMap({ portfolios }: PropertyMapProps) {
                 setViewCenter(defaultCenter);
                 setViewZoom(10);
               }}
-              className="cursor-pointer rounded-full border border-[#d2c4af] px-4 py-2 text-xs font-semibold uppercase tracking-[0.15em] text-[#6f5a3c] transition hover:bg-[#f1e6d5]"
+              className="cursor-pointer rounded-full border border-[#d2c4af] px-4 py-2 text-xs font-semibold uppercase tracking-[0.15em] text-[#6f5a3c] transition hover:bg-white"
             >
               {copy.clear}
             </button>
@@ -216,7 +216,7 @@ export function PropertyMap({ portfolios }: PropertyMapProps) {
           />
         </div>
 
-        <aside className="rounded-2xl border border-[#d9cdbb] bg-[#fffdf8] p-3">
+        <aside className="rounded-2xl border border-[#d9cdbb] bg-white p-3">
           <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8a6f45]">
             {copy.mapResults}
           </p>

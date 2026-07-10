@@ -9,7 +9,7 @@ import { sellPageCopy } from "@/lib/site-copy";
 import { getServerSiteLanguage } from "@/lib/site-preferences-server";
 
 export const metadata: Metadata = {
-  title: "Emlak Sat | PortföySatış",
+  title: "Emlak Sat | Econi Invest",
   description: "Mülkünüzü satışa çıkarmak için detayları paylaşın; değerleme ve premium satış operasyonu için ekibimiz sizinle iletişime geçsin.",
 };
 
@@ -89,19 +89,19 @@ export default async function EmlakSatPage({ searchParams }: EmlakSatPageProps) 
               <div className="mt-4 space-y-3 text-sm text-[#5f5548]">
                 <p><span className="font-semibold">{copy.phone}:</span> +90 212 900 00 01</p>
                 <p><span className="font-semibold">{copy.whatsapp}:</span> +90 532 111 22 33</p>
-                <p><span className="font-semibold">{copy.email}:</span> sales@portfoysatis.com</p>
+                <p><span className="font-semibold">{copy.email}:</span> sales@econiinvest.com</p>
               </div>
 
               <div className="mt-5 flex flex-wrap gap-2">
                 <a
                 href="tel:+902129000001"
-                className="rounded-full border border-[#d6c5a8] bg-white px-4 py-2 text-sm font-semibold text-[#4f4435] transition hover:bg-[#f6edde]"
+                className="rounded-full border border-[#d6c5a8] bg-white px-4 py-2 text-sm font-semibold text-[#4f4435] transition hover:bg-white"
               >
                   {copy.call}
                 </a>
                 <Link
                   href="/danismanlar"
-                  className="rounded-full border border-[#ccb795] bg-[#faf6ee] px-4 py-2 text-sm font-semibold text-[#6d593b] transition hover:bg-[#f1e8db]"
+                  className="rounded-full border border-[#ccb795] bg-white px-4 py-2 text-sm font-semibold text-[#6d593b] transition hover:bg-white"
                 >
                   {copy.advisors}
                 </Link>

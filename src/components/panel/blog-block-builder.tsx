@@ -45,11 +45,11 @@ function reorder<T>(items: T[], from: number, to: number): T[] {
 
 function toneClass(tone: BlogBlockTone): string {
   if (tone === "accent") {
-    return "border-[#d6bd90] bg-[#fff7ea]";
+    return "border-[#d6bd90] bg-white";
   }
 
   if (tone === "soft") {
-    return "border-[#d9d7d1] bg-[#f7f6f2]";
+    return "border-[#d9d7d1] bg-white";
   }
 
   return "border-slate-200 bg-white";
@@ -102,14 +102,14 @@ function listClass(tone: BlogBlockTone): string {
 
 function quoteClass(tone: BlogBlockTone): string {
   if (tone === "accent") {
-    return "border-[#d6bd90] bg-[#fff8ed] text-[#6d5227]";
+    return "border-[#d6bd90] bg-white text-[#6d5227]";
   }
 
   if (tone === "soft") {
-    return "border-[#d9d7d1] bg-[#f6f5f1] text-[#5c5448]";
+    return "border-[#d9d7d1] bg-white text-[#5c5448]";
   }
 
-  return "border-[#dfd7c9] bg-[#f9f6f0] text-[#51493e]";
+  return "border-[#dfd7c9] bg-white text-[#51493e]";
 }
 
 function blockRows(type: BlogBuilderBlockType): number {
@@ -256,7 +256,7 @@ export function BlogBlockBuilder({ blocks, onChange }: BlogBlockBuilderProps) {
             key={option.value}
             type="button"
             onClick={() => addBlock(option.value)}
-            className="cursor-pointer rounded-full border border-[#d0c2ad] bg-white px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-[#6f5a3c] transition hover:bg-[#f4ead9]"
+            className="cursor-pointer rounded-full border border-[#d0c2ad] bg-white px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-[#6f5a3c] transition hover:bg-white"
           >
             + {option.label}
           </button>
@@ -409,7 +409,7 @@ export function BlogBlockBuilder({ blocks, onChange }: BlogBlockBuilderProps) {
                 }
 
                 return (
-                  <div key={block.id} className="rounded-xl border border-[#d8c8ad] bg-[#fdf6e7] p-4">
+                  <div key={block.id} className="rounded-xl border border-[#d8c8ad] bg-white p-4">
                     <a
                       href={cta.href}
                       className="inline-flex rounded-full bg-[#2f271d] px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-[#f8e8cd]"
@@ -427,7 +427,7 @@ export function BlogBlockBuilder({ blocks, onChange }: BlogBlockBuilderProps) {
                 }
 
                 return (
-                  <figure key={block.id} className="overflow-hidden rounded-xl border border-[#dfd2bd] bg-[#f7f4ed]">
+                  <figure key={block.id} className="overflow-hidden rounded-xl border border-[#dfd2bd] bg-white">
                     <div className="h-44 bg-cover bg-center" style={{ backgroundImage: `url(${image.src})` }} />
                     <figcaption className="space-y-1 px-3 py-2 text-xs text-[#5f5548]">
                       <p>

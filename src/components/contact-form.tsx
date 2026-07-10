@@ -55,7 +55,7 @@ export function ContactForm({ propertySlug, propertyTitle }: ContactFormProps) {
   }
 
   return (
-    <section className="rounded-2xl border border-[#ddcfbc] bg-[#fffdf9] p-6 shadow-sm">
+    <section className="rounded-2xl border border-[#ddcfbc] bg-white p-6 shadow-sm">
       <span className="section-kicker">{copy.kicker}</span>
       <h2 className="mt-3 text-[1.9rem] font-semibold leading-none text-[#221b13]">{copy.title}</h2>
       <p className="mt-2 text-sm text-[#665c4f]">

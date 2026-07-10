@@ -14,6 +14,8 @@ import { PortfolioEditor } from "@/components/panel/portfolio-editor";
 import { PortfolioForm } from "@/components/panel/portfolio-form";
 import { PortfolioProjectCenter } from "@/components/panel/portfolio-project-center";
 import { UserManagement } from "@/components/panel/user-management";
+import { BrandLogo } from "@/components/brand-logo";
+import { SiteHeader } from "@/components/site-header";
 import {
   assignableUserRoles,
   canAccessOverview,
@@ -76,7 +78,7 @@ const portfolioGroupTabs: PanelTab[] = [
 const blogGroupTabs: PanelTab[] = ["blog-create", "blog-edit", "blog-delete"];
 
 const panelTabs: Array<{ id: PanelTab; label: string; hint: string }> = [
-  { id: "overview", label: "Genel Bakış", hint: "Metrikler ve genel görünüm" },
+  { id: "overview", label: "Genel Bakış", hint: "Operasyon özeti ve performans" },
   { id: "portfolio-create", label: "Portföy Ekle", hint: "Yeni ilan oluştur" },
   { id: "portfolio-approval", label: "Onay Bekleyenler", hint: "Yayın onayı bekleyen ilanlar" },
   { id: "portfolio-projects", label: "Proje / Firma Merkezi", hint: "Firmaya göre ilanları grupla" },
@@ -88,7 +90,7 @@ const panelTabs: Array<{ id: PanelTab; label: string; hint: string }> = [
   { id: "advisor-manage", label: "Danışmanlar", hint: "Kayıt yönetimi" },
   { id: "advisor-edit", label: "Danışman Düzenle", hint: "Bilgileri güncelle" },
   { id: "leads", label: "Analitik", hint: "Lead ve CRM takibi" },
-  { id: "user-manage", label: "Kullanıcılar", hint: "Rol ve hesap yönetimi" },
+  { id: "user-manage", label: "Kullanıcı Yönetimi", hint: "Hesap ve rol oluştur" },
 ];
 
 const defaultTab: PanelTab = "overview";
@@ -178,6 +180,14 @@ function formatMetricCurrency(value: number) {
   }
 
   return `${sign}₺${Math.round(absolute)}`;
+}
+
+function formatFullCurrency(value: number) {
+  return new Intl.NumberFormat("tr-TR", {
+    style: "currency",
+    currency: "TRY",
+    maximumFractionDigits: 0,
+  }).format(value);
 }
 
 function formatMetricNumber(value: number) {
@@ -301,254 +311,218 @@ export default async function AdminOfficePage({ searchParams }: AdminOfficePageP
     activeTab === "overview"
       ? "Portföy, kullanıcı, analitik ve içerik tarafındaki son durumu tek bakışta izleyin."
       : activeTabMeta.hint;
+  const totalPortfolioValue = properties.reduce((total, property) => total + property.price, 0);
+  const roleText = roleLabel(currentUser.role);
+  const activeSectionLabel = portfolioGroupTabs.includes(activeTab)
+    ? "Portföy"
+    : blogGroupTabs.includes(activeTab)
+      ? "İçerik"
+      : activeTab === "user-manage" || activeTab === "advisor-manage" || activeTab === "advisor-edit"
+        ? "Ekip"
+        : activeTab === "leads"
+          ? "Analitik"
+          : "Kontrol";
+  const panelNavigationGroups = [
+    { title: "Kontrol", tabs: overviewTab ? [overviewTab] : [] },
+    { title: "Portföy", tabs: visiblePortfolioTabs },
+    { title: "İçerik", tabs: visibleBlogTabs },
+    {
+      title: "Ekip",
+      tabs: secondaryStandaloneTabs.filter((tab) => ["advisor-manage", "advisor-edit", "user-manage", "leads"].includes(tab.id)),
+    },
+  ].filter((group) => group.tabs.length > 0);
+  const dashboardStats = [
+    {
+      label: "Aktif Portföy",
+      value: formatMetricNumber(activePropertyCount),
+      detail: formatFullCurrency(totalPortfolioValue),
+    },
+    {
+      label: "Lead Akışı",
+      value: formatMetricNumber(summary.leadCount),
+      detail: `${stageSummary.new} yeni kayıt`,
+    },
+    {
+      label: "İçerik",
+      value: formatMetricNumber(summary.blogCount),
+      detail: "SEO yayınları",
+    },
+    {
+      label: "Ekip",
+      value: formatMetricNumber(users.length),
+      detail: `${users.length} panel kullanıcısı`,
+    },
+  ];
+  const quickLinks = [
+    { href: "/portfoyler", label: "Yayındaki portföyler" },
+    { href: "/yonetim-ofisi?tab=portfolio-create", label: "Yeni portföy" },
+    { href: "/yonetim-ofisi?tab=leads", label: "CRM pipeline" },
+    { href: "/", label: "Canlı site" },
+  ].filter((item) => item.href === "/" || item.href === "/portfoyler" || allowedTabs.includes(item.href.split("tab=")[1] as PanelTab));
 
   return (
-    <div className="admin-shell min-h-screen">
-      <main className="w-full">
-        <div className="admin-dashboard-board min-h-screen">
-          <div className="grid xl:grid-cols-[250px_minmax(0,1fr)]">
-            <aside className="admin-sidebar flex min-h-full flex-col p-5 text-white sm:p-6">
-              <div className="flex items-center gap-3 px-1 py-1">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#1d4ed8] text-white shadow-[0_18px_30px_-18px_rgba(37,99,235,0.8)]">
-                  <DashboardLogoIcon />
+    <>
+      <SiteHeader initialUser={currentUser} />
+      <div className="admin-shell min-h-screen">
+        <main className="mx-auto w-full max-w-[1500px] px-4 pb-14 pt-5 sm:px-6 lg:px-8">
+          <section className="overflow-hidden rounded-lg border border-[rgba(102,165,87,0.26)] bg-[var(--brand-night-blue)] text-white shadow-[0_28px_70px_-52px_rgba(29,29,27,0.95)]">
+            <div className="grid gap-5 p-5 sm:p-6 lg:grid-cols-[minmax(0,1.28fr)_minmax(300px,0.72fr)]">
+              <div>
+                <div className="flex flex-wrap items-center gap-4">
+                  <BrandLogo inverse compact className="h-11" />
+                  <span className="rounded-lg border border-white/10 bg-white/6 px-3 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-[#cbe9c5]">
+                    Yönetim Paneli
+                  </span>
                 </div>
-                <div>
-                  <p className="text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-[#7dd3fc]">
-                    Portföy Yönetimi
-                  </p>
-                  <p className="mt-0.5 text-lg font-semibold text-white">Yönetim Paneli</p>
+                <h1 className="mt-4 max-w-3xl text-[1.85rem] font-semibold tracking-tight text-white sm:text-[2.1rem]">
+                  Operasyon, portföy ve CRM kontrol merkezi.
+                </h1>
+                <p className="mt-3 max-w-3xl text-sm leading-6 text-[#d6e1f0]">
+                  Hoş geldin {currentUser.name}. {roleText} yetkisiyle Econi Invest içeriklerini, portföylerini ve müşteri akışını tek ekrandan yönetiyorsun.
+                </p>
+
+                <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+                  {dashboardStats.map((metric) => (
+                    <div key={metric.label} className="rounded-lg border border-white/10 bg-white/6 p-3.5">
+                      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[#b8d7b1]">
+                        {metric.label}
+                      </p>
+                      <p className="mt-2 text-[1.65rem] font-semibold tracking-tight text-white">{metric.value}</p>
+                      <p className="mt-1 text-xs text-[#c6d4e4]">{metric.detail}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
 
-              <nav className="mt-8 flex-1 space-y-1.5 overflow-y-auto pr-1">
-                {overviewTab ? (
-                  <Link
-                    href={`/yonetim-ofisi?tab=${overviewTab.id}`}
-                    data-active={overviewTab.id === activeTab}
-                    aria-current={overviewTab.id === activeTab ? "page" : undefined}
-                    className="admin-nav-link"
-                  >
-                    <div className="flex items-center gap-3">
-                      <span
-                        className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${
-                          overviewTab.id === activeTab ? "bg-white/18 text-white" : "bg-white/5 text-[#9fb3cf]"
-                        }`}
-                      >
-                        <TabNavigationIcon tab={overviewTab.id} />
-                      </span>
-                      <span
-                        className={`text-sm font-medium ${
-                          overviewTab.id === activeTab ? "text-white" : "text-[#d7e2f3]"
-                        }`}
-                      >
-                        {overviewTab.label}
-                      </span>
+              <div className="flex flex-col justify-between gap-5 rounded-lg border border-white/10 bg-white/5 p-4">
+                <div className="grid gap-2 sm:grid-cols-2">
+                  {quickLinks.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="rounded-lg border border-white/10 bg-white/6 px-4 py-3 text-sm font-semibold text-white transition hover:border-[rgba(102,165,87,0.5)] hover:bg-white/10"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+
+                <div className="rounded-lg border border-white/10 bg-[rgba(255,255,255,0.08)] p-4">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-white text-sm font-semibold text-[var(--brand-primary)]">
+                      {initialsForName(currentUser.name)}
                     </div>
-                  </Link>
-                ) : null}
+                    <div className="min-w-0">
+                      <p className="truncate text-sm font-semibold text-white">{currentUser.name}</p>
+                      <p className="mt-0.5 truncate text-xs text-[#c6d4e4]">{currentUser.email}</p>
+                    </div>
+                  </div>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    <span className="rounded-lg border border-white/10 px-3 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[#d6e1f0]">
+                      {roleText}
+                    </span>
+                    <span className="rounded-lg border border-white/10 px-3 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[#d6e1f0]">
+                      {visibleTabs.length} modül
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
 
-                {visiblePortfolioTabs.length > 0 ? (
-                  <details
-                    className="admin-nav-group"
-                    open={visiblePortfolioTabs.some((tab) => tab.id === activeTab)}
-                  >
-                    <summary className="admin-nav-summary">
-                      <div className="flex items-center gap-3">
-                        <span
-                          className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${
-                            visiblePortfolioTabs.some((tab) => tab.id === activeTab)
-                              ? "bg-white/18 text-white"
-                              : "bg-white/5 text-[#9fb3cf]"
-                          }`}
-                        >
-                          <PortfolioGroupIcon />
-                        </span>
-                        <span
-                          className={`text-sm font-medium ${
-                            visiblePortfolioTabs.some((tab) => tab.id === activeTab)
-                              ? "text-white"
-                              : "text-[#d7e2f3]"
-                          }`}
-                        >
-                          Portföyler
-                        </span>
-                      </div>
-                      <span className="admin-nav-chevron text-[#9fb3cf]">
-                        <ChevronDownIcon />
-                      </span>
-                    </summary>
+          <div className="mt-5 grid gap-5 xl:grid-cols-[310px_minmax(0,1fr)]">
+            <aside className="h-fit rounded-lg border border-[var(--line-strong)] bg-white p-4 shadow-[0_24px_54px_-44px_rgba(29,29,27,0.42)] xl:sticky xl:top-24">
+              <div className="rounded-lg border border-[var(--line)] bg-white p-4">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[var(--brand-primary)] text-sm font-semibold text-white">
+                    {initialsForName(currentUser.name)}
+                  </div>
+                  <div className="min-w-0">
+                    <p className="truncate text-sm font-semibold text-[var(--brand-primary)]">{currentUser.name}</p>
+                    <p className="mt-0.5 truncate text-xs text-[var(--ink-600)]">{currentUser.email}</p>
+                  </div>
+                </div>
+                <div className="mt-3 flex items-center justify-between gap-2">
+                  <span className="rounded-lg bg-white px-2.5 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[var(--ink-600)]">
+                    {roleText}
+                  </span>
+                  <span className="rounded-lg bg-white px-2.5 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[var(--ink-600)]">
+                    {visibleTabs.length} modül
+                  </span>
+                </div>
+              </div>
 
-                    <div className="admin-nav-children">
-                      {visiblePortfolioTabs.map((tab) => {
+              <nav className="mt-5 space-y-5">
+                {panelNavigationGroups.map((group) => (
+                  <div key={group.title}>
+                    <p className="mb-2 px-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[var(--ink-400)]">
+                      {group.title}
+                    </p>
+                    <div className="space-y-1.5">
+                      {group.tabs.map((tab) => {
+                        const isActive = tab.id === activeTab;
                         const tabBadgeCount = tab.id === "portfolio-approval" ? pendingApprovalCount : 0;
 
                         return (
                           <Link
                             key={tab.id}
                             href={`/yonetim-ofisi?tab=${tab.id}`}
-                            data-active={tab.id === activeTab}
-                            aria-current={tab.id === activeTab ? "page" : undefined}
-                            className="admin-nav-child-link"
+                            aria-current={isActive ? "page" : undefined}
+                            className={`flex items-start gap-3 rounded-lg border px-3 py-3 transition ${
+                              isActive
+                                ? "border-[rgba(102,165,87,0.36)] bg-[rgba(102,165,87,0.1)] text-[var(--brand-primary)]"
+                                : "border-transparent text-[var(--ink-700)] hover:border-[var(--line-strong)] hover:bg-white"
+                            }`}
                           >
-                            <span className="admin-nav-child-dot" />
-                            <span className="flex min-w-0 flex-1 items-start justify-between gap-2">
-                              <span className="min-w-0">
-                                <span className="block text-sm font-medium">{tab.label}</span>
-                                <span className="mt-0.5 block text-xs opacity-80">{tab.hint}</span>
-                              </span>
-                              {tabBadgeCount > 0 ? (
-                                <span className="shrink-0 rounded-full bg-[#fb7185] px-2 py-0.5 text-[0.68rem] font-bold leading-5 text-white">
-                                  {tabBadgeCount > 99 ? "99+" : tabBadgeCount}
-                                </span>
-                              ) : null}
+                            <span
+                              className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${
+                                isActive ? "bg-[var(--brand-green)] text-white" : "bg-white text-[var(--ink-400)]"
+                              }`}
+                            >
+                              <TabNavigationIcon tab={tab.id} />
                             </span>
+                            <span className="min-w-0 flex-1">
+                              <span className="block text-sm font-semibold">{tab.label}</span>
+                              <span className="mt-0.5 block text-xs leading-5 text-[var(--ink-600)]">{tab.hint}</span>
+                            </span>
+                            {tabBadgeCount > 0 ? (
+                              <span className="shrink-0 rounded-full bg-[#fb7185] px-2 py-0.5 text-[0.68rem] font-bold leading-5 text-white">
+                                {tabBadgeCount > 99 ? "99+" : tabBadgeCount}
+                              </span>
+                            ) : null}
                           </Link>
                         );
                       })}
                     </div>
-                  </details>
-                ) : null}
-
-                {visibleBlogTabs.length > 0 ? (
-                  <details className="admin-nav-group" open={visibleBlogTabs.some((tab) => tab.id === activeTab)}>
-                    <summary className="admin-nav-summary">
-                      <div className="flex items-center gap-3">
-                        <span
-                          className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${
-                            visibleBlogTabs.some((tab) => tab.id === activeTab)
-                              ? "bg-white/18 text-white"
-                              : "bg-white/5 text-[#9fb3cf]"
-                          }`}
-                        >
-                          <BlogGroupIcon />
-                        </span>
-                        <span
-                          className={`text-sm font-medium ${
-                            visibleBlogTabs.some((tab) => tab.id === activeTab) ? "text-white" : "text-[#d7e2f3]"
-                          }`}
-                        >
-                          Bloglar
-                        </span>
-                      </div>
-                      <span className="admin-nav-chevron text-[#9fb3cf]">
-                        <ChevronDownIcon />
-                      </span>
-                    </summary>
-
-                    <div className="admin-nav-children">
-                      {visibleBlogTabs.map((tab) => (
-                        <Link
-                          key={tab.id}
-                          href={`/yonetim-ofisi?tab=${tab.id}`}
-                          data-active={tab.id === activeTab}
-                          aria-current={tab.id === activeTab ? "page" : undefined}
-                          className="admin-nav-child-link"
-                        >
-                          <span className="admin-nav-child-dot" />
-                          <span className="min-w-0">
-                            <span className="block text-sm font-medium">{tab.label}</span>
-                            <span className="mt-0.5 block text-xs opacity-80">{tab.hint}</span>
-                          </span>
-                        </Link>
-                      ))}
-                    </div>
-                  </details>
-                ) : null}
-
-                {secondaryStandaloneTabs.map((tab) => {
-                  const isActive = tab.id === activeTab;
-
-                  return (
-                    <Link
-                      key={tab.id}
-                      href={`/yonetim-ofisi?tab=${tab.id}`}
-                      data-active={isActive}
-                      aria-current={isActive ? "page" : undefined}
-                      className="admin-nav-link"
-                    >
-                      <div className="flex items-center gap-3">
-                        <span
-                          className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${
-                            isActive ? "bg-white/18 text-white" : "bg-white/5 text-[#9fb3cf]"
-                          }`}
-                        >
-                          <TabNavigationIcon tab={tab.id} />
-                        </span>
-                        <span className={`text-sm font-medium ${isActive ? "text-white" : "text-[#d7e2f3]"}`}>
-                          {tab.label}
-                        </span>
-                      </div>
-                    </Link>
-                  );
-                })}
+                  </div>
+                ))}
               </nav>
-
-              <div className="mt-6 rounded-[1.25rem] border border-white/10 bg-white/5 p-4">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#1e293b] text-sm font-semibold text-white">
-                    {initialsForName(currentUser.name)}
-                  </div>
-                  <div className="min-w-0">
-                    <p className="truncate text-sm font-semibold text-white">{currentUser.name}</p>
-                    <p className="mt-0.5 truncate text-xs text-[#9fb3cf]">{roleLabel(currentUser.role)}</p>
-                  </div>
-                </div>
-
-                <div className="mt-4 flex items-center gap-2">
-                  <Link
-                    href="/"
-                    className="flex-1 rounded-xl border border-white/10 bg-white/6 px-3 py-2 text-center text-xs font-semibold text-[#dce7f7] transition hover:bg-white/10"
-                  >
-                    Siteye Dön
-                  </Link>
-                  <form action="/api/auth/logout" method="post" className="flex-1">
-                    <button
-                      type="submit"
-                      className="w-full rounded-xl border border-white/10 bg-white/6 px-3 py-2 text-xs font-semibold text-[#dce7f7] transition hover:bg-white/10"
-                    >
-                      Çıkış
-                    </button>
-                  </form>
-                </div>
-              </div>
             </aside>
 
-            <section className="min-w-0 bg-[#f8fafc] p-4 sm:p-6 lg:p-7">
-              <header className="mb-6 rounded-[1.7rem] border border-[#e2e8f0] bg-white px-5 py-5 shadow-[0_24px_48px_-36px_rgba(15,23,42,0.18)] sm:px-6">
-                <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+            <section className="min-w-0">
+              <header className="mb-5 rounded-lg border border-[var(--line-strong)] bg-white px-5 py-4 shadow-[0_20px_42px_-36px_rgba(29,29,27,0.28)]">
+                <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                   <div>
-                    <h1 className="text-[1.95rem] font-semibold tracking-tight text-[#0f172a] sm:text-[2.15rem]">
-                      {toolbarTitle}
-                    </h1>
-                    <p className="mt-2 max-w-2xl text-sm leading-6 text-[#64748b]">{toolbarSubtitle}</p>
+                    <span className="admin-kicker">{activeSectionLabel}</span>
+                    <h1 className="mt-3 text-2xl font-semibold tracking-tight text-[var(--brand-primary)]">{toolbarTitle}</h1>
+                    <p className="mt-1 text-sm leading-6 text-[var(--ink-600)]">{toolbarSubtitle}</p>
                   </div>
-
-                  <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                    <label className="relative block min-w-[240px] sm:min-w-[280px]">
-                      <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[#94a3b8]">
-                        <SearchIcon />
-                      </span>
-                      <input
-                        readOnly
-                        value=""
-                        placeholder="Ara..."
-                        aria-label="Panel arama alanı"
-                        className="input h-11 w-full cursor-default border-[#e2e8f0] bg-[#f8fafc] pl-11 text-sm text-[#0f172a] placeholder:text-[#94a3b8]"
-                      />
-                    </label>
-
-                    <div className="flex items-center gap-3">
-                      <AdminNotificationCenter notifications={adminNotifications} />
-
-                      {primaryAction ? (
-                        <Link
-                          href={primaryAction.href}
-                          className="admin-button-primary inline-flex h-11 items-center justify-center whitespace-nowrap px-5 text-sm font-semibold"
-                        >
-                          {primaryAction.label}
-                        </Link>
-                      ) : null}
-                    </div>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span className="rounded-lg border border-[var(--line-strong)] bg-white px-3 py-2 text-xs font-semibold text-[var(--ink-600)]">
+                      Yetki: {roleText}
+                    </span>
+                    <span className="rounded-lg border border-[var(--line-strong)] bg-white px-3 py-2 text-xs font-semibold text-[var(--brand-primary)]">
+                      Econi Invest
+                    </span>
+                    <AdminNotificationCenter notifications={adminNotifications} />
+                    {primaryAction ? (
+                      <Link
+                        href={primaryAction.href}
+                        className="admin-button-primary inline-flex min-h-10 items-center justify-center px-4 text-sm font-semibold"
+                      >
+                        {primaryAction.label}
+                      </Link>
+                    ) : null}
                   </div>
                 </div>
               </header>
@@ -643,9 +617,9 @@ export default async function AdminOfficePage({ searchParams }: AdminOfficePageP
               ) : null}
             </section>
           </div>
-        </div>
-      </main>
-    </div>
+        </main>
+      </div>
+    </>
   );
 }
 
@@ -718,9 +692,9 @@ function OverviewSection({
 
   const chartSeries = buildMonthlyActivitySeries(properties, summary.leadCount, appointmentLeadCount, blogPosts.length);
   const trafficSegments = [
-    { label: "Organik", value: appointmentLeadCount, color: "#3b82f6" },
-    { label: "Sosyal", value: contactLeadCount, color: "#60a5fa" },
-    { label: "Doğrudan", value: otherLeadCount, color: "#93c5fd" },
+    { label: "Organik", value: appointmentLeadCount, color: "#66a557" },
+    { label: "Sosyal", value: contactLeadCount, color: "#4f8f42" },
+    { label: "Doğrudan", value: otherLeadCount, color: "#b8d7b1" },
   ];
   const qualitySummaries = properties.map((property) => summarizePropertyQuality(property));
   const readyForApprovalCount = qualitySummaries.filter((summaryItem) => summaryItem.isReadyForApproval).length;
@@ -761,8 +735,8 @@ function OverviewSection({
         <article className="admin-card p-6">
           <div className="mb-5 flex items-center justify-between gap-3">
             <div>
-              <h2 className="text-lg font-semibold text-[#0f172a]">Aylık Satışlar</h2>
-              <p className="mt-1 text-sm text-[#64748b]">Aylık portföy ve lead hareketi</p>
+              <h2 className="text-lg font-semibold text-[var(--brand-primary)]">Aylık Satışlar</h2>
+              <p className="mt-1 text-sm text-[var(--ink-600)]">Aylık portföy ve lead hareketi</p>
             </div>
           </div>
 
@@ -775,15 +749,15 @@ function OverviewSection({
 
         <article className="admin-card p-6">
           <div>
-            <h2 className="text-lg font-semibold text-[#0f172a]">Trafik Kaynakları</h2>
-            <p className="mt-1 text-sm text-[#64748b]">Lead kaynak dağılımı</p>
+            <h2 className="text-lg font-semibold text-[var(--brand-primary)]">Trafik Kaynakları</h2>
+            <p className="mt-1 text-sm text-[var(--ink-600)]">Lead kaynak dağılımı</p>
           </div>
 
           <div className="mt-6">
             <DashboardDonut segments={trafficSegments} />
           </div>
 
-          <div className="mt-6 flex flex-wrap justify-center gap-4 text-sm text-[#64748b]">
+          <div className="mt-6 flex flex-wrap justify-center gap-4 text-sm text-[var(--ink-600)]">
             {trafficSegments.map((segment) => (
               <div key={segment.label} className="flex items-center gap-2">
                 <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: segment.color }} />
@@ -797,20 +771,20 @@ function OverviewSection({
       <section className="grid gap-4 xl:grid-cols-3">
         <article className="admin-card p-5">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-emerald-700">Onaya Hazır</p>
-          <p className="mt-3 text-3xl font-semibold tracking-tight text-[#0f172a]">{readyForApprovalCount}</p>
-          <p className="mt-2 text-sm text-[#64748b]">Kritik alanları tamamlanmış portföy sayısı</p>
+          <p className="mt-3 text-3xl font-semibold tracking-tight text-[var(--brand-primary)]">{readyForApprovalCount}</p>
+          <p className="mt-2 text-sm text-[var(--ink-600)]">Kritik alanları tamamlanmış portföy sayısı</p>
         </article>
 
         <article className="admin-card p-5">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-700">Kritik Eksik</p>
-          <p className="mt-3 text-3xl font-semibold tracking-tight text-[#0f172a]">{criticalAttentionCount}</p>
-          <p className="mt-2 text-sm text-[#64748b]">Yayına çıkmadan önce müdahale isteyen kayıtlar</p>
+          <p className="mt-3 text-3xl font-semibold tracking-tight text-[var(--brand-primary)]">{criticalAttentionCount}</p>
+          <p className="mt-2 text-sm text-[var(--ink-600)]">Yayına çıkmadan önce müdahale isteyen kayıtlar</p>
         </article>
 
         <article className="admin-card p-5">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-amber-700">İçerik Uyarısı</p>
-          <p className="mt-3 text-3xl font-semibold tracking-tight text-[#0f172a]">{advisoryAttentionCount}</p>
-          <p className="mt-2 text-sm text-[#64748b]">Ek dil, ikon veya içerik tarafında tamamlanabilecek kayıtlar</p>
+          <p className="mt-3 text-3xl font-semibold tracking-tight text-[var(--brand-primary)]">{advisoryAttentionCount}</p>
+          <p className="mt-2 text-sm text-[var(--ink-600)]">Ek dil, ikon veya içerik tarafında tamamlanabilecek kayıtlar</p>
         </article>
       </section>
 
@@ -818,10 +792,10 @@ function OverviewSection({
         <article className="admin-card p-5">
           <div className="flex items-center justify-between gap-3">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-sky-700">Öncelik</p>
-              <h2 className="mt-2 text-lg font-semibold text-[#0f172a]">Onay Kuyruğu</h2>
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand-accent-strong)]">Öncelik</p>
+              <h2 className="mt-2 text-lg font-semibold text-[var(--brand-primary)]">Onay Kuyruğu</h2>
             </div>
-            <span className="rounded-full bg-sky-100 px-3 py-1 text-xs font-semibold text-sky-800">
+            <span className="rounded-full bg-[rgba(102,165,87,0.12)] px-3 py-1 text-xs font-semibold text-[var(--brand-accent-strong)]">
               {pendingApprovalProperties.length}
             </span>
           </div>
@@ -832,16 +806,16 @@ function OverviewSection({
                 <Link
                   key={`pending-${property.id}`}
                   href={`/yonetim-ofisi?tab=portfolio-edit&slug=${property.slug}`}
-                  className="block rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 transition hover:border-slate-300 hover:bg-white"
+                  className="block rounded-2xl border border-[var(--line)] bg-white px-4 py-3 transition hover:border-[var(--line-strong)] hover:bg-white"
                 >
-                  <p className="text-sm font-semibold text-[#0f172a]">{property.title}</p>
-                  <p className="mt-1 text-xs text-[#64748b]">
+                  <p className="text-sm font-semibold text-[var(--brand-primary)]">{property.title}</p>
+                  <p className="mt-1 text-xs text-[var(--ink-600)]">
                     {property.listingRef} • {property.city} / {property.district}
                   </p>
                 </Link>
               ))
             ) : (
-              <p className="rounded-2xl border border-dashed border-slate-300 px-4 py-4 text-sm text-[#64748b]">
+              <p className="rounded-2xl border border-dashed border-[var(--line-strong)] px-4 py-4 text-sm text-[var(--ink-600)]">
                 Onay bekleyen kayıt bulunmuyor.
               </p>
             )}
@@ -852,7 +826,7 @@ function OverviewSection({
           <div className="flex items-center justify-between gap-3">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-700">Müdahale</p>
-              <h2 className="mt-2 text-lg font-semibold text-[#0f172a]">Kritik Eksikler</h2>
+              <h2 className="mt-2 text-lg font-semibold text-[var(--brand-primary)]">Kritik Eksikler</h2>
             </div>
             <span className="rounded-full bg-rose-100 px-3 py-1 text-xs font-semibold text-rose-800">
               {criticalAttentionProperties.length}
@@ -865,16 +839,16 @@ function OverviewSection({
                 <Link
                   key={`critical-${property.id}`}
                   href={`/yonetim-ofisi?tab=portfolio-edit&slug=${property.slug}`}
-                  className="block rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 transition hover:border-slate-300 hover:bg-white"
+                  className="block rounded-2xl border border-[var(--line)] bg-white px-4 py-3 transition hover:border-[var(--line-strong)] hover:bg-white"
                 >
-                  <p className="text-sm font-semibold text-[#0f172a]">{property.title}</p>
-                  <p className="mt-1 text-xs text-[#64748b]">
+                  <p className="text-sm font-semibold text-[var(--brand-primary)]">{property.title}</p>
+                  <p className="mt-1 text-xs text-[var(--ink-600)]">
                     {quality.criticalIssues.slice(0, 2).map((issue) => issue.label).join(" • ")}
                   </p>
                 </Link>
               ))
             ) : (
-              <p className="rounded-2xl border border-dashed border-slate-300 px-4 py-4 text-sm text-[#64748b]">
+              <p className="rounded-2xl border border-dashed border-[var(--line-strong)] px-4 py-4 text-sm text-[var(--ink-600)]">
                 Kritik eksik görünen portföy yok.
               </p>
             )}
@@ -885,7 +859,7 @@ function OverviewSection({
           <div className="flex items-center justify-between gap-3">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-amber-700">Hızlı Akış</p>
-              <h2 className="mt-2 text-lg font-semibold text-[#0f172a]">Son Hareketler</h2>
+              <h2 className="mt-2 text-lg font-semibold text-[var(--brand-primary)]">Son Hareketler</h2>
             </div>
             <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-800">
               {recentActivityLogs.slice(0, 5).length}
@@ -898,16 +872,16 @@ function OverviewSection({
                 <Link
                   key={`activity-focus-${activity.id}`}
                   href={`/yonetim-ofisi?tab=portfolio-edit&slug=${activity.propertySlug}`}
-                  className="block rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 transition hover:border-slate-300 hover:bg-white"
+                  className="block rounded-2xl border border-[var(--line)] bg-white px-4 py-3 transition hover:border-[var(--line-strong)] hover:bg-white"
                 >
-                  <p className="text-sm font-semibold text-[#0f172a]">{activity.propertyTitle}</p>
-                  <p className="mt-1 text-xs text-[#64748b]">
+                  <p className="text-sm font-semibold text-[var(--brand-primary)]">{activity.propertyTitle}</p>
+                  <p className="mt-1 text-xs text-[var(--ink-600)]">
                     {activity.actorName} • {propertyActivityActionLabel(activity.actionType)}
                   </p>
                 </Link>
               ))
             ) : (
-              <p className="rounded-2xl border border-dashed border-slate-300 px-4 py-4 text-sm text-[#64748b]">
+              <p className="rounded-2xl border border-dashed border-[var(--line-strong)] px-4 py-4 text-sm text-[var(--ink-600)]">
                 Henüz kayıtlı hareket bulunmuyor.
               </p>
             )}
@@ -916,15 +890,15 @@ function OverviewSection({
       </section>
 
       <section className="admin-card overflow-hidden p-0">
-        <div className="flex items-center justify-between gap-3 border-b border-[#e2e8f0] px-6 py-5">
+        <div className="flex items-center justify-between gap-3 border-b border-[var(--line)] px-6 py-5">
           <div>
-            <h2 className="text-lg font-semibold text-[#0f172a]">Son İşlemler</h2>
-            <p className="mt-1 text-sm text-[#64748b]">Son ilan ve yayın hareketleri</p>
+            <h2 className="text-lg font-semibold text-[var(--brand-primary)]">Son İşlemler</h2>
+            <p className="mt-1 text-sm text-[var(--ink-600)]">Son ilan ve yayın hareketleri</p>
           </div>
         </div>
 
         <div className="overflow-x-auto px-6 py-2">
-          <table className="admin-table min-w-full text-left text-sm text-[#475569]">
+          <table className="admin-table min-w-full text-left text-sm text-[var(--ink-700)]">
             <thead>
               <tr>
                 <th>Kod</th>
@@ -941,12 +915,12 @@ function OverviewSection({
                   const isExistingProperty = currentPropertySlugs.has(activity.propertySlug);
                   return (
                     <tr key={activity.id}>
-                      <td className="font-medium text-[#0f172a]">{activity.listingRef ?? "-"}</td>
+                      <td className="font-medium text-[var(--brand-primary)]">{activity.listingRef ?? "-"}</td>
                       <td>{formatDateTimeTR(activity.createdAt)}</td>
                       <td>
                         <div>
-                          <p className="font-medium text-[#0f172a]">{activity.actorName}</p>
-                          <p className="mt-1 text-xs text-[#64748b]">{roleLabel(activity.actorRole)}</p>
+                          <p className="font-medium text-[var(--brand-primary)]">{activity.actorName}</p>
+                          <p className="mt-1 text-xs text-[var(--ink-600)]">{roleLabel(activity.actorRole)}</p>
                         </div>
                       </td>
                       <td>
@@ -958,36 +932,36 @@ function OverviewSection({
                           >
                             {propertyActivityActionLabel(activity.actionType)}
                           </span>
-                          <p className="text-xs text-[#475569]">{activity.summary}</p>
+                          <p className="text-xs text-[var(--ink-700)]">{activity.summary}</p>
                         </div>
                       </td>
                       <td>
                         <div>
-                          <p className="font-medium text-[#0f172a]">{activity.propertyTitle}</p>
-                          <p className="mt-1 text-xs text-[#64748b]">{activity.details[0] ?? "Detay bulunmuyor."}</p>
+                          <p className="font-medium text-[var(--brand-primary)]">{activity.propertyTitle}</p>
+                          <p className="mt-1 text-xs text-[var(--ink-600)]">{activity.details[0] ?? "Detay bulunmuyor."}</p>
                         </div>
                       </td>
                       <td>
-                        <div className="flex items-center gap-2 text-[#64748b]">
+                        <div className="flex items-center gap-2 text-[var(--ink-600)]">
                           {isExistingProperty ? (
                             <>
                               <Link
                                 href={`/yonetim-ofisi?tab=portfolio-edit&slug=${activity.propertySlug}`}
-                                className="flex h-8 w-8 items-center justify-center rounded-full border border-[#e2e8f0] bg-white transition hover:bg-[#f8fafc]"
+                                className="flex h-8 w-8 items-center justify-center rounded-full border border-[var(--line)] bg-white transition hover:bg-white"
                                 aria-label={`${activity.propertyTitle} düzenle`}
                               >
                                 <EditActionIcon />
                               </Link>
                               <Link
                                 href={`/ilan/${activity.propertySlug}`}
-                                className="flex h-8 w-8 items-center justify-center rounded-full border border-[#e2e8f0] bg-white transition hover:bg-[#f8fafc]"
+                                className="flex h-8 w-8 items-center justify-center rounded-full border border-[var(--line)] bg-white transition hover:bg-white"
                                 aria-label={`${activity.propertyTitle} görüntüle`}
                               >
                                 <MoreActionIcon />
                               </Link>
                             </>
                           ) : (
-                            <span className="text-xs text-[#94a3b8]">Kayıt artık yayında değil</span>
+                            <span className="text-xs text-[var(--ink-400)]">Kayıt artık yayında değil</span>
                           )}
                         </div>
                       </td>
@@ -996,7 +970,7 @@ function OverviewSection({
                 })
               ) : (
                 <tr>
-                  <td colSpan={6} className="py-8 text-center text-sm text-[#64748b]">
+                  <td colSpan={6} className="py-8 text-center text-sm text-[var(--ink-600)]">
                     Henüz kaydedilmiş portföy aktivitesi bulunmuyor.
                   </td>
                 </tr>
@@ -1022,14 +996,14 @@ function MetricOverviewCard({ label, value, delta, tone, icon }: MetricOverviewC
     <article className="admin-stat-card admin-stat-card-dark border-[#e9eef6] shadow-[0_22px_40px_-34px_rgba(15,23,42,0.18)]">
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
-          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-[#94a3b8]">{label}</p>
-          <p className="mt-3 truncate text-[2rem] font-semibold tracking-tight text-[#0f172a]">{value}</p>
+          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-[var(--ink-400)]">{label}</p>
+          <p className="mt-3 truncate text-[2rem] font-semibold tracking-tight text-[var(--brand-primary)]">{value}</p>
           <p className={`mt-2 text-sm font-semibold ${tone === "positive" ? "text-[#16a34a]" : "text-[#dc2626]"}`}>
             {formatDelta(delta)}
           </p>
         </div>
 
-        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[1rem] bg-[#f8fafc] text-[#60a5fa] shadow-[inset_0_1px_0_rgba(255,255,255,0.95),0_16px_30px_-28px_rgba(15,23,42,0.45)]">
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[1rem] bg-white text-[#4f8f42] shadow-[inset_0_1px_0_rgba(255,255,255,0.95),0_16px_30px_-28px_rgba(15,23,42,0.45)]">
           {icon}
         </span>
       </div>
@@ -1095,12 +1069,12 @@ function DashboardLineChart({
   const areaPath = `${primaryPath} L ${paddingLeft + chartWidth} ${paddingTop + chartHeight} L ${paddingLeft} ${paddingTop + chartHeight} Z`;
 
   return (
-    <div className="rounded-[1.4rem] border border-[#edf2f7] bg-[#fbfdff] px-4 py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.95)]">
+    <div className="rounded-[1.4rem] border border-[#dfe7dd] bg-white px-4 py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.95)]">
       <svg viewBox={`0 0 ${width} ${height}`} className="h-[280px] w-full" aria-hidden>
         <defs>
           <linearGradient id="dashboard-primary-area" x1="0" x2="0" y1="0" y2="1">
-            <stop offset="0%" stopColor="#60a5fa" stopOpacity="0.22" />
-            <stop offset="100%" stopColor="#60a5fa" stopOpacity="0.03" />
+            <stop offset="0%" stopColor="#4f8f42" stopOpacity="0.22" />
+            <stop offset="100%" stopColor="#4f8f42" stopOpacity="0.03" />
           </linearGradient>
         </defs>
 
@@ -1111,8 +1085,8 @@ function DashboardLineChart({
 
           return (
             <g key={index}>
-              <line x1={paddingLeft} y1={y} x2={width - paddingRight} y2={y} stroke="#e8eef5" strokeWidth="1" />
-              <text x={paddingLeft - 10} y={y + 4} textAnchor="end" fill="#94a3b8" fontSize="10">
+              <line x1={paddingLeft} y1={y} x2={width - paddingRight} y2={y} stroke="#dfe7dd" strokeWidth="1" />
+              <text x={paddingLeft - 10} y={y + 4} textAnchor="end" fill="var(--ink-400)" fontSize="10">
                 {tickValue}
               </text>
             </g>
@@ -1120,11 +1094,11 @@ function DashboardLineChart({
         })}
 
         <path d={areaPath} fill="url(#dashboard-primary-area)" />
-        <path d={comparisonPath} fill="none" stroke="#93c5fd" strokeWidth="2.5" strokeLinecap="round" />
-        <path d={primaryPath} fill="none" stroke="#2563eb" strokeWidth="3" strokeLinecap="round" />
+        <path d={comparisonPath} fill="none" stroke="#b8d7b1" strokeWidth="2.5" strokeLinecap="round" />
+        <path d={primaryPath} fill="none" stroke="#66a557" strokeWidth="3" strokeLinecap="round" />
 
         {primaryPoints.map((point, index) => (
-          <circle key={labels[index]} cx={point.x} cy={point.y} r="4.5" fill="#ffffff" stroke="#2563eb" strokeWidth="2" />
+          <circle key={labels[index]} cx={point.x} cy={point.y} r="4.5" fill="#ffffff" stroke="#66a557" strokeWidth="2" />
         ))}
 
         {labels.map((label, index) => (
@@ -1133,7 +1107,7 @@ function DashboardLineChart({
             x={paddingLeft + stepX * index}
             y={height - 8}
             textAnchor="middle"
-            fill="#94a3b8"
+            fill="var(--ink-400)"
             fontSize="11"
           >
             {label}
@@ -1165,61 +1139,18 @@ function DashboardDonut({ segments }: { segments: Array<{ label: string; value: 
     .stops;
 
   const background =
-    gradientStops.length > 0 ? `conic-gradient(${gradientStops.join(", ")})` : "conic-gradient(#dbeafe 0deg 360deg)";
+    gradientStops.length > 0 ? `conic-gradient(${gradientStops.join(", ")})` : "conic-gradient(#e8f3e5 0deg 360deg)";
 
   return (
     <div className="flex justify-center">
       <div className="relative h-56 w-56 rounded-full" style={{ background }}>
         <div className="absolute inset-[24px] rounded-full bg-white shadow-[inset_0_0_0_1px_rgba(226,232,240,0.9)]" />
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-[#94a3b8]">Trafik</p>
-          <p className="mt-1 text-[2rem] font-semibold tracking-tight text-[#0f172a]">{totalValue}</p>
+          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-[var(--ink-400)]">Trafik</p>
+          <p className="mt-1 text-[2rem] font-semibold tracking-tight text-[var(--brand-primary)]">{totalValue}</p>
         </div>
       </div>
     </div>
-  );
-}
-
-function DashboardLogoIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6" aria-hidden>
-      <path d="M7 6.5h7.2c1.55 0 2.8 1.25 2.8 2.8v7.2c0 .55-.45 1-1 1h-7.2A2.8 2.8 0 0 1 6 14.7V7.5c0-.55.45-1 1-1Z" stroke="currentColor" strokeWidth="1.8" />
-      <path d="m8.5 15 2.6-4.8 1.8 2.2 2.6-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function PortfolioGroupIcon() {
-  return (
-    <svg viewBox="0 0 20 20" fill="none" className="h-4.5 w-4.5" aria-hidden>
-      <path d="M3.75 6.75A1.75 1.75 0 0 1 5.5 5h2.6c.35 0 .68.14.92.38l1.1 1.12c.24.24.57.37.9.37h3.48a1.75 1.75 0 0 1 1.75 1.75v5.88a1.75 1.75 0 0 1-1.75 1.75h-9A1.75 1.75 0 0 1 3.75 14.5V6.75Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function BlogGroupIcon() {
-  return (
-    <svg viewBox="0 0 20 20" fill="none" className="h-4.5 w-4.5" aria-hidden>
-      <path d="M5.25 4.75h7.5A1.75 1.75 0 0 1 14.5 6.5v9a.75.75 0 0 1-1.18.61L10 13.75l-3.32 2.36a.75.75 0 0 1-1.18-.61v-9a1.75 1.75 0 0 1 1.75-1.75Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
-      <path d="M7.5 8h5M7.5 10.75h3.75" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function ChevronDownIcon() {
-  return (
-    <svg viewBox="0 0 20 20" fill="none" className="h-4 w-4" aria-hidden>
-      <path d="m5.5 7.75 4.5 4.5 4.5-4.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function SearchIcon() {
-  return (
-    <svg viewBox="0 0 20 20" fill="none" className="h-4.5 w-4.5" aria-hidden>
-      <circle cx="8.75" cy="8.75" r="4.75" stroke="currentColor" strokeWidth="1.6" />
-      <path d="m12.5 12.5 3.25 3.25" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-    </svg>
   );
 }
 

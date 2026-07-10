@@ -90,7 +90,7 @@ export function propertyActivityActionLabel(actionType: PropertyActivityAction) 
 export function propertyActivityActionBadgeClass(actionType: PropertyActivityAction) {
   if (actionType === "created") return "bg-emerald-100 text-emerald-800";
   if (actionType === "updated") return "bg-slate-100 text-slate-700";
-  if (actionType === "publication_status_changed") return "bg-sky-100 text-sky-800";
+  if (actionType === "publication_status_changed") return "bg-[rgba(102,165,87,0.12)] text-[var(--brand-accent-strong)]";
   if (actionType === "advisor_changed") return "bg-cyan-100 text-cyan-800";
   if (actionType === "note_added") return "bg-amber-100 text-amber-800";
   if (actionType === "duplicated") return "bg-violet-100 text-violet-800";

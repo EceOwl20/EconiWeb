@@ -54,7 +54,7 @@ export async function generateMetadata({ params }: PropertyDetailProps): Promise
   const property = getPropertyBySlug(resolvedParams.slug);
 
   if (!property) {
-    return { title: "İlan Bulunamadı | PortföySatış" };
+    return { title: "İlan Bulunamadı | Econi Invest" };
   }
 
   return listingMetadata(property);
@@ -153,10 +153,10 @@ export default async function PropertyDetailPage({ params }: PropertyDetailProps
 
             <div className="space-y-4">
               {advisor ? (
-                <aside className="rounded-2xl border border-[#dccfbc] bg-[#fcf8f2] p-5">
+                <aside className="rounded-2xl border border-[#dccfbc] bg-white p-5">
                   <div className="flex flex-col gap-4 sm:flex-row-reverse sm:items-center sm:justify-between">
                     <div className="flex justify-center sm:justify-end">
-                      <div className="rounded-[2rem] border border-[#dbcbb3] bg-[#f7f0e3] p-3">
+                      <div className="rounded-[2rem] border border-[#dbcbb3] bg-white p-3">
                         <Image
                           src={advisor.image}
                           alt={advisor.name}
@@ -180,7 +180,7 @@ export default async function PropertyDetailPage({ params }: PropertyDetailProps
                         {phoneHref ? (
                           <a
                             href={phoneHref}
-                            className="rounded-full border border-[#d0c2ad] bg-white px-4 py-2 font-semibold text-[#4d4336] transition hover:bg-[#f5ebdc]"
+                            className="rounded-full border border-[#d0c2ad] bg-white px-4 py-2 font-semibold text-[#4d4336] transition hover:bg-white"
                           >
                             {copy.call}
                           </a>
@@ -227,7 +227,7 @@ function DetailItem({ label, value, icon, highlight = false, compact = false }: 
   return (
     <div
       className={`rounded-xl border p-4 ${
-        highlight ? "border-[#deceae] bg-[#f9f0df]" : "border-[#ddd0bd] bg-[#fffdf9]"
+        highlight ? "border-[#deceae] bg-white" : "border-[#ddd0bd] bg-white"
       }`}
     >
       <div className="flex items-start gap-3">
@@ -236,7 +236,7 @@ function DetailItem({ label, value, icon, highlight = false, compact = false }: 
             className={`flex shrink-0 items-center justify-center rounded-full border ${
               compact ? "h-9 w-9" : "h-10 w-10"
             } ${
-              highlight ? "border-[#d1ba8d] bg-white/70 text-[#6a4f22]" : "border-[#d9cfbf] bg-[#f7f1e6] text-[#6a5a44]"
+              highlight ? "border-[#d1ba8d] bg-white text-[#6a4f22]" : "border-[#d9cfbf] bg-white text-[#6a5a44]"
             }`}
           >
             {icon}
@@ -264,11 +264,11 @@ type InfoListProps = {
 
 function InfoList({ title, items }: InfoListProps) {
   return (
-    <section className="rounded-xl border border-[#ddd0bd] bg-[#fffdf9] p-4">
+    <section className="rounded-xl border border-[#ddd0bd] bg-white p-4">
       <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-[#8e7f67]">{title}</h3>
       <ul className="mt-3 space-y-2 text-sm text-[#5b5145]">
         {items.map((item) => (
-          <li key={item} className="rounded bg-[#f7f1e6] px-3 py-2">
+          <li key={item} className="rounded bg-white px-3 py-2">
             {item}
           </li>
         ))}
@@ -279,13 +279,13 @@ function InfoList({ title, items }: InfoListProps) {
 
 function PropertyInfoGrid({ items, language }: { items: PropertyInfoItem[]; language: SiteLanguage }) {
   return (
-    <section className="mt-6 rounded-2xl border border-[#ddd0bd] bg-[#fffdf9] p-4 sm:p-5">
+    <section className="mt-6 rounded-2xl border border-[#ddd0bd] bg-white p-4 sm:p-5">
       <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#9a8d78]">
         {translateInfoHeading(language)}
       </p>
       <div className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
         {items.map((item, index) => (
-          <article key={`${item.icon}-${item.value}-${index}`} className="rounded-2xl border border-[#e1d5c6] bg-[#f9f3ea] px-4 py-4 text-center">
+          <article key={`${item.icon}-${item.value}-${index}`} className="rounded-2xl border border-[#e1d5c6] bg-white px-4 py-4 text-center">
             <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-[#d7c8b3] bg-white text-[#7b6a52]">
               <PropertyInfoIcon icon={item.icon} />
             </div>

@@ -120,7 +120,7 @@ export function HeaderMarketControlsInner({
           <button
             type="button"
             onClick={() => setOpenMobileMenu((current) => (current === "language" ? null : "language"))}
-            className="relative flex min-h-11 w-full items-center justify-center rounded-[0.95rem] border border-[var(--line-strong)] bg-white px-3 text-[13px] font-semibold text-[var(--brand-primary)] shadow-[0_14px_24px_-24px_rgba(22,32,48,0.28)]"
+            className="relative flex min-h-11 w-full items-center justify-center rounded-lg border border-[var(--line-strong)] bg-white px-3 text-[13px] font-semibold text-[var(--brand-primary)] shadow-[0_14px_24px_-24px_rgba(22,32,48,0.28)] transition hover:border-[var(--brand-accent)]"
             aria-expanded={openMobileMenu === "language"}
             aria-label={`${copy.language}: ${activeLanguage.label}`}
             title={`${copy.language}: ${activeLanguage.label}`}
@@ -134,17 +134,17 @@ export function HeaderMarketControlsInner({
           </button>
 
           {openMobileMenu === "language" ? (
-            <div className="absolute left-0 top-[calc(100%+0.55rem)] z-40 w-[9.5rem] overflow-hidden rounded-[1rem] border border-[var(--line-strong)] bg-[rgba(255,252,247,0.98)] p-2 shadow-[0_28px_54px_-32px_rgba(16,23,34,0.34)] backdrop-blur">
+            <div className="absolute left-0 top-[calc(100%+0.55rem)] z-40 w-[9.5rem] overflow-hidden rounded-lg border border-[var(--line-strong)] bg-[rgba(255,255,255,0.98)] p-2 shadow-[0_28px_54px_-32px_rgba(16,23,34,0.34)] backdrop-blur">
               <div className="grid grid-cols-2 gap-2">
                 {languageOptions.map((option) => (
                   <button
                     key={option.code}
                     type="button"
                     onClick={() => chooseLanguage(option.code as SiteLanguage)}
-                    className={`flex h-11 items-center justify-center rounded-[0.9rem] border text-lg transition ${
+                    className={`flex h-11 items-center justify-center rounded-lg border text-lg transition ${
                       language === option.code
-                        ? "border-[var(--brand-accent)] bg-[rgba(255,245,235,0.9)] text-[var(--brand-primary)]"
-                        : "border-[var(--line-strong)] bg-white text-[var(--ink-700)] hover:bg-[rgba(29,56,92,0.05)]"
+                        ? "border-[var(--brand-accent)] bg-[rgba(102,165,87,0.12)] text-[var(--brand-primary)]"
+                        : "border-[var(--line-strong)] bg-white text-[var(--ink-700)] hover:bg-[rgba(102,165,87,0.08)]"
                     }`}
                     aria-label={option.label}
                     title={option.label}
@@ -161,7 +161,7 @@ export function HeaderMarketControlsInner({
           <button
             type="button"
             onClick={() => setOpenMobileMenu((current) => (current === "currency" ? null : "currency"))}
-            className="relative flex min-h-11 w-full items-center justify-center rounded-[0.95rem] border border-[var(--line-strong)] bg-white px-3 text-[13px] font-semibold text-[var(--brand-primary)] shadow-[0_14px_24px_-24px_rgba(22,32,48,0.28)]"
+            className="relative flex min-h-11 w-full items-center justify-center rounded-lg border border-[var(--line-strong)] bg-white px-3 text-[13px] font-semibold text-[var(--brand-primary)] shadow-[0_14px_24px_-24px_rgba(22,32,48,0.28)] transition hover:border-[var(--brand-accent)]"
             aria-expanded={openMobileMenu === "currency"}
             aria-label={`${copy.currency}: ${activeCurrency.code}`}
             title={`${copy.currency}: ${activeCurrency.code}`}
@@ -173,17 +173,17 @@ export function HeaderMarketControlsInner({
           </button>
 
           {openMobileMenu === "currency" ? (
-            <div className="absolute right-0 top-[calc(100%+0.55rem)] z-30 w-[10.5rem] overflow-hidden rounded-[1rem] border border-[var(--line-strong)] bg-[rgba(255,252,247,0.98)] p-2 shadow-[0_28px_54px_-32px_rgba(16,23,34,0.34)] backdrop-blur">
+            <div className="absolute right-0 top-[calc(100%+0.55rem)] z-30 w-[10.5rem] overflow-hidden rounded-lg border border-[var(--line-strong)] bg-[rgba(255,255,255,0.98)] p-2 shadow-[0_28px_54px_-32px_rgba(16,23,34,0.34)] backdrop-blur">
               <div className="grid grid-cols-4 gap-2">
                 {currencyOptions.map((option) => (
                   <button
                     key={option.code}
                     type="button"
                     onClick={() => chooseCurrency(option.code as SiteCurrency)}
-                    className={`flex h-11 items-center justify-center rounded-[0.9rem] border text-[1rem] font-semibold transition ${
+                    className={`flex h-11 items-center justify-center rounded-lg border text-[1rem] font-semibold transition ${
                       currency === option.code
-                        ? "border-[var(--brand-accent)] bg-[rgba(255,245,235,0.9)] text-[var(--brand-primary)]"
-                        : "border-[var(--line-strong)] bg-white text-[var(--ink-700)] hover:bg-[rgba(29,56,92,0.05)]"
+                        ? "border-[var(--brand-accent)] bg-[rgba(102,165,87,0.12)] text-[var(--brand-primary)]"
+                        : "border-[var(--line-strong)] bg-white text-[var(--ink-700)] hover:bg-[rgba(102,165,87,0.08)]"
                     }`}
                     aria-label={option.label}
                     title={option.label}
@@ -203,7 +203,7 @@ export function HeaderMarketControlsInner({
     <div className={`flex items-center gap-2 text-[11px] text-[var(--brand-primary)] ${className}`}>
       <details ref={languageMenuRef} className="relative">
         <summary
-          className="flex h-11 min-w-11 cursor-pointer list-none items-center justify-center gap-2 rounded-full border border-[var(--line-strong)] bg-white px-3 text-[var(--brand-primary)] shadow-[0_18px_36px_-30px_rgba(22,32,48,0.34)] transition hover:border-[var(--brand-accent)] [&::-webkit-details-marker]:hidden"
+          className="flex h-11 min-w-11 cursor-pointer list-none items-center justify-center gap-2 rounded-lg border border-[var(--line-strong)] bg-white px-3 text-[var(--brand-primary)] shadow-[0_18px_36px_-30px_rgba(22,32,48,0.34)] transition hover:border-[var(--brand-accent)] [&::-webkit-details-marker]:hidden"
           aria-label={`${copy.language}: ${activeLanguage.label}`}
           title={`${copy.language}: ${activeLanguage.label}`}
         >
@@ -216,16 +216,16 @@ export function HeaderMarketControlsInner({
           <ChevronIcon />
         </summary>
 
-        <div className={`absolute top-[calc(100%+0.75rem)] z-30 w-48 overflow-hidden rounded-[1.2rem] border border-[var(--line-strong)] bg-[rgba(255,252,247,0.98)] p-2 shadow-[0_28px_54px_-32px_rgba(16,23,34,0.34)] backdrop-blur ${menuAlign === "right" ? "right-0" : "left-0"}`}>
+        <div className={`absolute top-[calc(100%+0.75rem)] z-30 w-48 overflow-hidden rounded-lg border border-[var(--line-strong)] bg-[rgba(255,255,255,0.98)] p-2 shadow-[0_28px_54px_-32px_rgba(16,23,34,0.34)] backdrop-blur ${menuAlign === "right" ? "right-0" : "left-0"}`}>
           {languageOptions.map((option) => (
             <button
               key={option.code}
               type="button"
               onClick={() => chooseLanguage(option.code as SiteLanguage)}
-              className={`flex w-full items-center justify-between rounded-[0.9rem] px-3 py-3 text-left text-sm font-semibold transition ${
+              className={`flex w-full items-center justify-between rounded-lg px-3 py-3 text-left text-sm font-semibold transition ${
                 language === option.code
-                  ? "bg-[rgba(29,56,92,0.08)] text-[var(--brand-primary)]"
-                  : "text-[var(--ink-700)] hover:bg-[rgba(29,56,92,0.05)]"
+                  ? "bg-[rgba(102,165,87,0.12)] text-[var(--brand-primary)]"
+                  : "text-[var(--ink-700)] hover:bg-[rgba(102,165,87,0.08)]"
               }`}
             >
               <span className="flex items-center gap-3">
@@ -246,7 +246,7 @@ export function HeaderMarketControlsInner({
 
       <details ref={currencyMenuRef} className="relative">
         <summary
-          className="flex h-11 min-w-11 cursor-pointer list-none items-center justify-center gap-2 rounded-full border border-[var(--line-strong)] bg-white px-3 text-[var(--brand-primary)] shadow-[0_18px_36px_-30px_rgba(22,32,48,0.34)] transition hover:border-[var(--brand-accent)] [&::-webkit-details-marker]:hidden"
+          className="flex h-11 min-w-11 cursor-pointer list-none items-center justify-center gap-2 rounded-lg border border-[var(--line-strong)] bg-white px-3 text-[var(--brand-primary)] shadow-[0_18px_36px_-30px_rgba(22,32,48,0.34)] transition hover:border-[var(--brand-accent)] [&::-webkit-details-marker]:hidden"
           aria-label={`${copy.currency}: ${activeCurrency.code}`}
           title={`${copy.currency}: ${activeCurrency.code}`}
         >
@@ -257,16 +257,16 @@ export function HeaderMarketControlsInner({
           <ChevronIcon />
         </summary>
 
-        <div className={`absolute top-[calc(100%+0.75rem)] z-30 w-44 overflow-hidden rounded-[1.2rem] border border-[var(--line-strong)] bg-[rgba(255,252,247,0.98)] p-2 shadow-[0_28px_54px_-32px_rgba(16,23,34,0.34)] backdrop-blur ${menuAlign === "right" ? "right-0" : "left-0"}`}>
+        <div className={`absolute top-[calc(100%+0.75rem)] z-30 w-44 overflow-hidden rounded-lg border border-[var(--line-strong)] bg-[rgba(255,255,255,0.98)] p-2 shadow-[0_28px_54px_-32px_rgba(16,23,34,0.34)] backdrop-blur ${menuAlign === "right" ? "right-0" : "left-0"}`}>
           {currencyOptions.map((option) => (
             <button
               key={option.code}
               type="button"
               onClick={() => chooseCurrency(option.code as SiteCurrency)}
-              className={`flex w-full items-center justify-between rounded-[0.9rem] px-3 py-3 text-left text-sm font-semibold transition ${
+              className={`flex w-full items-center justify-between rounded-lg px-3 py-3 text-left text-sm font-semibold transition ${
                 currency === option.code
-                  ? "bg-[rgba(29,56,92,0.08)] text-[var(--brand-primary)]"
-                  : "text-[var(--ink-700)] hover:bg-[rgba(29,56,92,0.05)]"
+                  ? "bg-[rgba(102,165,87,0.12)] text-[var(--brand-primary)]"
+                  : "text-[var(--ink-700)] hover:bg-[rgba(102,165,87,0.08)]"
               }`}
             >
               <span className="flex items-center gap-3">

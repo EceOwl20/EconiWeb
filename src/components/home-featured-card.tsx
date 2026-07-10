@@ -185,9 +185,9 @@ export function HomeFeaturedCard({ property, language }: HomeFeaturedCardProps) 
       aria-label={`${propertyTitle} ${copy.details}`}
       onClick={handleCardClick}
       onKeyDown={handleCardKeyDown}
-      className="group block cursor-pointer overflow-hidden rounded-[1.55rem] border border-[var(--line-strong)] bg-[linear-gradient(180deg,#fffdfa_0%,#fbf7f0_100%)] shadow-[0_24px_46px_-34px_rgba(24,20,14,0.24)] outline-none transition duration-300 hover:-translate-y-1 hover:shadow-[0_30px_54px_-36px_rgba(18,24,36,0.28)] focus-visible:ring-2 focus-visible:ring-[rgba(201,124,78,0.38)]"
+      className="group block cursor-pointer overflow-hidden rounded-[1.55rem] border border-[var(--line-strong)] bg-white shadow-[0_24px_46px_-34px_rgba(24,20,14,0.24)] outline-none transition duration-300 hover:-translate-y-1 hover:shadow-[0_30px_54px_-36px_rgba(18,24,36,0.28)] focus-visible:ring-2 focus-visible:ring-[rgba(102,165,87,0.38)]"
     >
-      <div className="relative aspect-[4/2.55] overflow-hidden bg-[#d8cab5]">
+      <div className="relative aspect-[4/2.55] overflow-hidden bg-white">
         <Image
           src={activeImage}
           alt={propertyTitle}

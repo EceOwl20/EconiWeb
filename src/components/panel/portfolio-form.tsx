@@ -50,7 +50,7 @@ type SubmitState =
 const typeOptions = [...PROPERTY_TYPE_OPTIONS];
 const coverOptions = [
   { label: "Turkuaz", value: "linear-gradient(120deg, #0f766e, #2dd4bf)" },
-  { label: "Mavi", value: "linear-gradient(120deg, #1d4ed8, #60a5fa)" },
+  { label: "Econi Grafit", value: "linear-gradient(120deg, #1d1d1b, #66a557)" },
   { label: "Turuncu", value: "linear-gradient(120deg, #7c2d12, #fb923c)" },
   { label: "Mor", value: "linear-gradient(120deg, #7e22ce, #c084fc)" },
   { label: "Yeşil", value: "linear-gradient(120deg, #166534, #4ade80)" },

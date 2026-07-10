@@ -118,7 +118,7 @@ export function PropertyDetailGallery({
       </div>
 
       {gallery.length > 1 ? (
-        <div className="grid gap-3 border-t border-[#e1d4bf] bg-[#faf5eb] p-4 sm:grid-cols-4">
+        <div className="grid gap-3 border-t border-[#e1d4bf] bg-white p-4 sm:grid-cols-4">
           {gallery.map((image, index) => {
             const label = imageLabels[index - 1] ?? (index === 0 ? copy.cover : `${copy.image} ${index + 1}`);
 
@@ -130,7 +130,7 @@ export function PropertyDetailGallery({
                 className={`overflow-hidden rounded-[1rem] border text-left transition ${
                   index === activeImageIndex
                     ? "border-[#d5b27b] bg-white shadow-[0_20px_36px_-28px_rgba(24,18,12,0.55)]"
-                    : "border-[#dfd2bf] bg-[#fffdf9] hover:border-[#d4c09c]"
+                    : "border-[#dfd2bf] bg-white hover:border-[#d4c09c]"
                 }`}
               >
                 <div className="relative h-24">

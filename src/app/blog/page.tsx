@@ -12,7 +12,7 @@ import { getServerSiteLanguage } from "@/lib/site-preferences-server";
 import { blogListSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Blog | PortföySatış",
+  title: "Blog | Econi Invest",
   description: "Emlak yatırımı, satış stratejisi ve premium konut trendleri üzerine SEO odaklı içerikler.",
   alternates: {
     canonical: "/blog",
@@ -61,7 +61,7 @@ export default async function BlogPage() {
                   {post.tags.slice(0, 3).map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-full border border-[#e2d5c2] bg-[#f9f4eb] px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#7b6744]"
+                      className="rounded-full border border-[#e2d5c2] bg-white px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#7b6744]"
                     >
                       {tag}
                     </span>
