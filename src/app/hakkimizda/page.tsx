@@ -8,7 +8,7 @@ import { getServerSiteLanguage } from "@/lib/site-preferences-server";
 
 export const metadata: Metadata = {
   title: "Hakkımızda | Econi Invest",
-  description: "Econi Invest vizyonu, yaklaşımı ve satış odaklı ekip yapısı.",
+  description: "Econi Invest'in veri, danışmanlık ve şeffaf süreç yönetimine dayalı gayrimenkul yatırım yaklaşımı.",
 };
 
 export default async function HakkimizdaPage() {
@@ -21,10 +21,10 @@ export default async function HakkimizdaPage() {
       <SiteHeader />
 
       <main className="w-full pb-24">
-        <section className="frame-wide fade-up relative overflow-hidden rounded-[1.4rem] border border-[#3f3022] bg-[#0f1621] p-7 text-[#f4ead8] shadow-[0_48px_88px_-64px_rgba(0,0,0,0.95)] sm:p-10">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#d8bc8d]">{copy.heroKicker}</p>
-          <h1 className="mt-3 text-[2.4rem] leading-[0.95] font-semibold sm:text-[3.8rem]">{copy.heroTitle}</h1>
-          <p className="mt-3 max-w-2xl text-sm leading-7 text-[#d7c8ad] sm:text-base">
+        <section className="frame-wide fade-up rounded-lg border border-[var(--line)] bg-white p-7 shadow-[0_4px_20px_rgba(0,0,0,0.05)] sm:p-10">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--brand-accent-strong)]">{copy.heroKicker}</p>
+          <h1 className="mt-3 text-[2.4rem] leading-[1.02] font-bold text-[var(--brand-primary)] sm:text-[3.8rem]">{copy.heroTitle}</h1>
+          <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--ink-600)] sm:text-base">
             {copy.heroBody}
           </p>
         </section>
@@ -37,8 +37,8 @@ export default async function HakkimizdaPage() {
             { label: copy.metrics.leads, value: String(summary.leadCount) },
           ].map((item) => (
             <article key={item.label} className="luxury-card p-5 text-center">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8d7348]">{item.label}</p>
-              <p className="mt-2 text-[2rem] font-semibold text-[#201a13]">{item.value}</p>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--brand-accent-strong)]">{item.label}</p>
+              <p className="mt-2 text-[2rem] font-semibold text-[var(--brand-primary)]">{item.value}</p>
             </article>
           ))}
         </section>
@@ -46,16 +46,16 @@ export default async function HakkimizdaPage() {
         <section className="frame mt-8 grid gap-4 xl:grid-cols-2">
           <article className="luxury-card p-6 sm:p-7">
             <span className="section-kicker">{copy.visionKicker}</span>
-            <h2 className="mt-3 text-[2rem] leading-none font-semibold text-[#201a13]">{copy.visionTitle}</h2>
-            <p className="mt-3 text-sm leading-7 text-[#645b50]">
+            <h2 className="mt-3 text-[2rem] leading-none font-semibold text-[var(--brand-primary)]">{copy.visionTitle}</h2>
+            <p className="mt-3 text-sm leading-7 text-[var(--ink-600)]">
               {copy.visionBody}
             </p>
           </article>
 
           <article className="luxury-card p-6 sm:p-7">
             <span className="section-kicker">{copy.approachKicker}</span>
-            <h2 className="mt-3 text-[2rem] leading-none font-semibold text-[#201a13]">{copy.approachTitle}</h2>
-            <p className="mt-3 text-sm leading-7 text-[#645b50]">
+            <h2 className="mt-3 text-[2rem] leading-none font-semibold text-[var(--brand-primary)]">{copy.approachTitle}</h2>
+            <p className="mt-3 text-sm leading-7 text-[var(--ink-600)]">
               {copy.approachBody}
             </p>
           </article>

@@ -91,10 +91,10 @@ export function SellPropertyForm({ cityDistrictMap, defaultIntent = "sat" }: Sel
   return (
     <section className="luxury-card p-5 sm:p-7">
       <span className="section-kicker">{copy.kicker}</span>
-      <h2 className="mt-3 text-[2rem] leading-none font-semibold text-[#1f1a14]">
+      <h2 className="mt-3 text-[2rem] leading-none font-semibold text-[var(--brand-primary)]">
         {copy.title}
       </h2>
-      <p className="mt-3 max-w-3xl text-sm leading-7 text-[#665c4f]">
+      <p className="mt-3 max-w-3xl text-sm leading-7 text-[var(--ink-600)]">
         {defaultIntent === "degerleme"
           ? copy.valuationBody
           : copy.saleBody}

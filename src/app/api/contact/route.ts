@@ -25,7 +25,7 @@ export async function POST(request: Request) {
             labels: { property: "Listing information", name: "Full name", email: "Email", phone: "Phone", message: "Message" },
             required: "is required.",
             notFound: "Listing not found.",
-            demo: "Your inquiry was received. Mail delivery is disabled in demo mode, so the record was saved in the panel.",
+            demo: "Your inquiry was received. Our team will review it and contact you shortly.",
             success: "Your inquiry was sent successfully. Our team will contact you shortly.",
             fallback: "The inquiry could not be sent.",
           }
@@ -34,7 +34,7 @@ export async function POST(request: Request) {
               labels: { property: "Информация об объекте", name: "Имя и фамилия", email: "Эл. почта", phone: "Телефон", message: "Сообщение" },
               required: "обязательно.",
               notFound: "Объект не найден.",
-              demo: "Ваш запрос получен. В демо-режиме отправка почты отключена, поэтому запись сохранена в панели.",
+              demo: "Ваш запрос получен. Наша команда рассмотрит его и скоро свяжется с вами.",
               success: "Ваш запрос успешно отправлен. Наша команда скоро свяжется с вами.",
               fallback: "Не удалось отправить запрос.",
             }
@@ -43,7 +43,7 @@ export async function POST(request: Request) {
                 labels: { property: "معلومات العقار", name: "الاسم الكامل", email: "البريد الإلكتروني", phone: "الهاتف", message: "الرسالة" },
                 required: "مطلوب.",
                 notFound: "لم يتم العثور على العقار.",
-                demo: "تم استلام طلبك. في وضع العرض التجريبي تم حفظه في اللوحة لأن إعداد البريد غير متوفر.",
+                demo: "تم استلام طلبك. سيراجعه فريقنا ويتواصل معك قريبًا.",
                 success: "تم إرسال طلبك بنجاح. سيتواصل معك فريقنا قريبًا.",
                 fallback: "تعذر إرسال الطلب.",
               }
@@ -51,7 +51,7 @@ export async function POST(request: Request) {
                 labels: { property: "İlan bilgisi", name: "Ad Soyad", email: "E-posta", phone: "Telefon", message: "Mesaj" },
                 required: "zorunludur.",
                 notFound: "İlan bulunamadı.",
-                demo: "Talebiniz alındı. Demo modunda mail ayarı olmadığı için kayıt panelde tutuldu.",
+                demo: "Talebiniz alındı. Ekibimiz talebinizi inceleyip kısa süre içinde sizinle iletişime geçecek.",
                 success: "Talebiniz başarıyla iletildi. Ekibimiz sizi arayacak.",
                 fallback: "Talep gönderilemedi.",
               };
@@ -83,7 +83,7 @@ export async function POST(request: Request) {
     if (!emailResult.delivered) {
       return NextResponse.json({
         message: copy.demo,
-        mode: "demo",
+        mode: "queued",
       });
     }
 

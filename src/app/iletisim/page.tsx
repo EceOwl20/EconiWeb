@@ -11,7 +11,7 @@ import { getServerSiteLanguage } from "@/lib/site-preferences-server";
 
 export const metadata: Metadata = {
   title: "İletişim | Econi Invest",
-  description: "Econi Invest danışman ekibiyle iletişim kurun, talebinizi iletin.",
+  description: "Gayrimenkul yatırımı, portföy satışı, değerleme ve danışmanlık talepleriniz için Econi Invest ekibiyle iletişime geçin.",
 };
 
 export default async function IletisimPage() {
@@ -29,10 +29,10 @@ export default async function IletisimPage() {
       <SiteHeader />
 
       <main className="w-full pb-24">
-        <section className="frame-wide fade-up relative overflow-hidden rounded-[1.4rem] border border-[#3f3022] bg-[#0f1621] p-7 text-[#f4ead8] shadow-[0_48px_88px_-64px_rgba(0,0,0,0.95)] sm:p-10">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#d8bc8d]">{copy.heroKicker}</p>
-          <h1 className="mt-3 text-[2.4rem] leading-[0.95] font-semibold sm:text-[3.8rem]">{copy.heroTitle}</h1>
-          <p className="mt-3 max-w-2xl text-sm leading-7 text-[#d7c8ad] sm:text-base">
+        <section className="frame-wide fade-up rounded-lg border border-[var(--line)] bg-white p-7 shadow-[0_4px_20px_rgba(0,0,0,0.05)] sm:p-10">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--brand-accent-strong)]">{copy.heroKicker}</p>
+          <h1 className="mt-3 text-[2.4rem] leading-[1.02] font-bold text-[var(--brand-primary)] sm:text-[3.8rem]">{copy.heroTitle}</h1>
+          <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--ink-600)] sm:text-base">
             {copy.heroBody}
           </p>
         </section>
@@ -42,12 +42,12 @@ export default async function IletisimPage() {
 
           <aside className="luxury-card p-6 sm:p-7">
             <span className="section-kicker">{copy.infoKicker}</span>
-            <h2 className="mt-3 text-[2rem] leading-none font-semibold text-[#1f1a14]">{copy.infoTitle}</h2>
-            <p className="mt-3 text-sm leading-7 text-[#665c4f]">
+            <h2 className="mt-3 text-[2rem] leading-none font-semibold text-[var(--brand-primary)]">{copy.infoTitle}</h2>
+            <p className="mt-3 text-sm leading-7 text-[var(--ink-600)]">
               {copy.infoBody}
             </p>
 
-            <div className="mt-4 space-y-2 text-sm text-[#5f5548]">
+            <div className="mt-4 space-y-2 text-sm text-[var(--ink-600)]">
               <p><span className="font-semibold">{copy.phone}:</span> +90 212 900 00 01</p>
               <p><span className="font-semibold">{copy.email}:</span> info@econiinvest.com</p>
               <p><span className="font-semibold">{copy.address}:</span> Levent, İstanbul</p>
@@ -56,13 +56,13 @@ export default async function IletisimPage() {
             <div className="mt-5 flex flex-wrap gap-2 text-sm">
               <a
                 href="tel:+902129000001"
-                className="rounded-full border border-[#d6c5a8] bg-white px-4 py-2 font-semibold text-[#4f4435] transition hover:bg-white"
+                className="rounded-lg border border-[var(--line)] bg-white px-4 py-2 font-semibold text-[var(--brand-primary)] transition hover:border-[var(--brand-green)]"
               >
                 {copy.call}
               </a>
               <Link
                 href="/danismanlar"
-                className="rounded-full border border-[#ccb795] bg-white px-4 py-2 font-semibold text-[#6d593b] transition hover:bg-white"
+                className="rounded-lg border border-[var(--line)] bg-white px-4 py-2 font-semibold text-[var(--brand-primary)] transition hover:border-[var(--brand-green)]"
               >
                 {copy.advisors}
               </Link>

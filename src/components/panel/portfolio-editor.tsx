@@ -443,7 +443,7 @@ export function PortfolioEditor({
       </div>
 
       {selectedPropertyQuality ? (
-        <section className="mt-5 rounded-2xl border border-slate-200 bg-slate-50/80 p-4 sm:p-5">
+        <section className="mt-5 rounded-lg border border-[var(--line)] bg-white p-4 sm:p-5">
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div className="max-w-2xl">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Kalite Kontrol</p>
@@ -453,7 +453,7 @@ export function PortfolioEditor({
               </p>
             </div>
             <span
-              className={`rounded-full px-4 py-2 text-sm font-semibold ${
+              className={`rounded px-4 py-2 text-sm font-semibold ${
                 selectedPropertyQuality.criticalIssues.length > 0
                   ? "border border-rose-200 bg-rose-50 text-rose-700"
                   : selectedPropertyQuality.advisoryIssues.length > 0
@@ -470,14 +470,14 @@ export function PortfolioEditor({
           </div>
 
           <div className="mt-4 grid gap-3 lg:grid-cols-2">
-            <article className="rounded-2xl border border-slate-200 bg-white p-4">
+            <article className="rounded-lg border border-[var(--line)] bg-white p-4">
               <p className="text-sm font-semibold text-slate-900">Kritik alanlar</p>
               {selectedPropertyQuality.criticalIssues.length > 0 ? (
                 <div className="mt-3 flex flex-wrap gap-2">
                   {selectedPropertyQuality.criticalIssues.map((issue) => (
                     <span
                       key={`critical-${issue.id}`}
-                      className="rounded-full border border-rose-200 bg-rose-50 px-3 py-1 text-xs text-rose-700"
+                      className="rounded border border-rose-200 bg-rose-50 px-3 py-1 text-xs text-rose-700"
                     >
                       {issue.label}
                     </span>
@@ -488,14 +488,14 @@ export function PortfolioEditor({
               )}
             </article>
 
-            <article className="rounded-2xl border border-slate-200 bg-white p-4">
+            <article className="rounded-lg border border-[var(--line)] bg-white p-4">
               <p className="text-sm font-semibold text-slate-900">İçerik ve zenginlik uyarıları</p>
               {selectedPropertyQuality.advisoryIssues.length > 0 ? (
                 <div className="mt-3 flex flex-wrap gap-2">
                   {selectedPropertyQuality.advisoryIssues.map((issue) => (
                     <span
                       key={`advisory-${issue.id}`}
-                      className="rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-xs text-amber-700"
+                      className="rounded border border-amber-200 bg-amber-50 px-3 py-1 text-xs text-amber-700"
                     >
                       {issue.label}
                     </span>
@@ -509,7 +509,7 @@ export function PortfolioEditor({
         </section>
       ) : null}
 
-      <section className="mt-5 rounded-2xl border border-slate-200 bg-slate-50/80 p-4 sm:p-5">
+      <section className="mt-5 rounded-lg border border-[var(--line)] bg-white p-4 sm:p-5">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div className="max-w-2xl">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Aktivite Geçmişi</p>
@@ -518,7 +518,7 @@ export function PortfolioEditor({
               Bu blokta seçili ilana ait son düzenleme, durum değişimi, danışman ataması ve kopyalama kayıtlarını görürsünüz.
             </p>
           </div>
-          <span className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-600">
+          <span className="rounded border border-[var(--line)] bg-white px-3 py-1 text-xs font-semibold text-slate-600">
             {selectedPropertyActivityLogs.length} kayıt
           </span>
         </div>
@@ -526,12 +526,12 @@ export function PortfolioEditor({
         {selectedPropertyActivityLogs.length > 0 ? (
           <div className="mt-4 space-y-3">
             {selectedPropertyActivityLogs.map((activity) => (
-              <article key={activity.id} className="rounded-2xl border border-slate-200 bg-white px-4 py-4">
+              <article key={activity.id} className="rounded-lg border border-[var(--line)] bg-white px-4 py-4">
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
                       <span
-                        className={`rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] ${propertyActivityActionBadgeClass(
+                        className={`rounded px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] ${propertyActivityActionBadgeClass(
                           activity.actionType,
                         )}`}
                       >
@@ -548,7 +548,7 @@ export function PortfolioEditor({
                         {activity.details.slice(0, 4).map((detail) => (
                           <span
                             key={`${activity.id}-${detail}`}
-                            className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs text-slate-600"
+                            className="rounded border border-slate-200 bg-white px-3 py-1 text-xs text-slate-600"
                           >
                             {detail}
                           </span>
@@ -561,13 +561,13 @@ export function PortfolioEditor({
             ))}
           </div>
         ) : (
-          <p className="mt-4 rounded-2xl border border-dashed border-slate-300 bg-white px-4 py-4 text-sm text-slate-500">
+          <p className="mt-4 rounded-lg border border-dashed border-slate-300 bg-white px-4 py-4 text-sm text-slate-500">
             Bu portföy için henüz kaydedilmiş bir hareket bulunmuyor.
           </p>
         )}
       </section>
 
-      <div id="kopyala-varyantlari" className="mt-5 rounded-2xl border border-slate-200 bg-slate-50/80 p-4 sm:p-5">
+      <div id="kopyala-varyantlari" className="mt-5 rounded-lg border border-[var(--line)] bg-white p-4 sm:p-5">
         <div className="max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Kopyala</p>
           <h3 className="mt-2 text-lg font-semibold text-slate-900">Bu portföyden oda varyantı üretin</h3>
@@ -586,7 +586,7 @@ export function PortfolioEditor({
                 key={room}
                 type="button"
                 onClick={() => toggleDuplicateRoom(room)}
-                className={`rounded-xl border px-3 py-3 text-sm font-semibold transition ${
+                className={`rounded-lg border px-3 py-3 text-sm font-semibold transition ${
                   isActive
                     ? "border-slate-900 bg-slate-900 text-white"
                     : "border-slate-200 bg-white text-slate-700 hover:border-slate-300"
@@ -826,7 +826,7 @@ export function PortfolioEditor({
           />
         </label>
 
-        <div className="md:col-span-2 rounded-2xl border border-slate-200 bg-slate-50/80 p-4">
+        <div className="md:col-span-2 rounded-lg border border-[var(--line)] bg-white p-4">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <div>
               <p className="text-sm font-semibold text-slate-900">Galeri yönetimi</p>
@@ -834,7 +834,7 @@ export function PortfolioEditor({
                 İstemediğiniz mevcut görselleri kaldırabilir, yeni görselleri tek seferde ekleyebilirsiniz.
               </p>
             </div>
-            <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-600">
+            <span className="rounded bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">
               {visibleGalleryCount} / {MAX_GALLERY_IMAGE_COUNT} görsel
             </span>
           </div>
@@ -846,7 +846,7 @@ export function PortfolioEditor({
               return (
                 <article
                   key={`${image}-${index}`}
-                  className={`overflow-hidden rounded-2xl border ${
+                  className={`overflow-hidden rounded-lg border ${
                     isRemoved ? "border-rose-200 bg-rose-50/60" : "border-slate-200 bg-white"
                   }`}
                 >
@@ -861,7 +861,7 @@ export function PortfolioEditor({
                     <button
                       type="button"
                       onClick={() => toggleExistingGalleryImage(image)}
-                      className={`cursor-pointer rounded-full px-3 py-1 text-xs font-semibold transition ${
+                      className={`cursor-pointer rounded-lg px-3 py-1 text-xs font-semibold transition ${
                         isRemoved
                           ? "border border-emerald-200 text-emerald-700 hover:bg-emerald-50"
                           : "border border-rose-200 text-rose-700 hover:bg-rose-50"
@@ -886,7 +886,7 @@ export function PortfolioEditor({
                 {galleryFiles.map((file, index) => (
                   <div
                     key={`${file.name}-${file.size}-${index}`}
-                    className="flex items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white px-3 py-2"
+                    className="flex items-center justify-between gap-3 rounded-lg border border-[var(--line)] bg-white px-3 py-2"
                   >
                     <div className="min-w-0">
                       <p className="truncate text-sm font-medium text-slate-900">{file.name}</p>
@@ -895,7 +895,7 @@ export function PortfolioEditor({
                     <button
                       type="button"
                       onClick={() => removeSelectedGalleryFile(index)}
-                      className="cursor-pointer rounded-full border border-rose-200 px-3 py-1 text-xs font-semibold text-rose-700 transition hover:bg-rose-50"
+                      className="cursor-pointer rounded-lg border border-rose-200 px-3 py-1 text-xs font-semibold text-rose-700 transition hover:bg-rose-50"
                     >
                       Kaldır
                     </button>

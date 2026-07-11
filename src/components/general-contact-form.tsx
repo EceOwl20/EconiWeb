@@ -61,10 +61,10 @@ export function GeneralContactForm({ properties }: GeneralContactFormProps) {
   return (
     <section className="luxury-card p-6 sm:p-7">
       <span className="section-kicker">{copy.kicker}</span>
-      <h2 className="mt-3 text-[2rem] leading-none font-semibold text-[#1f1a14]">
+      <h2 className="mt-3 text-[2rem] leading-none font-semibold text-[var(--brand-primary)]">
         {copy.title}
       </h2>
-      <p className="mt-2 text-sm text-[#655b4f]">
+      <p className="mt-2 text-sm text-[var(--ink-600)]">
         {copy.body}
       </p>
 

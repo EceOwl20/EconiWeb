@@ -27,7 +27,7 @@ export function PropertyTranslationFields({
   defaultTranslations,
 }: PropertyTranslationFieldsProps) {
   return (
-    <section className="md:col-span-2 rounded-2xl border border-slate-200 bg-slate-50/80 p-4 sm:p-5">
+    <section className="md:col-span-2 rounded-lg border border-[var(--line)] bg-white p-4 sm:p-5">
       <div className="max-w-2xl">
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Dil İçerikleri</p>
         <h3 className="mt-2 text-lg font-semibold text-slate-900">Portföy içeriğini 4 dilde girin</h3>
@@ -57,9 +57,9 @@ export function PropertyTranslationFields({
           return (
             <article
               key={language.code}
-              className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"
+              className="overflow-hidden rounded-lg border border-[var(--line)] bg-white"
             >
-              <div className="border-b border-slate-200 bg-slate-50/70 px-4 py-3">
+              <div className="border-b border-[var(--line)] bg-white px-4 py-3">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <p className="text-sm font-semibold text-slate-900">
                     {language.label}
@@ -68,7 +68,7 @@ export function PropertyTranslationFields({
                     </span>
                   </p>
                   <span
-                    className={`rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] ${
+                    className={`rounded px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] ${
                       language.required
                         ? "bg-slate-900 text-white"
                         : "bg-slate-100 text-slate-600"

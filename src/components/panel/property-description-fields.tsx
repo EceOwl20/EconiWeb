@@ -63,7 +63,7 @@ export function PropertyDescriptionFields({
             key={language.code}
             type="button"
             onClick={() => setActiveLanguage(language.code)}
-            className={`cursor-pointer rounded-full px-4 py-2 text-sm font-semibold transition ${
+            className={`cursor-pointer rounded-lg px-4 py-2 text-sm font-semibold transition ${
               activeLanguage === language.code
                 ? "bg-slate-900 text-white"
                 : "border border-slate-200 bg-white text-slate-700 hover:border-slate-300"
@@ -74,7 +74,7 @@ export function PropertyDescriptionFields({
         ))}
       </div>
 
-      <div className="mt-4 space-y-3 rounded-2xl border border-[rgba(220,208,189,0.9)] bg-white/92 p-4 shadow-[0_18px_30px_-28px_rgba(20,24,32,0.28)]">
+      <div className="mt-4 space-y-3 rounded-lg border border-[var(--line)] bg-white p-4">
         {DESCRIPTION_LANGUAGES.map((language) => {
           const isActive = activeLanguage === language.code;
           const isRtl = language.code === "AR";
@@ -90,7 +90,7 @@ export function PropertyDescriptionFields({
                   <p className="text-xs text-slate-500">{language.note}</p>
                 </div>
                 <span
-                  className={`rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] ${
+                  className={`rounded px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] ${
                     language.code === "TR" ? "bg-slate-900 text-white" : "bg-slate-100 text-slate-600"
                   }`}
                 >

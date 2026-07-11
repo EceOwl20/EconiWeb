@@ -40,7 +40,7 @@ export async function POST(request: Request) {
             invalidDate: "The appointment date is invalid.",
             invalidTime: "The appointment time is invalid.",
             notFound: "Listing not found.",
-            demo: "Your appointment request was received. Mail delivery is disabled in demo mode, so the record was saved in the panel.",
+            demo: "Your appointment request was received. Our team will contact you to confirm availability.",
             success: "Your appointment request was received. Our team will contact you to confirm availability.",
             fallback: "The appointment request could not be sent.",
           }
@@ -51,7 +51,7 @@ export async function POST(request: Request) {
               invalidDate: "Некорректная дата встречи.",
               invalidTime: "Некорректное время встречи.",
               notFound: "Объект не найден.",
-              demo: "Ваша заявка на встречу получена. В демо-режиме запись сохранена в панели, так как почта отключена.",
+              demo: "Ваша заявка на встречу получена. Наша команда свяжется с вами для подтверждения времени.",
               success: "Ваша заявка на встречу получена. Наша команда свяжется с вами для подтверждения.",
               fallback: "Не удалось отправить заявку на встречу.",
             }
@@ -62,7 +62,7 @@ export async function POST(request: Request) {
                 invalidDate: "تاريخ الموعد غير صالح.",
                 invalidTime: "وقت الموعد غير صالح.",
                 notFound: "لم يتم العثور على العقار.",
-                demo: "تم استلام طلب الموعد. في وضع العرض التجريبي تم حفظه في اللوحة لأن البريد غير مفعّل.",
+                demo: "تم استلام طلب الموعد. سيتواصل معك فريقنا لتأكيد الوقت المناسب.",
                 success: "تم استلام طلب الموعد. سيتواصل معك فريقنا لتأكيد التوفر.",
                 fallback: "تعذر إرسال طلب الموعد.",
               }
@@ -72,7 +72,7 @@ export async function POST(request: Request) {
                 invalidDate: "Randevu tarihi geçersiz.",
                 invalidTime: "Randevu saati geçersiz.",
                 notFound: "İlan bulunamadı.",
-                demo: "Randevu talebiniz alındı. Demo modunda mail ayarı olmadığı için kayıt panelde tutuldu.",
+                demo: "Görüşme talebiniz alındı. Ekibimiz uygunluk teyidi için sizinle iletişime geçecek.",
                 success: "Randevu talebiniz alındı. Ekibimiz uygunluk için size dönüş yapacak.",
                 fallback: "Randevu gönderilemedi.",
               };
@@ -116,7 +116,7 @@ export async function POST(request: Request) {
     if (!emailResult.delivered) {
       return NextResponse.json({
         message: copy.demo,
-        mode: "demo",
+        mode: "queued",
       });
     }
 

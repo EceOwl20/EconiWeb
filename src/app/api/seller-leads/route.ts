@@ -47,7 +47,7 @@ export async function POST(request: Request) {
             labels: { name: "Full name", email: "Email", phone: "Phone", city: "City", district: "District", propertyType: "Property type", area: "Gross m²", message: "Property details and message" },
             required: "is required.",
             invalidNumber: "must be a valid number.",
-            demo: "Your request was received. Mail delivery is disabled in demo mode, so the record was saved in the system.",
+            demo: "Your request was received. Our sales team will evaluate it and contact you shortly.",
             success: "Your request was sent successfully. Our sales team will contact you shortly.",
             fallback: "The request could not be sent.",
           }
@@ -56,7 +56,7 @@ export async function POST(request: Request) {
               labels: { name: "Имя и фамилия", email: "Эл. почта", phone: "Телефон", city: "Город", district: "Район", propertyType: "Тип объекта", area: "Площадь м²", message: "Детали объекта и сообщение" },
               required: "обязательно.",
               invalidNumber: "должно быть корректным числом.",
-              demo: "Ваш запрос получен. В демо-режиме запись сохранена в системе, так как почта отключена.",
+              demo: "Ваш запрос получен. Наша команда продаж оценит его и скоро свяжется с вами.",
               success: "Ваш запрос успешно отправлен. Наша команда продаж скоро свяжется с вами.",
               fallback: "Не удалось отправить запрос.",
             }
@@ -65,15 +65,15 @@ export async function POST(request: Request) {
                 labels: { name: "الاسم الكامل", email: "البريد الإلكتروني", phone: "الهاتف", city: "المدينة", district: "المنطقة", propertyType: "نوع العقار", area: "المساحة م²", message: "تفاصيل العقار والرسالة" },
                 required: "مطلوب.",
                 invalidNumber: "يجب أن يكون رقمًا صالحًا.",
-                demo: "تم استلام طلبك. في وضع العرض التجريبي تم حفظه في النظام لأن البريد غير مفعّل.",
+                demo: "تم استلام طلبك. سيقوم فريق المبيعات بتقييمه والتواصل معك قريبًا.",
                 success: "تم إرسال طلبك بنجاح. سيتواصل معك فريق المبيعات قريبًا.",
                 fallback: "تعذر إرسال الطلب.",
               }
             : {
-                labels: { name: "Ad Soyad", email: "E-posta", phone: "Telefon", city: "Şehir", district: "İlçe", propertyType: "Mülk tipi", area: "Brüt m²", message: "Emlak detayları ve mesaj" },
+                labels: { name: "Ad Soyad", email: "E-posta", phone: "Telefon", city: "Şehir", district: "İlçe", propertyType: "Portföy tipi", area: "Brüt m²", message: "Mülk detayları ve mesaj" },
                 required: "zorunludur.",
                 invalidNumber: "geçerli bir sayı olmalıdır.",
-                demo: "Talebiniz alındı. Demo modunda mail ayarı olmadığı için kayıt sistemde tutuldu.",
+                demo: "Talebiniz alındı. Satış ekibimiz bilgilerinizi değerlendirip kısa süre içinde sizinle iletişime geçecek.",
                 success: "Talebiniz başarıyla iletildi. Satış ekibimiz sizi en kısa sürede arayacak.",
                 fallback: "Talep gönderilemedi.",
               };
@@ -103,7 +103,7 @@ export async function POST(request: Request) {
     if (!emailResult.delivered) {
       return NextResponse.json({
         message: copy.demo,
-        mode: "demo",
+        mode: "queued",
       });
     }
 

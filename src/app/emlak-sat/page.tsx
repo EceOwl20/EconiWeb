@@ -9,8 +9,8 @@ import { sellPageCopy } from "@/lib/site-copy";
 import { getServerSiteLanguage } from "@/lib/site-preferences-server";
 
 export const metadata: Metadata = {
-  title: "Emlak Sat | Econi Invest",
-  description: "Mülkünüzü satışa çıkarmak için detayları paylaşın; değerleme ve premium satış operasyonu için ekibimiz sizinle iletişime geçsin.",
+  title: "Portföyünüzü Satın | Econi Invest",
+  description: "Mülkünüz için ön değerleme, doğru fiyat bandı ve profesyonel satış planı oluşturmak üzere Econi Invest ekibiyle iletişime geçin.",
 };
 
 type SearchParams = Promise<Record<string, string | string[] | undefined>>;
@@ -49,14 +49,13 @@ export default async function EmlakSatPage({ searchParams }: EmlakSatPageProps) 
       <SiteHeader />
 
       <main className="w-full pb-24">
-        <section className="frame-wide fade-up relative overflow-hidden rounded-[1.4rem] border border-[#3f3022] bg-[#0f1621] p-7 text-[#f4ead8] shadow-[0_48px_88px_-64px_rgba(0,0,0,0.95)] sm:p-10">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(216,188,141,0.18),transparent_32%)]" />
-          <div className="relative z-10 max-w-4xl">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#d8bc8d]">{copy.heroKicker}</p>
-            <h1 className="mt-3 text-[2.4rem] leading-[0.95] font-semibold sm:text-[3.8rem]">
+        <section className="frame-wide fade-up rounded-lg border border-[var(--line)] bg-white p-7 shadow-[0_4px_20px_rgba(0,0,0,0.05)] sm:p-10">
+          <div className="max-w-4xl">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--brand-accent-strong)]">{copy.heroKicker}</p>
+            <h1 className="mt-3 text-[2.4rem] leading-[1.02] font-bold text-[var(--brand-primary)] sm:text-[3.8rem]">
               {copy.heroTitle}
             </h1>
-            <p className="mt-3 max-w-3xl text-sm leading-7 text-[#d7c8ad] sm:text-base">
+            <p className="mt-3 max-w-3xl text-sm leading-7 text-[var(--ink-600)] sm:text-base">
               {copy.heroBody}
             </p>
           </div>
@@ -68,8 +67,8 @@ export default async function EmlakSatPage({ searchParams }: EmlakSatPageProps) 
           <aside className="space-y-4">
             <article className="luxury-card p-6 sm:p-7">
               <span className="section-kicker">{copy.planKicker}</span>
-              <h2 className="mt-3 text-[2rem] leading-none font-semibold text-[#1f1a14]">{copy.planTitle}</h2>
-              <p className="mt-3 text-sm leading-7 text-[#665c4f]">
+              <h2 className="mt-3 text-[2rem] leading-none font-semibold text-[var(--brand-primary)]">{copy.planTitle}</h2>
+              <p className="mt-3 text-sm leading-7 text-[var(--ink-600)]">
                 {copy.planBody}
               </p>
 
@@ -84,9 +83,9 @@ export default async function EmlakSatPage({ searchParams }: EmlakSatPageProps) 
 
             <article className="luxury-card p-6 sm:p-7">
               <span className="section-kicker">{copy.accessKicker}</span>
-              <h2 className="mt-3 text-[1.85rem] leading-none font-semibold text-[#1f1a14]">{copy.accessTitle}</h2>
+              <h2 className="mt-3 text-[1.85rem] leading-none font-semibold text-[var(--brand-primary)]">{copy.accessTitle}</h2>
 
-              <div className="mt-4 space-y-3 text-sm text-[#5f5548]">
+              <div className="mt-4 space-y-3 text-sm text-[var(--ink-600)]">
                 <p><span className="font-semibold">{copy.phone}:</span> +90 212 900 00 01</p>
                 <p><span className="font-semibold">{copy.whatsapp}:</span> +90 532 111 22 33</p>
                 <p><span className="font-semibold">{copy.email}:</span> sales@econiinvest.com</p>
@@ -95,13 +94,13 @@ export default async function EmlakSatPage({ searchParams }: EmlakSatPageProps) 
               <div className="mt-5 flex flex-wrap gap-2">
                 <a
                 href="tel:+902129000001"
-                className="rounded-full border border-[#d6c5a8] bg-white px-4 py-2 text-sm font-semibold text-[#4f4435] transition hover:bg-white"
+                className="rounded-lg border border-[var(--line)] bg-white px-4 py-2 text-sm font-semibold text-[var(--brand-primary)] transition hover:border-[var(--brand-green)]"
               >
                   {copy.call}
                 </a>
                 <Link
                   href="/danismanlar"
-                  className="rounded-full border border-[#ccb795] bg-white px-4 py-2 text-sm font-semibold text-[#6d593b] transition hover:bg-white"
+                  className="rounded-lg border border-[var(--line)] bg-white px-4 py-2 text-sm font-semibold text-[var(--brand-primary)] transition hover:border-[var(--brand-green)]"
                 >
                   {copy.advisors}
                 </Link>

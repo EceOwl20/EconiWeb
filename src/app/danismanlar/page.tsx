@@ -11,7 +11,7 @@ import { getServerSiteLanguage } from "@/lib/site-preferences-server";
 
 export const metadata: Metadata = {
   title: "Danışmanlar | Econi Invest",
-  description: "Econi Invest uzman danışman ekibi ve odak bölgeleri.",
+  description: "Portföy segmentlerine ve bölgelere göre uzmanlaşmış Econi Invest danışman ekibi.",
 };
 
 export default async function DanismanlarPage() {
@@ -25,10 +25,10 @@ export default async function DanismanlarPage() {
       <SiteHeader />
 
       <main className="w-full pb-24">
-        <section className="frame-wide fade-up relative overflow-hidden rounded-[1.4rem] border border-[#3f3022] bg-[#0f1621] p-7 text-[#f4ead8] shadow-[0_48px_88px_-64px_rgba(0,0,0,0.95)] sm:p-10">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#d8bc8d]">{copy.heroKicker}</p>
-          <h1 className="mt-3 text-[2.4rem] leading-[0.95] font-semibold sm:text-[3.8rem]">{copy.heroTitle}</h1>
-          <p className="mt-3 max-w-2xl text-sm leading-7 text-[#d7c8ad] sm:text-base">
+        <section className="frame-wide fade-up rounded-lg border border-[var(--line)] bg-white p-7 shadow-[0_4px_20px_rgba(0,0,0,0.05)] sm:p-10">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--brand-accent-strong)]">{copy.heroKicker}</p>
+          <h1 className="mt-3 text-[2.4rem] leading-[1.02] font-bold text-[var(--brand-primary)] sm:text-[3.8rem]">{copy.heroTitle}</h1>
+          <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--ink-600)] sm:text-base">
             {copy.heroBody}
           </p>
         </section>
@@ -41,7 +41,7 @@ export default async function DanismanlarPage() {
 
             return (
               <article key={advisor.id} className="luxury-card overflow-hidden p-5">
-                <div className="mb-5 overflow-hidden rounded-[1.35rem] border border-[#deceb7] bg-white">
+                <div className="mb-5 overflow-hidden rounded-lg border border-[var(--line)] bg-white">
                   <Image
                     src={advisor.image}
                     alt={advisor.name}
@@ -53,16 +53,16 @@ export default async function DanismanlarPage() {
                     className="h-72 w-full object-cover"
                   />
                 </div>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8d7348]">{copy.advisorLabel}</p>
-                <h2 className="mt-2 text-[2rem] leading-none font-semibold text-[#1f1a14]">{advisor.name}</h2>
-                <p className="mt-1 text-sm text-[#5f5548]">{advisor.title}</p>
-                <p className="mt-2 text-sm text-[#6f6456]">{copy.specialty}: {advisor.focusArea}</p>
-                <p className="mt-2 text-sm text-[#6f6456]">{copy.activeListings}: {propertyCount}</p>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--brand-accent-strong)]">{copy.advisorLabel}</p>
+                <h2 className="mt-2 text-[2rem] leading-none font-semibold text-[var(--brand-primary)]">{advisor.name}</h2>
+                <p className="mt-1 text-sm text-[var(--ink-600)]">{advisor.title}</p>
+                <p className="mt-2 text-sm text-[var(--ink-600)]">{copy.specialty}: {advisor.focusArea}</p>
+                <p className="mt-2 text-sm text-[var(--ink-600)]">{copy.activeListings}: {propertyCount}</p>
 
                 <div className="mt-4 flex flex-wrap gap-2 text-sm">
                   <a
                     href={phoneHref}
-                    className="rounded-full border border-[#d6c5a8] bg-white px-4 py-2 font-semibold text-[#4f4435] transition hover:bg-white"
+                    className="rounded-lg border border-[var(--line)] bg-white px-4 py-2 font-semibold text-[var(--brand-primary)] transition hover:border-[var(--brand-green)]"
                   >
                     {copy.call}
                   </a>
@@ -70,13 +70,13 @@ export default async function DanismanlarPage() {
                     href={whatsappHref}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-full border border-[#b7dcc5] bg-[#ebf8ef] px-4 py-2 font-semibold text-[#2f7d4b] transition hover:bg-[#def2e5]"
+                    className="rounded-lg border border-[rgba(102,165,87,0.32)] bg-[rgba(102,165,87,0.1)] px-4 py-2 font-semibold text-[var(--brand-accent-strong)] transition hover:bg-[rgba(102,165,87,0.16)]"
                   >
                     WhatsApp
                   </a>
                   <a
                     href={`mailto:${advisor.email}`}
-                    className="rounded-full border border-[#d8ceb8] bg-white px-4 py-2 font-semibold text-[#5f5446] transition hover:bg-white"
+                    className="rounded-lg border border-[var(--line)] bg-white px-4 py-2 font-semibold text-[var(--brand-primary)] transition hover:border-[var(--brand-green)]"
                   >
                     {copy.email}
                   </a>

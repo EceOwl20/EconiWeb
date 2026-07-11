@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useMemo, useState, type KeyboardEvent, type MouseEvent } from "react";
 
+import { ImageLightbox, type ImageLightboxItem } from "@/components/image-lightbox";
 import { PriceText } from "@/components/price-text";
 import { isUnoptimizedImageSrc } from "@/lib/image-src";
 import { propertyTitleForLanguage } from "@/lib/property-content";
@@ -24,6 +25,10 @@ const featuredCardCopy = {
     photos: "fotoğraf",
     previousImage: "Önceki fotoğraf",
     nextImage: "Sonraki fotoğraf",
+    openGallery: "Görselleri büyüt",
+    closeGallery: "Görsel penceresini kapat",
+    coverImage: "Kapak Görseli",
+    imageLabel: "Görsel",
   },
   EN: {
     details: "Open Details",
@@ -31,6 +36,10 @@ const featuredCardCopy = {
     photos: "photos",
     previousImage: "Previous photo",
     nextImage: "Next photo",
+    openGallery: "Open image gallery",
+    closeGallery: "Close image gallery",
+    coverImage: "Cover Image",
+    imageLabel: "Image",
   },
   RU: {
     details: "Открыть",
@@ -38,6 +47,10 @@ const featuredCardCopy = {
     photos: "фото",
     previousImage: "Предыдущее фото",
     nextImage: "Следующее фото",
+    openGallery: "Открыть галерею",
+    closeGallery: "Закрыть галерею",
+    coverImage: "Обложка",
+    imageLabel: "Изображение",
   },
   AR: {
     details: "عرض التفاصيل",
@@ -45,6 +58,10 @@ const featuredCardCopy = {
     photos: "صور",
     previousImage: "الصورة السابقة",
     nextImage: "الصورة التالية",
+    openGallery: "فتح معرض الصور",
+    closeGallery: "إغلاق معرض الصور",
+    coverImage: "صورة الغلاف",
+    imageLabel: "صورة",
   },
 } as const;
 
@@ -124,7 +141,21 @@ export function HomeFeaturedCard({ property, language }: HomeFeaturedCardProps) 
     const images = [property.coverImage, ...property.galleryImages].filter((image) => Boolean(image?.trim()));
     return Array.from(new Set(images));
   }, [property.coverImage, property.galleryImages]);
+  const lightboxImages = useMemo<ImageLightboxItem[]>(
+    () =>
+      gallery.map((image, index) => {
+        const label = property.imageLabels[index - 1] ?? (index === 0 ? copy.coverImage : `${copy.imageLabel} ${index + 1}`);
+
+        return {
+          src: image,
+          alt: `${propertyTitle} - ${label}`,
+          label,
+        };
+      }),
+    [copy.coverImage, copy.imageLabel, gallery, property.imageLabels, propertyTitle],
+  );
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
   const activeImage = gallery[activeImageIndex] ?? property.coverImage ?? "/next.svg";
   const photoCount = Math.max(1, gallery.length);
   const locationLine =
@@ -149,6 +180,24 @@ export function HomeFeaturedCard({ property, language }: HomeFeaturedCardProps) 
 
       return next;
     });
+  }
+
+  function handleGalleryStep(event: MouseEvent<HTMLButtonElement>, direction: -1 | 1) {
+    event.stopPropagation();
+    stepGallery(direction);
+  }
+
+  function openGallery(event: MouseEvent<HTMLElement>) {
+    event.stopPropagation();
+    setLightboxOpen(true);
+  }
+
+  function handleGalleryKeyDown(event: KeyboardEvent<HTMLDivElement>) {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      event.stopPropagation();
+      setLightboxOpen(true);
+    }
   }
 
   function navigateToDetail() {
@@ -179,15 +228,23 @@ export function HomeFeaturedCard({ property, language }: HomeFeaturedCardProps) 
   }
 
   return (
-    <article
+    <>
+      <article
       tabIndex={0}
       role="link"
       aria-label={`${propertyTitle} ${copy.details}`}
       onClick={handleCardClick}
       onKeyDown={handleCardKeyDown}
-      className="group block cursor-pointer overflow-hidden rounded-[1.55rem] border border-[var(--line-strong)] bg-white shadow-[0_24px_46px_-34px_rgba(24,20,14,0.24)] outline-none transition duration-300 hover:-translate-y-1 hover:shadow-[0_30px_54px_-36px_rgba(18,24,36,0.28)] focus-visible:ring-2 focus-visible:ring-[rgba(102,165,87,0.38)]"
+      className="group block cursor-pointer overflow-hidden rounded-lg border border-[var(--line-strong)] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)] outline-none transition duration-300 hover:border-[var(--brand-green)] focus-visible:ring-2 focus-visible:ring-[rgba(102,165,87,0.38)]"
     >
-      <div className="relative aspect-[4/2.55] overflow-hidden bg-white">
+      <div
+        role="button"
+        tabIndex={0}
+        aria-label={`${propertyTitle} ${copy.openGallery}`}
+        onClick={openGallery}
+        onKeyDown={handleGalleryKeyDown}
+        className="relative aspect-[4/2.55] cursor-zoom-in overflow-hidden bg-white outline-none focus-visible:ring-2 focus-visible:ring-[rgba(102,165,87,0.5)] focus-visible:ring-inset"
+      >
         <Image
           src={activeImage}
           alt={propertyTitle}
@@ -199,18 +256,18 @@ export function HomeFeaturedCard({ property, language }: HomeFeaturedCardProps) 
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(9,14,21,0.06)_0%,rgba(9,14,21,0.18)_48%,rgba(9,14,21,0.58)_100%)]" />
 
         <div className="absolute left-3 top-3 flex flex-wrap gap-2">
-          <span className="rounded-full border border-white/26 bg-[rgba(8,14,22,0.54)] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-white backdrop-blur-sm">
+          <span className="rounded border border-white/26 bg-[rgba(8,14,22,0.54)] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-white backdrop-blur-sm">
             {translatePropertyType(property.type, language)}
           </span>
         </div>
 
         <div className="absolute right-3 top-3">
-          <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/30 bg-[rgba(8,14,22,0.42)] text-white backdrop-blur-sm">
+          <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/30 bg-[rgba(8,14,22,0.42)] text-white backdrop-blur-sm">
             <HeartIcon />
           </span>
         </div>
 
-        <div className="absolute bottom-3 right-3 rounded-full border border-white/26 bg-[rgba(8,14,22,0.54)] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm">
+        <div className="absolute bottom-3 right-3 rounded border border-white/26 bg-[rgba(8,14,22,0.54)] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm">
           {photoCount} {copy.photos}
         </div>
 
@@ -218,7 +275,7 @@ export function HomeFeaturedCard({ property, language }: HomeFeaturedCardProps) 
           <>
             <button
               type="button"
-              onClick={() => stepGallery(-1)}
+              onClick={(event) => handleGalleryStep(event, -1)}
               aria-label={copy.previousImage}
               className="absolute left-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/34 bg-[#0d1219]/38 text-white backdrop-blur transition hover:bg-[#0d1219]/58"
             >
@@ -226,7 +283,7 @@ export function HomeFeaturedCard({ property, language }: HomeFeaturedCardProps) 
             </button>
             <button
               type="button"
-              onClick={() => stepGallery(1)}
+              onClick={(event) => handleGalleryStep(event, 1)}
               aria-label={copy.nextImage}
               className="absolute right-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/34 bg-[#0d1219]/38 text-white backdrop-blur transition hover:bg-[#0d1219]/58"
             >
@@ -285,6 +342,19 @@ export function HomeFeaturedCard({ property, language }: HomeFeaturedCardProps) 
           </span>
         </div>
       </div>
-    </article>
+      </article>
+
+      <ImageLightbox
+        images={lightboxImages}
+        activeIndex={activeImageIndex}
+        open={lightboxOpen}
+        title={propertyTitle}
+        previousLabel={copy.previousImage}
+        nextLabel={copy.nextImage}
+        closeLabel={copy.closeGallery}
+        onActiveIndexChange={setActiveImageIndex}
+        onOpenChange={setLightboxOpen}
+      />
+    </>
   );
 }

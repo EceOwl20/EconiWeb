@@ -257,11 +257,11 @@ export function PortfolioForm({ advisors, currentUserRole }: PortfolioFormProps)
         </PropertyFieldShell>
 
         <PropertyFieldShell label="Oda Sayıları" icon={<RoomFieldIcon />} className="md:col-span-2">
-          <div className="grid gap-2 rounded-2xl border border-slate-200 bg-slate-50/70 p-3 sm:grid-cols-3 xl:grid-cols-4">
+          <div className="grid gap-2 rounded-lg border border-[var(--line)] bg-white p-3 sm:grid-cols-3 xl:grid-cols-4">
             {PROPERTY_ROOM_OPTIONS.map((option) => (
               <label key={option} className="cursor-pointer">
                 <input type="checkbox" name="roomSelections" value={option} className="peer sr-only" />
-                <span className="flex min-h-11 items-center justify-center rounded-xl border border-slate-200 bg-white px-3 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-50 peer-checked:border-slate-900 peer-checked:bg-slate-900 peer-checked:text-white">
+                <span className="flex min-h-11 items-center justify-center rounded-lg border border-slate-200 bg-white px-3 text-sm font-semibold text-slate-700 transition hover:border-[var(--brand-green)] hover:bg-[rgba(102,165,87,0.08)] peer-checked:border-[var(--brand-primary)] peer-checked:bg-[var(--brand-primary)] peer-checked:text-white">
                   {option}
                 </span>
               </label>
@@ -344,7 +344,7 @@ export function PortfolioForm({ advisors, currentUserRole }: PortfolioFormProps)
           />
         </label>
 
-        <div className="md:col-span-2 rounded-2xl border border-slate-200 bg-slate-50/80 p-4">
+        <div className="md:col-span-2 rounded-lg border border-[var(--line)] bg-white p-4">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <div>
               <p className="text-sm font-semibold text-slate-900">Galeri seçimi</p>
@@ -352,7 +352,7 @@ export function PortfolioForm({ advisors, currentUserRole }: PortfolioFormProps)
                 Kapak hariç tüm oda, salon, banyo ve balkon fotoğraflarını bu alandan ekleyin.
               </p>
             </div>
-            <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-600">
+            <span className="rounded bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">
               {galleryFiles.length} / {MAX_GALLERY_IMAGE_COUNT} görsel
             </span>
           </div>
@@ -362,7 +362,7 @@ export function PortfolioForm({ advisors, currentUserRole }: PortfolioFormProps)
               {galleryFiles.map((file, index) => (
                 <div
                   key={`${file.name}-${file.size}-${index}`}
-                  className="flex items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white px-3 py-2"
+                  className="flex items-center justify-between gap-3 rounded-lg border border-[var(--line)] bg-white px-3 py-2"
                 >
                   <div className="min-w-0">
                     <p className="truncate text-sm font-medium text-slate-900">{file.name}</p>

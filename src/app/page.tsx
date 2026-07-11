@@ -17,9 +17,9 @@ import { homeListingSchema } from "@/lib/seo";
 import type { Property } from "@/lib/types";
 
 export const metadata: Metadata = {
-  title: "Econi Invest | Premium Emlak ve Yatırım Portföyleri",
+  title: "Econi Invest | Gayrimenkul Yatırım ve Portföy Danışmanlığı",
   description:
-    "Econi Invest ile premium emlak portföylerini, yatırım analizini ve danışman destekli satın alma sürecini keşfedin.",
+    "Econi Invest ile seçili gayrimenkul portföylerini, lokasyon analizini ve danışman destekli yatırım sürecini keşfedin.",
 };
 
 type PopularLocationCard = {
@@ -241,9 +241,9 @@ export default async function HomePage() {
   const trustItems =
     language === "TR"
       ? [
-          { key: "secure", title: "Güvenli Yatırım", text: "Resmi sözleşme ve yasal güvence", icon: "shield" as const },
-          { key: "support", title: "Uzman Danışmanlık", text: "Size özel profesyonel destek", icon: "support" as const },
-          { key: "global", title: "Uluslararası Hizmet", text: "Birçok dilde müşteri desteği", icon: "globe" as const },
+          { key: "secure", title: "Şeffaf Süreç", text: "Belgeli ilerleyen kontrollü danışmanlık akışı", icon: "shield" as const },
+          { key: "support", title: "Uzman Eşleşmesi", text: "Portföy segmentine uygun danışman desteği", icon: "support" as const },
+          { key: "global", title: "Çok Dilli Hizmet", text: "Yerel ve uluslararası yatırımcılar için iletişim", icon: "globe" as const },
         ]
       : language === "EN"
         ? [
@@ -268,17 +268,17 @@ export default async function HomePage() {
       <SiteHeader />
 
       <main className="w-full pb-24">
-        <section className="frame-wide mt-4 fade-up">
-          <div className="rounded-[2.15rem] border border-[#e3d6c3] bg-white px-5 py-6 shadow-[0_32px_64px_-46px_rgba(22,30,42,0.22)] sm:px-7 sm:py-8 xl:px-10 xl:pt-10 xl:pb-14">
-            <div className="grid gap-7 xl:grid-cols-[minmax(0,0.82fr)_minmax(460px,1.18fr)] xl:items-center">
-              <div className="max-w-xl">
+        <section className="frame-wide mt-10 fade-up sm:mt-14">
+          <div className="border-b border-[var(--line)] bg-white pb-12 sm:pb-16 xl:pb-20">
+            <div className="grid gap-10 xl:grid-cols-[minmax(0,0.82fr)_minmax(460px,1.18fr)] xl:items-center">
+              <div className="max-w-2xl">
                 <div className="flex gap-4">
-                  <span className="hidden w-[4px] rounded-full bg-[linear-gradient(180deg,var(--brand-accent)_0%,#4f8f42_100%)] sm:block" />
+                  <span className="hidden w-[4px] rounded-sm bg-[linear-gradient(180deg,var(--brand-accent)_0%,#4f8f42_100%)] sm:block" />
                   <div>
                     <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[var(--brand-accent-strong)]">
                       {copy.heroKicker}
                     </p>
-                    <h1 className="mt-4 max-w-lg text-[2.05rem] leading-[0.94] font-semibold text-[var(--ink-950)] sm:text-[3rem] xl:text-[3.55rem]">
+                    <h1 className="mt-4 max-w-xl text-[2.4rem] leading-[1.04] font-bold text-[var(--ink-950)] sm:text-[3.35rem] xl:text-[3.75rem]">
                       {copy.heroTitle}
                     </h1>
                     <p className="mt-5 max-w-md text-[0.96rem] leading-7 text-[var(--ink-600)]">
@@ -288,13 +288,13 @@ export default async function HomePage() {
                     <div className="mt-7 flex flex-wrap gap-3">
                       <Link
                         href="/portfoyler"
-                        className="inline-flex min-h-12 items-center justify-center rounded-full bg-[var(--brand-primary)] px-6 text-sm font-semibold text-white transition hover:-translate-y-0.5"
+                        className="inline-flex min-h-12 items-center justify-center rounded-lg bg-[var(--brand-green)] px-6 text-sm font-semibold text-white transition hover:bg-[var(--brand-accent-strong)]"
                       >
                         {copy.ctaListings}
                       </Link>
                       <Link
                         href="/blog"
-                        className="inline-flex min-h-12 items-center justify-center rounded-full border border-[var(--line-strong)] bg-white px-6 text-sm font-semibold text-[var(--brand-primary)] transition hover:-translate-y-0.5 hover:border-[var(--brand-accent)]"
+                        className="inline-flex min-h-12 items-center justify-center rounded-lg border border-[var(--line-strong)] bg-white px-6 text-sm font-semibold text-[var(--brand-primary)] transition hover:border-[var(--brand-accent)] hover:bg-[rgba(102,165,87,0.08)]"
                       >
                         {heroGuideLabel}
                       </Link>
@@ -303,7 +303,7 @@ export default async function HomePage() {
                 </div>
               </div>
 
-              <div className="relative min-h-[18rem] overflow-hidden rounded-[1.8rem] border border-[#dfd0bd] bg-white shadow-[0_30px_58px_-42px_rgba(20,24,32,0.3)] sm:min-h-[23rem] xl:min-h-[26.5rem]">
+              <div className="relative min-h-[18rem] overflow-hidden rounded-lg border border-[var(--line-strong)] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)] sm:min-h-[23rem] xl:min-h-[26.5rem]">
                 <Image
                   src={heroImage}
                   alt={heroPropertyTitle}
@@ -329,7 +329,7 @@ export default async function HomePage() {
             </div>
           </div>
 
-          <div className="relative z-10 mx-auto -mt-8 max-w-6xl px-2 sm:-mt-11">
+          <div className="relative z-10 mx-auto -mt-8 max-w-6xl px-2 sm:-mt-10">
             <HomeQuickSearch
               cities={cities}
               types={types}
@@ -358,10 +358,10 @@ export default async function HomePage() {
             ))}
           </div>
 
-          <div className="mt-7 grid gap-4 rounded-[1.6rem] border border-[#e2d7c8] bg-white p-5 shadow-[0_22px_42px_-36px_rgba(18,24,36,0.18)] sm:grid-cols-3 sm:p-6">
+          <div className="mt-7 grid gap-4 rounded-lg border border-[var(--line)] bg-white p-5 shadow-[0_4px_20px_rgba(0,0,0,0.05)] sm:grid-cols-3 sm:p-6">
             {trustItems.map((item) => (
               <div key={item.key} className="flex items-start gap-3">
-                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[rgba(102,165,87,0.1)] text-[var(--brand-accent-strong)]">
+                <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-[rgba(102,165,87,0.1)] text-[var(--brand-accent-strong)]">
                   <TrustIcon type={item.icon} />
                 </span>
                 <div>
@@ -395,7 +395,7 @@ export default async function HomePage() {
               <Link
                 key={location.key}
                 href={location.href}
-                className={`group relative isolate overflow-hidden rounded-[1.4rem] border border-[#d7cab7] shadow-[0_28px_58px_-40px_rgba(20,16,10,0.52)] transition duration-300 hover:-translate-y-1 ${location.className}`}
+                className={`group relative isolate overflow-hidden rounded-lg border border-[#d7cab7] shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition duration-300 ${location.className}`}
               >
                 <Image
                   src={location.image}
@@ -406,20 +406,20 @@ export default async function HomePage() {
                   className="object-cover transition duration-700 group-hover:scale-[1.04]"
                 />
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,11,18,0.08)_0%,rgba(5,11,18,0.28)_38%,rgba(5,11,18,0.92)_100%)]" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(220,188,138,0.34),transparent_42%)]" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(102,165,87,0.24),transparent_42%)]" />
 
-                <div className="relative z-10 flex h-full min-h-[15rem] flex-col justify-between p-5 text-[#f6eddc] sm:p-6">
+                <div className="relative z-10 flex h-full min-h-[15rem] flex-col justify-between p-5 text-white sm:p-6">
                   <div className="flex items-start justify-between gap-3">
-                    <span className="rounded-full border border-white/18 bg-white/12 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#f5e8cf] backdrop-blur">
+                    <span className="rounded border border-white/18 bg-white/12 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur">
                       {location.badge}
                     </span>
-                    <span className="rounded-full border border-[#d9c194]/30 bg-[#0f1822]/45 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#d8bc8d] backdrop-blur">
+                    <span className="rounded border border-white/18 bg-[#0f1822]/45 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-white backdrop-blur">
                       {location.stat}
                     </span>
                   </div>
 
                   <div className="max-w-[28rem]">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#dfc79d]">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/76">
                       {location.subtitle}
                     </p>
                     <h3 className="mt-3 text-[1.5rem] leading-[1] font-semibold sm:text-[1.9rem]">

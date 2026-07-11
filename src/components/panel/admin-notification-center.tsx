@@ -40,7 +40,7 @@ export function AdminNotificationCenter({ notifications }: AdminNotificationCent
         )}
       </summary>
 
-      <div className="absolute right-0 top-[calc(100%+0.75rem)] z-50 w-[min(380px,calc(100vw-2rem))] overflow-hidden rounded-[1.25rem] border border-[var(--line)] bg-white shadow-[0_24px_70px_-28px_rgba(29,29,27,0.35)]">
+      <div className="absolute right-0 top-[calc(100%+0.75rem)] z-50 w-[min(380px,calc(100vw-2rem))] overflow-hidden rounded-lg border border-[var(--line)] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)]">
         <div className="border-b border-[var(--line)] px-5 py-4">
           <div className="flex items-center justify-between gap-3">
             <div>
@@ -59,7 +59,7 @@ export function AdminNotificationCenter({ notifications }: AdminNotificationCent
               <Link
                 key={notification.id}
                 href={notification.href}
-                className={`block rounded-2xl border px-4 py-3 transition hover:-translate-y-0.5 hover:shadow-[0_16px_28px_-24px_rgba(29,29,27,0.32)] ${notificationToneClass[notification.tone]}`}
+                className={`block rounded-lg border px-4 py-3 transition hover:border-[var(--brand-green)] ${notificationToneClass[notification.tone]}`}
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">

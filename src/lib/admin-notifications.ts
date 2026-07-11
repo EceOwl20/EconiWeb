@@ -121,22 +121,22 @@ export function buildAdminNotifications({
     if (dueFollowUps.length > 0) {
       notifications.push({
         id: "due-follow-ups",
-        title: "Takip tarihi gelen leadler",
-        description: `${dueFollowUps.length} lead için bugün veya geçmiş tarihli takip var.`,
+        title: "Takip tarihi gelen talepler",
+        description: `${dueFollowUps.length} talep için bugün veya geçmiş tarihli takip var.`,
         href: "/yonetim-ofisi?tab=leads",
         count: dueFollowUps.length,
         tone: "urgent",
-        meta: highPriorityLeads.length > 0 ? `${highPriorityLeads.length} yüksek öncelikli lead açık.` : undefined,
+        meta: highPriorityLeads.length > 0 ? `${highPriorityLeads.length} yüksek öncelikli talep açık.` : undefined,
       });
     } else if (newLeads.length > 0) {
       notifications.push({
         id: "new-leads",
-        title: "Yeni leadler",
-        description: `${newLeads.length} lead ilk temas bekliyor.`,
+        title: "Yeni talepler",
+        description: `${newLeads.length} talep ilk temas bekliyor.`,
         href: "/yonetim-ofisi?tab=leads",
         count: newLeads.length,
         tone: "info",
-        meta: "CRM pipeline üzerinden atama ve takip yapabilirsiniz.",
+        meta: "CRM ekranı üzerinden atama ve takip yapabilirsiniz.",
       });
     }
   }

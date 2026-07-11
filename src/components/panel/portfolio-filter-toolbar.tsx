@@ -218,7 +218,7 @@ export function PortfolioFilterToolbar({
   }
 
   return (
-    <div className="mt-5 rounded-2xl border border-slate-200 bg-slate-50/90 p-4 sm:p-5">
+    <div className="mt-5 rounded-lg border border-[var(--line)] bg-white p-4 sm:p-5">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div className="max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Filtre Merkezi</p>
@@ -229,7 +229,7 @@ export function PortfolioFilterToolbar({
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
-          <div className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600">
+          <div className="rounded-lg border border-[var(--line)] bg-white px-4 py-3 text-sm text-slate-600">
             Filtrelenen kayıt: <strong className="text-slate-900">{filteredCount}</strong> / {totalCount}
           </div>
           {onExport ? (

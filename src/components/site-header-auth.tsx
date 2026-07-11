@@ -56,11 +56,11 @@ export function SiteHeaderAuth({ initialUser = null }: SiteHeaderAuthProps) {
 
   if (user) {
     return (
-      <div className="flex items-center gap-2 rounded-full border border-[var(--line-strong)] bg-white px-2 py-1 text-xs shadow-[0_18px_36px_-30px_rgba(22,32,48,0.34)]">
+      <div className="flex items-center gap-2 rounded-lg border border-[var(--line-strong)] bg-white px-2 py-1 text-xs">
         <span className="hidden px-2 text-[var(--ink-500)] sm:inline">{roleLabel(user.role, language)}</span>
         <Link
           href="/yonetim-ofisi"
-          className="rounded-full bg-[var(--brand-primary)] px-3 py-2 font-semibold text-white transition hover:bg-[#2a2a28]"
+          className="rounded-lg bg-[var(--brand-primary)] px-3 py-2 font-semibold text-white transition hover:bg-[#2a2a28]"
         >
           <span className="sm:hidden">{copy.authPanel}</span>
           <span className="hidden sm:inline">{copy.authManagement}</span>
@@ -68,7 +68,7 @@ export function SiteHeaderAuth({ initialUser = null }: SiteHeaderAuthProps) {
         <form action="/api/auth/logout" method="post">
           <button
             type="submit"
-            className="cursor-pointer rounded-full border border-[var(--line-strong)] px-3 py-2 font-semibold text-[var(--brand-primary)] transition hover:bg-[rgba(102,165,87,0.08)]"
+            className="cursor-pointer rounded-lg border border-[var(--line-strong)] px-3 py-2 font-semibold text-[var(--brand-primary)] transition hover:bg-[rgba(102,165,87,0.08)]"
           >
             {copy.authLogout}
           </button>

@@ -55,10 +55,10 @@ export function ContactForm({ propertySlug, propertyTitle }: ContactFormProps) {
   }
 
   return (
-    <section className="rounded-2xl border border-[#ddcfbc] bg-white p-6 shadow-sm">
+    <section className="rounded-lg border border-[var(--line)] bg-white p-6 shadow-[0_4px_20px_rgba(0,0,0,0.05)]">
       <span className="section-kicker">{copy.kicker}</span>
-      <h2 className="mt-3 text-[1.9rem] font-semibold leading-none text-[#221b13]">{copy.title}</h2>
-      <p className="mt-2 text-sm text-[#665c4f]">
+      <h2 className="mt-3 text-[1.9rem] font-semibold leading-none text-[var(--brand-primary)]">{copy.title}</h2>
+      <p className="mt-2 text-sm text-[var(--ink-600)]">
         {language === "TR"
           ? `${propertyTitle} ${copy.descriptionPrefix}`
           : `${copy.descriptionPrefix} ${propertyTitle} ${copy.descriptionSuffix}`}
@@ -73,7 +73,7 @@ export function ContactForm({ propertySlug, propertyTitle }: ContactFormProps) {
         <button
           type="submit"
           disabled={status.type === "loading"}
-          className="cursor-pointer rounded-full bg-[#1f1a14] px-4 py-2 text-sm font-semibold text-white transition hover:bg-black disabled:cursor-not-allowed disabled:bg-[#786b59]"
+          className="cursor-pointer rounded-lg bg-[var(--brand-green)] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[var(--brand-accent-strong)] disabled:cursor-not-allowed disabled:bg-[var(--ink-400)]"
         >
           {status.type === "loading" ? copy.submitting : copy.submit}
         </button>

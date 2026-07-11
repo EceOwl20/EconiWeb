@@ -13,7 +13,7 @@ import { getServerSiteLanguage } from "@/lib/site-preferences-server";
 
 export const metadata: Metadata = {
   title: "Harita | Econi Invest",
-  description: "Portföy lokasyonlarını harita üzerinde görün, konum arayın ve ilana geçin.",
+  description: "Gayrimenkul portföylerini lokasyon, bölge ve ulaşım perspektifiyle harita üzerinde inceleyin.",
 };
 
 export default async function HaritaPage() {
@@ -43,10 +43,10 @@ export default async function HaritaPage() {
       <SiteHeader />
 
       <main className="w-full pb-24">
-        <section className="frame-wide fade-up relative overflow-hidden rounded-[1.4rem] border border-[#3f3022] bg-[#0f1621] p-7 text-[#f4ead8] shadow-[0_48px_88px_-64px_rgba(0,0,0,0.95)] sm:p-10">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#d8bc8d]">{copy.heroKicker}</p>
-          <h1 className="mt-3 text-[2.4rem] leading-[0.95] font-semibold sm:text-[3.8rem]">{copy.heroTitle}</h1>
-          <p className="mt-3 max-w-2xl text-sm leading-7 text-[#d7c8ad] sm:text-base">
+        <section className="frame-wide fade-up rounded-lg border border-[var(--line)] bg-white p-7 shadow-[0_4px_20px_rgba(0,0,0,0.05)] sm:p-10">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--brand-accent-strong)]">{copy.heroKicker}</p>
+          <h1 className="mt-3 text-[2.4rem] leading-[1.02] font-bold text-[var(--brand-primary)] sm:text-[3.8rem]">{copy.heroTitle}</h1>
+          <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--ink-600)] sm:text-base">
             {copy.heroBody}
           </p>
         </section>
@@ -57,8 +57,8 @@ export default async function HaritaPage() {
 
         <section className="frame mt-8">
           <div className="mb-4 flex items-end justify-between gap-2">
-            <h2 className="text-[2rem] leading-none font-semibold text-[#201a14]">{copy.resultsTitle}</h2>
-            <Link href="/portfoyler" className="text-sm font-semibold text-[#6a4f22] underline">
+            <h2 className="text-[2rem] leading-none font-semibold text-[var(--brand-primary)]">{copy.resultsTitle}</h2>
+            <Link href="/portfoyler" className="text-sm font-semibold text-[var(--brand-accent-strong)] underline">
               {copy.switchToList}
             </Link>
           </div>
@@ -66,12 +66,12 @@ export default async function HaritaPage() {
           <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
             {properties.slice(0, 6).map((property) => (
               <article key={property.id} className="luxury-card p-4">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#8d7348]">{property.listingRef}</p>
-                <h3 className="mt-1 text-2xl font-semibold leading-tight text-[#1f1a14]">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--brand-accent-strong)]">{property.listingRef}</p>
+                <h3 className="mt-1 text-2xl font-semibold leading-tight text-[var(--brand-primary)]">
                   {propertyTitleForLanguage(property, language)}
                 </h3>
-                <p className="mt-1 text-sm text-[#675d50]">{property.city} / {property.district} / {property.neighborhood}</p>
-                <p className="mt-2 text-sm font-semibold text-[#6c5127]">
+                <p className="mt-1 text-sm text-[var(--ink-600)]">{property.city} / {property.district} / {property.neighborhood}</p>
+                <p className="mt-2 text-sm font-semibold text-[var(--brand-accent-strong)]">
                   <PriceText
                     amount={propertyDisplayAmount(property)}
                     sourceCurrency={propertyDisplayCurrency(property)}

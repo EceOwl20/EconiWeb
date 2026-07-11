@@ -76,7 +76,7 @@ export function SiteFooter() {
   ];
 
   return (
-    <footer className="frame mt-[4.5rem] overflow-hidden rounded-lg border border-[var(--line-strong)] bg-white px-5 py-6 text-[var(--ink-600)] shadow-[0_34px_70px_-56px_rgba(23,31,44,0.22)] sm:px-7 sm:py-7 lg:px-8 lg:py-8">
+    <footer className="frame mt-[4.5rem] overflow-hidden border-t border-[var(--line)] bg-white px-0 py-8 text-[var(--ink-600)]">
       <div className="grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
         <div>
           <div className="flex items-center gap-3">
@@ -92,7 +92,7 @@ export function SiteFooter() {
                 href={item.href}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex min-h-12 items-center gap-3 rounded-lg border border-[var(--line-strong)] bg-white px-4 text-sm font-semibold text-[var(--brand-primary)] shadow-[0_20px_34px_-28px_rgba(22,32,48,0.28)] transition hover:-translate-y-0.5 hover:border-[var(--brand-accent)] hover:bg-[rgba(102,165,87,0.08)]"
+                className="inline-flex min-h-11 items-center gap-3 rounded-lg border border-[var(--line-strong)] bg-white px-4 text-sm font-semibold text-[var(--brand-primary)] transition hover:border-[var(--brand-accent)] hover:bg-[rgba(102,165,87,0.08)]"
               >
                 <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[rgba(102,165,87,0.1)] text-[var(--brand-accent-strong)]">
                   <SocialIcon type={item.icon} />
@@ -112,7 +112,7 @@ export function SiteFooter() {
             ))}
           </nav>
 
-          <div className="rounded-lg border border-[var(--line-strong)] bg-white p-4 shadow-[0_20px_34px_-28px_rgba(22,32,48,0.28)]">
+          <div className="rounded-lg border border-[var(--line-strong)] bg-white p-4">
             <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--brand-accent-strong)]">{metaCopy.directLine}</p>
             <a href="tel:+905321234567" className="mt-3 block text-lg font-semibold text-[var(--brand-primary)]">
               +90 532 123 45 67

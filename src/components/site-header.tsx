@@ -78,13 +78,13 @@ export function SiteHeader({ initialUser = null }: SiteHeaderProps) {
 
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[rgba(255,255,255,0.94)] backdrop-blur-xl">
+      <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-white/95 backdrop-blur-xl">
         <div className="frame-wide px-2 sm:px-4">
-          <div className="grid grid-cols-[2.75rem_minmax(0,1fr)_2.75rem] items-center gap-3 py-3 xl:flex xl:justify-between">
+          <div className="grid min-h-16 grid-cols-[2.75rem_minmax(0,1fr)_2.75rem] items-center gap-3 xl:flex xl:justify-between">
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
-              className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-lg border border-[var(--line-strong)] bg-white text-[var(--brand-primary)] shadow-[0_18px_36px_-30px_rgba(22,32,48,0.34)] transition hover:border-[var(--brand-accent)] xl:hidden"
+              className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg border border-[var(--line-strong)] bg-white text-[var(--brand-primary)] transition hover:border-[var(--brand-accent)] xl:hidden"
               aria-label={navigation.mobileTitle}
             >
               <svg viewBox="0 0 20 20" fill="none" className="h-5 w-5" aria-hidden>
@@ -101,19 +101,19 @@ export function SiteHeader({ initialUser = null }: SiteHeaderProps) {
             </Link>
 
             <div className="hidden xl:flex xl:items-center xl:gap-4">
-              <nav className="flex items-center gap-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--ink-600)]">
+              <nav className="flex items-center gap-1 text-sm font-semibold text-[var(--ink-600)]">
                 {navigation.menuGroups.map((group) => (
                   <div key={group.href} className="group relative">
                     <Link
                       href={group.href}
-                      className="flex min-h-10 items-center gap-1 rounded-lg px-4 py-2 transition hover:bg-[rgba(102,165,87,0.1)] hover:text-[var(--brand-primary)] focus-visible:bg-[rgba(102,165,87,0.1)] focus-visible:text-[var(--brand-primary)] focus-visible:outline-none"
+                      className="flex min-h-16 items-center gap-1 border-b-2 border-transparent px-3 py-2 transition hover:border-[var(--brand-green)] hover:text-[var(--brand-primary)] focus-visible:border-[var(--brand-green)] focus-visible:text-[var(--brand-primary)] focus-visible:outline-none"
                     >
                       {group.label}
                       <ChevronIcon />
                     </Link>
 
                     <div className="pointer-events-none invisible absolute top-full left-1/2 z-30 w-max -translate-x-1/2 translate-y-2 pt-3 opacity-0 transition duration-200 group-hover:visible group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:pointer-events-auto group-focus-within:translate-y-0 group-focus-within:opacity-100">
-                      <div className={`min-w-[32rem] overflow-hidden rounded-lg border border-[var(--line-strong)] bg-[rgba(255,255,255,0.98)] shadow-[0_30px_64px_-36px_rgba(22,30,42,0.24)] backdrop-blur-xl ${group.panelClassName ?? "w-[34rem]"}`}>
+                      <div className={`min-w-[32rem] overflow-hidden rounded-lg border border-[var(--line-strong)] bg-[rgba(255,255,255,0.98)] shadow-[0_4px_20px_rgba(0,0,0,0.05)] backdrop-blur-xl ${group.panelClassName ?? "w-[34rem]"}`}>
                         <div className="border-b border-[var(--line)] px-4 py-3">
                           <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--brand-accent-strong)]">
                             {group.label}
@@ -153,7 +153,7 @@ export function SiteHeader({ initialUser = null }: SiteHeaderProps) {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="flex min-h-10 items-center rounded-lg px-4 py-2 transition hover:bg-[rgba(102,165,87,0.1)] hover:text-[var(--brand-primary)] focus-visible:bg-[rgba(102,165,87,0.1)] focus-visible:text-[var(--brand-primary)] focus-visible:outline-none"
+                    className="flex min-h-16 items-center border-b-2 border-transparent px-3 py-2 transition hover:border-[var(--brand-green)] hover:text-[var(--brand-primary)] focus-visible:border-[var(--brand-green)] focus-visible:text-[var(--brand-primary)] focus-visible:outline-none"
                   >
                     {item.label}
                   </Link>
@@ -178,7 +178,7 @@ export function SiteHeader({ initialUser = null }: SiteHeaderProps) {
             className="absolute inset-0 bg-[rgba(12,18,27,0.44)]"
           />
 
-          <aside className="absolute left-0 top-0 flex h-full w-[min(88vw,23rem)] flex-col overflow-hidden border-r border-[var(--line-strong)] bg-[rgba(255,255,255,0.98)] shadow-[0_30px_64px_-30px_rgba(16,23,34,0.34)] backdrop-blur-xl">
+          <aside className="absolute left-0 top-0 flex h-full w-[min(88vw,23rem)] flex-col overflow-hidden border-r border-[var(--line-strong)] bg-[rgba(255,255,255,0.98)] shadow-[0_4px_20px_rgba(0,0,0,0.05)] backdrop-blur-xl">
             <div className="flex items-center justify-between border-b border-[var(--line)] px-4 py-4">
               <div>
                 <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--brand-accent-strong)]">

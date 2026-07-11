@@ -26,7 +26,7 @@ export function PropertyInfoFields({ defaultItems }: PropertyInfoFieldsProps) {
             <div key={index} className="admin-list-item p-4">
               <div className="flex items-center justify-between gap-3">
                 <p className="text-sm font-semibold text-slate-900">Bilgi Satırı {index + 1}</p>
-                <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+                <span className="rounded bg-slate-100 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">
                   Opsiyonel
                 </span>
               </div>
@@ -34,7 +34,7 @@ export function PropertyInfoFields({ defaultItems }: PropertyInfoFieldsProps) {
               <div className="mt-4 grid gap-2 md:grid-cols-2 xl:grid-cols-3">
                 <label className="cursor-pointer">
                   <input type="radio" name={`infoIcon_${index}`} value="" defaultChecked={!item?.icon} className="peer sr-only" />
-                  <span className="flex min-h-[88px] flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 px-3 text-center text-sm font-medium text-slate-500 transition peer-checked:border-slate-900 peer-checked:bg-slate-900 peer-checked:text-white">
+                  <span className="flex min-h-[88px] flex-col items-center justify-center rounded-lg border border-dashed border-slate-300 bg-white px-3 text-center text-sm font-medium text-slate-500 transition peer-checked:border-[var(--brand-primary)] peer-checked:bg-[var(--brand-primary)] peer-checked:text-white">
                     İkon yok
                   </span>
                 </label>
@@ -48,8 +48,8 @@ export function PropertyInfoFields({ defaultItems }: PropertyInfoFieldsProps) {
                       defaultChecked={item?.icon === option.key}
                       className="peer sr-only"
                     />
-                    <span className="flex min-h-[88px] flex-col items-center justify-center rounded-2xl border border-slate-200 bg-white px-3 text-center text-slate-600 transition hover:border-slate-300 hover:bg-slate-50 peer-checked:border-slate-900 peer-checked:bg-slate-900 peer-checked:text-white">
-                      <span className="flex h-10 w-10 items-center justify-center rounded-full border border-current/20 bg-current/5">
+                    <span className="flex min-h-[88px] flex-col items-center justify-center rounded-lg border border-slate-200 bg-white px-3 text-center text-slate-600 transition hover:border-[var(--brand-green)] hover:bg-[rgba(102,165,87,0.08)] peer-checked:border-[var(--brand-primary)] peer-checked:bg-[var(--brand-primary)] peer-checked:text-white">
+                      <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-current/20 bg-current/5">
                         <PropertyInfoIcon icon={option.key} />
                       </span>
                       <span className="mt-2 text-xs font-semibold uppercase tracking-[0.12em]">{option.label}</span>

@@ -89,7 +89,7 @@ const panelTabs: Array<{ id: PanelTab; label: string; hint: string }> = [
   { id: "blog-delete", label: "Blog Sil", hint: "İçeriği kaldır" },
   { id: "advisor-manage", label: "Danışmanlar", hint: "Kayıt yönetimi" },
   { id: "advisor-edit", label: "Danışman Düzenle", hint: "Bilgileri güncelle" },
-  { id: "leads", label: "Analitik", hint: "Lead ve CRM takibi" },
+  { id: "leads", label: "Analitik", hint: "Talep ve CRM takibi" },
   { id: "user-manage", label: "Kullanıcı Yönetimi", hint: "Hesap ve rol oluştur" },
 ];
 
@@ -338,7 +338,7 @@ export default async function AdminOfficePage({ searchParams }: AdminOfficePageP
       detail: formatFullCurrency(totalPortfolioValue),
     },
     {
-      label: "Lead Akışı",
+      label: "Talep Akışı",
       value: formatMetricNumber(summary.leadCount),
       detail: `${stageSummary.new} yeni kayıt`,
     },
@@ -364,64 +364,64 @@ export default async function AdminOfficePage({ searchParams }: AdminOfficePageP
     <>
       <SiteHeader initialUser={currentUser} />
       <div className="admin-shell min-h-screen">
-        <main className="mx-auto w-full max-w-[1500px] px-4 pb-14 pt-5 sm:px-6 lg:px-8">
-          <section className="overflow-hidden rounded-lg border border-[rgba(102,165,87,0.26)] bg-[var(--brand-night-blue)] text-white shadow-[0_28px_70px_-52px_rgba(29,29,27,0.95)]">
-            <div className="grid gap-5 p-5 sm:p-6 lg:grid-cols-[minmax(0,1.28fr)_minmax(300px,0.72fr)]">
+        <main className="mx-auto w-full max-w-[1400px] px-4 pb-14 pt-8 sm:px-6 lg:px-8">
+          <section className="overflow-hidden rounded-lg border border-[var(--line)] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)]">
+            <div className="grid gap-6 p-5 sm:p-6 lg:grid-cols-[minmax(0,1.28fr)_minmax(300px,0.72fr)]">
               <div>
                 <div className="flex flex-wrap items-center gap-4">
-                  <BrandLogo inverse compact className="h-11" />
-                  <span className="rounded-lg border border-white/10 bg-white/6 px-3 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-[#cbe9c5]">
+                  <BrandLogo compact className="h-11" />
+                  <span className="rounded border border-[rgba(102,165,87,0.24)] bg-[rgba(102,165,87,0.08)] px-3 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-[var(--brand-accent-strong)]">
                     Yönetim Paneli
                   </span>
                 </div>
-                <h1 className="mt-4 max-w-3xl text-[1.85rem] font-semibold tracking-tight text-white sm:text-[2.1rem]">
+                <h1 className="mt-5 max-w-3xl text-[2rem] font-bold tracking-tight text-[var(--brand-primary)] sm:text-[2.35rem]">
                   Operasyon, portföy ve CRM kontrol merkezi.
                 </h1>
-                <p className="mt-3 max-w-3xl text-sm leading-6 text-[#d6e1f0]">
+                <p className="mt-3 max-w-3xl text-sm leading-6 text-[var(--ink-600)]">
                   Hoş geldin {currentUser.name}. {roleText} yetkisiyle Econi Invest içeriklerini, portföylerini ve müşteri akışını tek ekrandan yönetiyorsun.
                 </p>
 
                 <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
                   {dashboardStats.map((metric) => (
-                    <div key={metric.label} className="rounded-lg border border-white/10 bg-white/6 p-3.5">
-                      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[#b8d7b1]">
+                    <div key={metric.label} className="rounded-lg border border-[var(--line)] bg-white p-4">
+                      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[var(--ink-500)]">
                         {metric.label}
                       </p>
-                      <p className="mt-2 text-[1.65rem] font-semibold tracking-tight text-white">{metric.value}</p>
-                      <p className="mt-1 text-xs text-[#c6d4e4]">{metric.detail}</p>
+                      <p className="mt-2 text-[1.65rem] font-bold tracking-tight text-[var(--brand-primary)]">{metric.value}</p>
+                      <p className="mt-1 text-xs text-[var(--ink-600)]">{metric.detail}</p>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="flex flex-col justify-between gap-5 rounded-lg border border-white/10 bg-white/5 p-4">
+              <div className="flex flex-col justify-between gap-5 rounded-lg border border-[var(--line)] bg-white p-4">
                 <div className="grid gap-2 sm:grid-cols-2">
                   {quickLinks.map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="rounded-lg border border-white/10 bg-white/6 px-4 py-3 text-sm font-semibold text-white transition hover:border-[rgba(102,165,87,0.5)] hover:bg-white/10"
+                      className="rounded-lg border border-[var(--line)] bg-white px-4 py-3 text-sm font-semibold text-[var(--brand-primary)] transition hover:border-[var(--brand-green)] hover:bg-[rgba(102,165,87,0.06)]"
                     >
                       {item.label}
                     </Link>
                   ))}
                 </div>
 
-                <div className="rounded-lg border border-white/10 bg-[rgba(255,255,255,0.08)] p-4">
+                <div className="rounded-lg border border-[rgba(102,165,87,0.28)] bg-[var(--brand-green)] p-4 text-white">
                   <div className="flex items-center gap-3">
                     <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-white text-sm font-semibold text-[var(--brand-primary)]">
                       {initialsForName(currentUser.name)}
                     </div>
                     <div className="min-w-0">
                       <p className="truncate text-sm font-semibold text-white">{currentUser.name}</p>
-                      <p className="mt-0.5 truncate text-xs text-[#c6d4e4]">{currentUser.email}</p>
+                      <p className="mt-0.5 truncate text-xs text-white/80">{currentUser.email}</p>
                     </div>
                   </div>
                   <div className="mt-4 flex flex-wrap gap-2">
-                    <span className="rounded-lg border border-white/10 px-3 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[#d6e1f0]">
+                    <span className="rounded border border-white/20 px-3 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-white">
                       {roleText}
                     </span>
-                    <span className="rounded-lg border border-white/10 px-3 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[#d6e1f0]">
+                    <span className="rounded border border-white/20 px-3 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-white">
                       {visibleTabs.length} modül
                     </span>
                   </div>
@@ -431,7 +431,7 @@ export default async function AdminOfficePage({ searchParams }: AdminOfficePageP
           </section>
 
           <div className="mt-5 grid gap-5 xl:grid-cols-[310px_minmax(0,1fr)]">
-            <aside className="h-fit rounded-lg border border-[var(--line-strong)] bg-white p-4 shadow-[0_24px_54px_-44px_rgba(29,29,27,0.42)] xl:sticky xl:top-24">
+            <aside className="h-fit rounded-lg border border-[var(--line)] bg-white p-4 shadow-[0_4px_20px_rgba(0,0,0,0.05)] xl:sticky xl:top-24">
               <div className="rounded-lg border border-[var(--line)] bg-white p-4">
                 <div className="flex items-center gap-3">
                   <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[var(--brand-primary)] text-sm font-semibold text-white">
@@ -500,7 +500,7 @@ export default async function AdminOfficePage({ searchParams }: AdminOfficePageP
             </aside>
 
             <section className="min-w-0">
-              <header className="mb-5 rounded-lg border border-[var(--line-strong)] bg-white px-5 py-4 shadow-[0_20px_42px_-36px_rgba(29,29,27,0.28)]">
+              <header className="mb-5 rounded-lg border border-[var(--line)] bg-white px-5 py-4 shadow-[0_4px_20px_rgba(0,0,0,0.05)]">
                 <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                   <div>
                     <span className="admin-kicker">{activeSectionLabel}</span>
@@ -602,7 +602,7 @@ export default async function AdminOfficePage({ searchParams }: AdminOfficePageP
                     advisors={advisors}
                   />
                 ) : (
-                  <section className="rounded-2xl border border-amber-200 bg-amber-50 p-6 text-sm text-amber-900">
+                  <section className="rounded-lg border border-amber-200 bg-amber-50 p-6 text-sm text-amber-900">
                     CRM Pipeline sadece admin ve danışman rolünde kullanılabilir.
                   </section>
                 )
@@ -750,7 +750,7 @@ function OverviewSection({
         <article className="admin-card p-6">
           <div>
             <h2 className="text-lg font-semibold text-[var(--brand-primary)]">Trafik Kaynakları</h2>
-            <p className="mt-1 text-sm text-[var(--ink-600)]">Lead kaynak dağılımı</p>
+            <p className="mt-1 text-sm text-[var(--ink-600)]">Talep kaynak dağılımı</p>
           </div>
 
           <div className="mt-6">
@@ -795,7 +795,7 @@ function OverviewSection({
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand-accent-strong)]">Öncelik</p>
               <h2 className="mt-2 text-lg font-semibold text-[var(--brand-primary)]">Onay Kuyruğu</h2>
             </div>
-            <span className="rounded-full bg-[rgba(102,165,87,0.12)] px-3 py-1 text-xs font-semibold text-[var(--brand-accent-strong)]">
+            <span className="rounded bg-[rgba(102,165,87,0.12)] px-3 py-1 text-xs font-semibold text-[var(--brand-accent-strong)]">
               {pendingApprovalProperties.length}
             </span>
           </div>
@@ -806,7 +806,7 @@ function OverviewSection({
                 <Link
                   key={`pending-${property.id}`}
                   href={`/yonetim-ofisi?tab=portfolio-edit&slug=${property.slug}`}
-                  className="block rounded-2xl border border-[var(--line)] bg-white px-4 py-3 transition hover:border-[var(--line-strong)] hover:bg-white"
+                  className="block rounded-lg border border-[var(--line)] bg-white px-4 py-3 transition hover:border-[var(--line-strong)] hover:bg-white"
                 >
                   <p className="text-sm font-semibold text-[var(--brand-primary)]">{property.title}</p>
                   <p className="mt-1 text-xs text-[var(--ink-600)]">
@@ -815,7 +815,7 @@ function OverviewSection({
                 </Link>
               ))
             ) : (
-              <p className="rounded-2xl border border-dashed border-[var(--line-strong)] px-4 py-4 text-sm text-[var(--ink-600)]">
+              <p className="rounded-lg border border-dashed border-[var(--line-strong)] px-4 py-4 text-sm text-[var(--ink-600)]">
                 Onay bekleyen kayıt bulunmuyor.
               </p>
             )}
@@ -828,7 +828,7 @@ function OverviewSection({
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-700">Müdahale</p>
               <h2 className="mt-2 text-lg font-semibold text-[var(--brand-primary)]">Kritik Eksikler</h2>
             </div>
-            <span className="rounded-full bg-rose-100 px-3 py-1 text-xs font-semibold text-rose-800">
+            <span className="rounded bg-rose-100 px-3 py-1 text-xs font-semibold text-rose-800">
               {criticalAttentionProperties.length}
             </span>
           </div>
@@ -839,7 +839,7 @@ function OverviewSection({
                 <Link
                   key={`critical-${property.id}`}
                   href={`/yonetim-ofisi?tab=portfolio-edit&slug=${property.slug}`}
-                  className="block rounded-2xl border border-[var(--line)] bg-white px-4 py-3 transition hover:border-[var(--line-strong)] hover:bg-white"
+                  className="block rounded-lg border border-[var(--line)] bg-white px-4 py-3 transition hover:border-[var(--line-strong)] hover:bg-white"
                 >
                   <p className="text-sm font-semibold text-[var(--brand-primary)]">{property.title}</p>
                   <p className="mt-1 text-xs text-[var(--ink-600)]">
@@ -848,7 +848,7 @@ function OverviewSection({
                 </Link>
               ))
             ) : (
-              <p className="rounded-2xl border border-dashed border-[var(--line-strong)] px-4 py-4 text-sm text-[var(--ink-600)]">
+              <p className="rounded-lg border border-dashed border-[var(--line-strong)] px-4 py-4 text-sm text-[var(--ink-600)]">
                 Kritik eksik görünen portföy yok.
               </p>
             )}
@@ -861,7 +861,7 @@ function OverviewSection({
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-amber-700">Hızlı Akış</p>
               <h2 className="mt-2 text-lg font-semibold text-[var(--brand-primary)]">Son Hareketler</h2>
             </div>
-            <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-800">
+            <span className="rounded bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-800">
               {recentActivityLogs.slice(0, 5).length}
             </span>
           </div>
@@ -872,7 +872,7 @@ function OverviewSection({
                 <Link
                   key={`activity-focus-${activity.id}`}
                   href={`/yonetim-ofisi?tab=portfolio-edit&slug=${activity.propertySlug}`}
-                  className="block rounded-2xl border border-[var(--line)] bg-white px-4 py-3 transition hover:border-[var(--line-strong)] hover:bg-white"
+                  className="block rounded-lg border border-[var(--line)] bg-white px-4 py-3 transition hover:border-[var(--line-strong)] hover:bg-white"
                 >
                   <p className="text-sm font-semibold text-[var(--brand-primary)]">{activity.propertyTitle}</p>
                   <p className="mt-1 text-xs text-[var(--ink-600)]">
@@ -881,7 +881,7 @@ function OverviewSection({
                 </Link>
               ))
             ) : (
-              <p className="rounded-2xl border border-dashed border-[var(--line-strong)] px-4 py-4 text-sm text-[var(--ink-600)]">
+              <p className="rounded-lg border border-dashed border-[var(--line-strong)] px-4 py-4 text-sm text-[var(--ink-600)]">
                 Henüz kayıtlı hareket bulunmuyor.
               </p>
             )}
@@ -926,7 +926,7 @@ function OverviewSection({
                       <td>
                         <div className="space-y-2">
                           <span
-                            className={`inline-flex rounded-full px-2.5 py-1 text-xs font-semibold ${propertyActivityActionBadgeClass(
+                            className={`inline-flex rounded px-2.5 py-1 text-xs font-semibold ${propertyActivityActionBadgeClass(
                               activity.actionType,
                             )}`}
                           >
@@ -947,14 +947,14 @@ function OverviewSection({
                             <>
                               <Link
                                 href={`/yonetim-ofisi?tab=portfolio-edit&slug=${activity.propertySlug}`}
-                                className="flex h-8 w-8 items-center justify-center rounded-full border border-[var(--line)] bg-white transition hover:bg-white"
+                                className="flex h-8 w-8 items-center justify-center rounded-lg border border-[var(--line)] bg-white transition hover:bg-white"
                                 aria-label={`${activity.propertyTitle} düzenle`}
                               >
                                 <EditActionIcon />
                               </Link>
                               <Link
                                 href={`/ilan/${activity.propertySlug}`}
-                                className="flex h-8 w-8 items-center justify-center rounded-full border border-[var(--line)] bg-white transition hover:bg-white"
+                                className="flex h-8 w-8 items-center justify-center rounded-lg border border-[var(--line)] bg-white transition hover:bg-white"
                                 aria-label={`${activity.propertyTitle} görüntüle`}
                               >
                                 <MoreActionIcon />
@@ -993,7 +993,7 @@ type MetricOverviewCardProps = {
 
 function MetricOverviewCard({ label, value, delta, tone, icon }: MetricOverviewCardProps) {
   return (
-    <article className="admin-stat-card admin-stat-card-dark border-[#e9eef6] shadow-[0_22px_40px_-34px_rgba(15,23,42,0.18)]">
+    <article className="admin-stat-card admin-stat-card-dark border-[var(--line)] shadow-[0_4px_20px_rgba(0,0,0,0.05)]">
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
           <p className="text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-[var(--ink-400)]">{label}</p>
@@ -1003,7 +1003,7 @@ function MetricOverviewCard({ label, value, delta, tone, icon }: MetricOverviewC
           </p>
         </div>
 
-        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[1rem] bg-white text-[#4f8f42] shadow-[inset_0_1px_0_rgba(255,255,255,0.95),0_16px_30px_-28px_rgba(15,23,42,0.45)]">
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-[var(--line)] bg-white text-[#4f8f42]">
           {icon}
         </span>
       </div>
@@ -1069,7 +1069,7 @@ function DashboardLineChart({
   const areaPath = `${primaryPath} L ${paddingLeft + chartWidth} ${paddingTop + chartHeight} L ${paddingLeft} ${paddingTop + chartHeight} Z`;
 
   return (
-    <div className="rounded-[1.4rem] border border-[#dfe7dd] bg-white px-4 py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.95)]">
+    <div className="rounded-lg border border-[var(--line)] bg-white px-4 py-5">
       <svg viewBox={`0 0 ${width} ${height}`} className="h-[280px] w-full" aria-hidden>
         <defs>
           <linearGradient id="dashboard-primary-area" x1="0" x2="0" y1="0" y2="1">

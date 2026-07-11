@@ -166,11 +166,11 @@ export function AdvisorManagement({ initialAdvisors, canManage }: AdvisorManagem
                   : null;
 
             return (
-              <article key={advisor.id} className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+              <article key={advisor.id} className="rounded-lg border border-[var(--line)] bg-white p-4">
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div className="flex items-start gap-3">
                     <div
-                      className="h-20 w-20 shrink-0 rounded-2xl border border-slate-200 bg-cover bg-center bg-no-repeat"
+                      className="h-20 w-20 shrink-0 rounded-lg border border-[var(--line)] bg-cover bg-center bg-no-repeat"
                       style={{ backgroundImage: `url(${advisor.image})` }}
                       aria-hidden
                     />

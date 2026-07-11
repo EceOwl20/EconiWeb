@@ -18,10 +18,10 @@ export async function sendLeadNotification({
 }: SendLeadParams): Promise<EmailDispatchResult> {
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.CONTACT_TO_EMAIL;
-  const from = process.env.CONTACT_FROM_EMAIL ?? "Emlak Demo <onboarding@resend.dev>";
+  const from = process.env.CONTACT_FROM_EMAIL ?? "Econi Invest <onboarding@resend.dev>";
 
   if (!apiKey || !to) {
-    console.info("[lead-demo] Mail env yok, lead bellekte tutuldu.", {
+    console.info("[lead-queued] Mail env yok, lead sistemde tutuldu.", {
       lead,
       property: property.listingRef,
     });
@@ -72,10 +72,10 @@ export async function sendLeadNotification({
 export async function sendSellerLeadNotification(lead: SellerLead): Promise<EmailDispatchResult> {
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.CONTACT_TO_EMAIL;
-  const from = process.env.CONTACT_FROM_EMAIL ?? "Emlak Demo <onboarding@resend.dev>";
+  const from = process.env.CONTACT_FROM_EMAIL ?? "Econi Invest <onboarding@resend.dev>";
 
   if (!apiKey || !to) {
-    console.info("[seller-lead-demo] Mail env yok, satıcı talebi bellekte tutuldu.", { lead });
+    console.info("[seller-lead-queued] Mail env yok, satıcı talebi sistemde tutuldu.", { lead });
     return { delivered: false, reason: "missing-env" };
   }
 

@@ -16,7 +16,7 @@ const PropertyMapCanvas = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="h-[460px] animate-pulse rounded-2xl border border-[#d9cdbb] bg-white" />
+      <div className="h-[460px] animate-pulse rounded-lg border border-[var(--line)] bg-white" />
     ),
   },
 );
@@ -132,14 +132,14 @@ export function PropertyMap({ portfolios }: PropertyMapProps) {
       <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
         <div>
           <span className="section-kicker">{copy.kicker}</span>
-          <h2 className="mt-2 text-[2rem] leading-none font-semibold text-[#1f1a14]">
+          <h2 className="mt-2 text-[2rem] leading-none font-semibold text-[var(--brand-primary)]">
             {copy.title}
           </h2>
-          <p className="mt-2 text-sm text-[#655c50]">
+          <p className="mt-2 text-sm text-[var(--ink-600)]">
             {copy.body}
           </p>
         </div>
-        <p className="text-sm text-[#6d6356]">{filteredPortfolios.length} {copy.results}</p>
+        <p className="text-sm text-[var(--ink-600)]">{filteredPortfolios.length} {copy.results}</p>
       </div>
 
       <div className="mb-3 flex flex-wrap items-center gap-2">
@@ -216,8 +216,8 @@ export function PropertyMap({ portfolios }: PropertyMapProps) {
           />
         </div>
 
-        <aside className="rounded-2xl border border-[#d9cdbb] bg-white p-3">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8a6f45]">
+        <aside className="rounded-lg border border-[var(--line)] bg-white p-3">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--brand-accent-strong)]">
             {copy.mapResults}
           </p>
 

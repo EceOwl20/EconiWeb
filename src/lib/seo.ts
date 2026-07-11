@@ -4,9 +4,9 @@ import { parseBlogContent } from "@/lib/blog-content";
 import { propertyDisplayAmount, propertyDisplayCurrency } from "@/lib/property-pricing";
 import type { BlogPost, Property } from "@/lib/types";
 
-const defaultTitle = "Econi Invest | Premium Emlak ve Yatırım Portföyleri";
+const defaultTitle = "Econi Invest | Gayrimenkul Yatırım ve Portföy Danışmanlığı";
 const defaultDescription =
-  "İstanbul ve çevresinde satış odaklı premium emlak portföyleri. Harita, randevu ve danışman destekli hızlı teklif süreci.";
+  "Seçili gayrimenkul portföyleri, lokasyon analizi ve danışman destekli satın alma-satış süreçleri için profesyonel yatırım platformu.";
 
 export function getBaseUrl(): URL {
   const value = process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL || "http://localhost:3000";
@@ -23,9 +23,9 @@ export function baseMetadata(): Metadata {
     keywords: [
       "satılık daire",
       "lüks villa",
-      "emlak yatırımı",
+      "gayrimenkul yatırımı",
       "istanbul emlak",
-      "premium emlak",
+      "portföy danışmanlığı",
     ],
     openGraph: {
       title: defaultTitle,

@@ -209,7 +209,7 @@ function seedIfEmpty() {
     `);
     const adminUser = {
       id: "usr-admin-demo",
-      name: "Demo Admin",
+      name: "Sistem Admin",
       role: "admin",
       email: "admin@admin",
       phone: "+90 555 111 11 11",

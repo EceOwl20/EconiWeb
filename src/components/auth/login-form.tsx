@@ -54,14 +54,37 @@ export function LoginForm({ nextPath }: LoginFormProps) {
   }
 
   return (
-    <div className="max-w-xl">
-      <form onSubmit={handleSubmit} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-        <h1 className="text-2xl font-semibold tracking-tight text-slate-900">{copy.title}</h1>
-        <p className="mt-2 text-sm text-slate-600">
-          {copy.body}
-        </p>
+    <div className="w-full max-w-5xl overflow-hidden rounded-lg border border-[var(--line)] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)]">
+      <div className="grid lg:grid-cols-[0.9fr_1.1fr]">
+        <aside className="relative hidden min-h-[28rem] overflow-hidden border-r border-[var(--line)] bg-[linear-gradient(135deg,#ffffff_0%,#f8fbf7_100%)] p-8 lg:block">
+          <div className="relative z-10 flex h-full flex-col justify-between">
+            <div>
+              <p className="text-sm font-bold text-[var(--brand-accent-strong)]">Econi Invest</p>
+              <h2 className="mt-10 max-w-xs text-4xl font-bold leading-tight text-[var(--brand-primary)]">
+                Geleceğinize güvenle yatırım yapın.
+              </h2>
+              <p className="mt-4 max-w-sm text-sm leading-6 text-[var(--ink-600)]">
+                Portföy, danışman ve müşteri akışını tek bir güvenli panelden yönetin.
+              </p>
+            </div>
 
-        <div className="mt-5 space-y-3">
+            <div className="grid gap-3">
+              {["Güvenli oturum", "Rol bazlı yetki", "Portföy onay akışı"].map((item) => (
+                <div key={item} className="rounded-lg border border-[var(--line)] bg-white px-4 py-3 text-sm font-semibold text-[var(--brand-primary)]">
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        </aside>
+
+        <form onSubmit={handleSubmit} className="p-6 sm:p-8 lg:p-10">
+          <h1 className="text-2xl font-bold tracking-tight text-[var(--brand-primary)]">{copy.title}</h1>
+          <p className="mt-2 max-w-md text-sm leading-6 text-[var(--ink-600)]">
+            {copy.body}
+          </p>
+
+        <div className="mt-6 space-y-3">
           <input
             required
             type="email"
@@ -74,7 +97,7 @@ export function LoginForm({ nextPath }: LoginFormProps) {
               }))
             }
             placeholder={copy.email}
-            className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none transition focus:border-slate-500"
+            className="w-full rounded-lg border border-[var(--line-strong)] px-4 py-3 text-sm outline-none transition focus:border-[var(--brand-green)] focus:ring-2 focus:ring-[rgba(102,165,87,0.12)]"
           />
           <input
             required
@@ -88,20 +111,21 @@ export function LoginForm({ nextPath }: LoginFormProps) {
               }))
             }
             placeholder={copy.password}
-            className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none transition focus:border-slate-500"
+            className="w-full rounded-lg border border-[var(--line-strong)] px-4 py-3 text-sm outline-none transition focus:border-[var(--brand-green)] focus:ring-2 focus:ring-[rgba(102,165,87,0.12)]"
           />
         </div>
 
         <button
           type="submit"
           disabled={status.type === "loading"}
-          className="mt-4 cursor-pointer rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:bg-slate-500"
+          className="mt-5 min-h-12 w-full cursor-pointer rounded-lg bg-[var(--brand-green)] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[var(--brand-accent-strong)] disabled:cursor-not-allowed disabled:bg-[var(--ink-400)]"
         >
           {actionLabel}
         </button>
 
         {status.type === "error" ? <p className="mt-3 text-sm text-rose-700">{status.message}</p> : null}
       </form>
+      </div>
     </div>
   );
 }

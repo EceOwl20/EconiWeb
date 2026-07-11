@@ -16,7 +16,7 @@ export const initialAdvisors: Advisor[] = [
     title: "Kıdemli Konut Danışmanı",
     phone: "+90 532 111 22 33",
     whatsapp: "+905321112233",
-    email: "ayse.demir@demolanding.com",
+    email: "ayse.demir@econiinvest.com",
     focusArea: "Kadıköy / Moda",
     image: pickSampleAdvisorImage(0),
   },
@@ -26,7 +26,7 @@ export const initialAdvisors: Advisor[] = [
     title: "Yatırım Uzmanı",
     phone: "+90 533 444 55 66",
     whatsapp: "+905334445566",
-    email: "mehmet.kaya@demolanding.com",
+    email: "mehmet.kaya@econiinvest.com",
     focusArea: "Beşiktaş / Levent",
     image: pickSampleAdvisorImage(1),
   },
@@ -36,7 +36,7 @@ export const initialAdvisors: Advisor[] = [
     title: "Lüks Portföy Danışmanı",
     phone: "+90 534 777 88 99",
     whatsapp: "+905347778899",
-    email: "selin.yildiz@demolanding.com",
+    email: "selin.yildiz@econiinvest.com",
     focusArea: "Sarıyer / Zekeriyaköy",
     image: pickSampleAdvisorImage(2),
   },
@@ -56,14 +56,14 @@ export const initialUsers: User[] = [
     id: "usr-1",
     name: "Operasyon Admin",
     role: "admin",
-    email: "admin@demolanding.com",
+    email: "operasyon@econiinvest.com",
     phone: "+90 212 900 00 01",
     username: "admin",
     password: "admin123",
   },
   {
     id: "usr-admin-demo",
-    name: "Demo Admin",
+    name: "Sistem Admin",
     role: "admin",
     email: "admin@admin",
     phone: "+90 555 111 11 11",
@@ -74,7 +74,7 @@ export const initialUsers: User[] = [
     id: "usr-2",
     name: "Ayşe Demir",
     role: "portfolio_manager",
-    email: "ayse.demir@demolanding.com",
+    email: "ayse.demir@econiinvest.com",
     phone: "+90 532 111 22 33",
     username: "ayse",
     password: "ayse123",
@@ -84,7 +84,7 @@ export const initialUsers: User[] = [
     id: "usr-3",
     name: "İçerik Editörü",
     role: "editor",
-    email: "icerik@demolanding.com",
+    email: "icerik@econiinvest.com",
     phone: "+90 212 900 00 03",
     username: "icerik",
     password: "icerik123",
@@ -107,7 +107,7 @@ export const initialProperties: Property[] = [
     heating: "Kombi",
     listingRef: "PN-0001",
     description:
-      "Bağdat Caddesi'ne yürüme mesafesinde, önü kapanmaz manzaralı, geniş ailelere uygun, otoparklı premium daire.",
+      "Bağdat Caddesi'ne yürüme mesafesinde, deniz manzarası ve geniş yaşam alanlarıyla aile kullanımı ve uzun vadeli değer koruması için güçlü bir portföy.",
     highlights: [
       "Deniz manzarası",
       "Kapalı otopark",
@@ -145,7 +145,7 @@ export const initialProperties: Property[] = [
     heating: "Merkezi",
     listingRef: "PN-0002",
     description:
-      "Kurumsal kiracılı, yüksek kira çarpanına sahip, metroya çok yakın A sınıfı ofis yatırımı.",
+      "Kurumsal kiracı yapısı, merkezi erişim avantajı ve düzenli gelir potansiyeliyle öne çıkan A sınıfı ofis yatırımı.",
     highlights: [
       "Hazır kiracılı",
       "Yüksek kira geliri",
@@ -182,7 +182,7 @@ export const initialProperties: Property[] = [
     heating: "Yerden Isıtma",
     listingRef: "PN-0003",
     description:
-      "Özel havuzlu, bağımsız bahçeli, güvenlikli sitede konumlanan anahtar teslim aile villası.",
+      "Güvenlikli site içinde, bağımsız bahçe ve özel havuz avantajıyla konumlanan, yüksek yaşam standardı sunan anahtar teslim aile villası.",
     highlights: [
       "Özel havuz",
       "Müstakil bahçe",
@@ -220,7 +220,7 @@ export const initialProperties: Property[] = [
     heating: "Merkezi",
     listingRef: "PN-0004",
     description:
-      "Concierge, vale ve sosyal tesis imkanlarıyla şehir merkezinde prestijli yaşam fırsatı.",
+      "Concierge, vale ve sosyal tesis imkanlarıyla şehir merkezinde prestijli yaşam ve güçlü kiralama potansiyeli sunan rezidans.",
     highlights: ["Panoramik şehir manzarası", "Vale", "Concierge", "Sosyal tesis"],
     features: [
       "Kapalı havuz",
@@ -252,7 +252,7 @@ export const initialProperties: Property[] = [
     heating: "-",
     listingRef: "PN-0005",
     description:
-      "Ana yola cepheli, villa imarlı, uzun vadeli değer artışı potansiyeline sahip yatırım arsası.",
+      "Ana yola cepheli, villa imarlı ve gelişim aksı üzerinde konumlanan; uzun vadeli değer artışı potansiyeli taşıyan yatırım arsası.",
     highlights: [
       "Villa imarı",
       "Ana yola cephe",
@@ -280,76 +280,76 @@ export const initialBlogPosts: BlogPost[] = [
   {
     id: "blog-seo-showcase-2026",
     slug: "premium-emlak-ilaninda-seo-ve-satis-stratejisi-rehberi",
-    title: "Premium Emlak Ilaninda SEO ve Satis Stratejisi Rehberi",
+    title: "Premium Portföy Sunumunda SEO ve Satış Stratejisi",
     excerpt:
-      "Premium segmentte hizli ve kaliteli teklif toplamak icin sadece gorsel yeterli degil. Dogru SEO kurgusu, icerik akisi ve CTA yerlesimi ile ilan performansini olculebilir sekilde artirabilirsiniz.",
-    content: `H2|accent: Premium Emlak Ilaninda SEO Neden Satis Hizini Artirir
+      "Premium segmentte nitelikli talep toplamak için güçlü görsel kadar doğru başlık, içerik akışı ve danışmana yönlendiren net aksiyonlar da kritik rol oynar.",
+    content: `H2|accent: Premium Portföy Sunumunda SEO Neden Satış Kalitesini Artırır
 
-P: Premium segmentte alici davranisi, ilk aramada guven veren ve net bilgi sunan ilanlara yonelir. Bu nedenle SEO kurgusu sadece trafik degil, dogrudan teklif kalitesi icin de kritik bir etkendir.
+P: Premium segmentte alıcı davranışı, ilk temasta güven veren ve net bilgi sunan portföylere yönelir. Bu nedenle SEO kurgusu yalnızca görünürlük değil, teklif kalitesi ve danışman iletişimi açısından da belirleyici bir etkendir.
 
-H3|soft: Ilk 7 gunde gorunurluk icin temel sinyaller
+H3|soft: İlk 7 günde görünürlük için temel sinyaller
 
-UL|soft: H1 baslikta lokasyon ve portfoy tipini birlikte kullanin | Meta description icinde net deger onermesi yazin | Etiketlerde semt, yatirim ve satilik niyetini birlestirin | Ilk paragrafta fiyat bandi ve hedef alici profilini belirtin
+UL|soft: Başlıkta lokasyon ve portföy tipini birlikte kullanın | Meta açıklamasında net değer önermesi yazın | Etiketlerde semt, yatırım ve satış niyetini birlikte konumlandırın | İlk paragrafta fiyat bandı ve hedef alıcı profilini belirtin
 
-H4|accent: Icerik akisinin donusume etkisi
+H4|accent: İçerik akışının dönüşüme etkisi
 
-OL: Arama niyetini cevaplayan guclu bir giris yazin | Lokasyon avantajlarini veri ve sosyal imkanlarla siralayin | Fiyat/deger karsilastirmasini benzer ilan mantigiyla sunun | Uzman yorumu ve guven sinyalleriyle karar surecini hizlandirin
+OL: Arama niyetini karşılayan güçlü bir giriş yazın | Lokasyon avantajlarını ulaşım, sosyal imkan ve talep verisiyle açıklayın | Fiyat/değer dengesini benzer portföy mantığıyla sunun | Uzman yorumu ve güven sinyalleriyle karar sürecini hızlandırın
 
-QUOTE|accent: Premium ilanda sadece guzel gorsel degil, dogru kurgulanmis metin de teklif kalitesini belirler.
+QUOTE|accent: Premium segmentte yalnızca iyi görsel değil, doğru kurgulanmış metin de teklif kalitesini belirler.
 
-IMG|soft: https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1600&q=80 | Bogaz manzarali premium rezidans salonu gorunumu | Alt metin ve aciklayici baslik, gorsel aramalarindan gelen trafikte kaliteyi artirir.
+IMG|soft: https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1600&q=80 | Boğaz manzaralı premium rezidans salonu | Açıklayıcı görsel başlıkları, arama trafiğinden gelen kullanıcı kalitesini artırır.
 
-H5: Icerikte ic baglanti ve harita stratejisi
+H5: İç bağlantı ve harita stratejisi
 
-P|soft: Blog iceriginden ilgili portfoy sayfalarina, bolgesel kategoriye ve harita uzerindeki ilanlara ic baglanti vermek; kullanicinin sitede gecirdigi sureyi artirir ve donusum hunisini guclendirir.
+P|soft: Blog içeriğinden ilgili portföy sayfalarına, bölgesel kategoriye ve harita üzerindeki ilanlara bağlantı vermek; kullanıcının sitede geçirdiği süreyi artırır ve dönüşüm hunisini güçlendirir.
 
-IMG: https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1600&q=80 | Istanbul sahil hattinda luks daire dis cephe gorunumu | Bolgesel anahtar kelimeyle yazilmis alt metin, sayfanin konu alakasini pekistirir.
+IMG: https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1600&q=80 | İstanbul sahil hattında lüks daire dış cephesi | Bölgesel anahtar kelimeyle yazılmış alt metin, sayfanın konu alakasını güçlendirir.
 
-CTA|accent: Danismanla Premium Portfoy Stratejisi Planla | /iletisim`,
+CTA|accent: Danışmanla Portföy Stratejisi Planla | /iletisim`,
     coverImage: imageSet1.cover,
     authorName: "Econi Invest İçerik Ekibi",
-    tags: ["Premium Emlak", "SEO", "Satis Stratejisi", "Icerik Pazarlamasi", "Istanbul"],
-    metaTitle: "Premium Emlak Ilaninda SEO ve Satis Stratejisi Rehberi",
+    tags: ["Premium Portföy", "SEO", "Satış Stratejisi", "İçerik Pazarlaması", "İstanbul"],
+    metaTitle: "Premium Portföy Sunumunda SEO ve Satış Stratejisi | Econi Invest",
     metaDescription:
-      "Premium emlak ilanlarinda SEO, icerik akisi, gorsel alt metni, ic link ve CTA kullanimiyla daha hizli ve kaliteli teklif almanizi saglayan uygulanabilir rehber.",
+      "Premium portföylerde SEO, içerik akışı, görsel alt metni, iç bağlantı ve CTA kullanımıyla daha nitelikli talep oluşturmanın yolları.",
     publishedAt: "2026-03-16T15:30:00.000Z",
   },
   {
     id: "blog-1",
     slug: "istanbulda-luks-konut-yatiriminda-2026-trendleri",
-    title: "İstanbul'da Lüks Konut Yatırımında 2026 Trendleri",
+    title: "İstanbul'da Nitelikli Konut Yatırımında 2026 Trendleri",
     excerpt:
-      "Lokasyon, teslim tarihi ve kira çarpanı üzerinden 2026 premium konut yatırım fırsatlarını değerlendiriyoruz.",
-    content: `İstanbul premium konut pazarında 2026 yılında en belirgin fark, alıcıların sadece metrekare değil yaşam altyapısı odaklı karar vermesi oldu.
+      "Lokasyon gücü, teslim takvimi, kira potansiyeli ve çıkış likiditesi üzerinden 2026 konut yatırım eğilimlerini değerlendiriyoruz.",
+    content: `İstanbul konut pazarında 2026 yılının en belirgin farkı, alıcıların yalnızca metrekareye değil yaşam altyapısı, erişim kolaylığı ve hizmet kalitesine göre karar vermesi oldu.
 
-Levent, Nişantaşı ve sahil hattında yeni portföylerde concierge, güvenlik ve sosyal alan kalitesi fiyat kadar belirleyici hale geliyor.
+Levent, Nişantaşı ve sahil hattındaki yeni portföylerde güvenlik, sosyal alan kalitesi ve yönetim hizmetleri fiyat kadar belirleyici hale geliyor.
 
-Yatırımcı tarafında ise kısa vadeli al-sat yaklaşımı yerine, kira getirisi ve çıkış likiditesi birlikte analiz ediliyor. Bu nedenle ilan incelerken teslim tarihi, proje ölçeği ve çevre gelişim planı mutlaka birlikte okunmalı.`,
+Yatırımcı tarafında kısa vadeli al-sat yaklaşımı yerine, kira getirisi ve çıkış likiditesi birlikte analiz ediliyor. Bu nedenle portföy incelerken teslim tarihi, proje ölçeği ve çevre gelişim planı birlikte okunmalı.`,
     coverImage: imageSet1.cover,
     authorName: "Econi Invest Araştırma Ekibi",
-    tags: ["İstanbul", "Lüks Konut", "Yatırım", "2026"],
-    metaTitle: "İstanbul Lüks Konut Yatırımı 2026 Trendleri | Econi Invest Blog",
+    tags: ["İstanbul", "Konut Yatırımı", "Yatırım", "2026"],
+    metaTitle: "İstanbul Konut Yatırımı 2026 Trendleri | Econi Invest Blog",
     metaDescription:
-      "İstanbul'da lüks konut yatırımı yaparken 2026 trendlerini, kira getirisi ve lokasyon analiziyle birlikte inceleyin.",
+      "İstanbul'da konut yatırımı yaparken 2026 trendlerini, kira getirisi, lokasyon analizi ve çıkış likiditesiyle birlikte inceleyin.",
     publishedAt: "2026-03-12T09:10:00.000Z",
   },
   {
     id: "blog-2",
     slug: "portfoy-satista-dogru-fiyatlandirma-stratejisi",
-    title: "Emlak Satışında Doğru Fiyatlandırma Stratejisi",
+    title: "Portföy Satışında Doğru Fiyatlandırma Stratejisi",
     excerpt:
-      "Doğru fiyatlandırma, satış süresini ve teklif kalitesini doğrudan etkiler. Uygulamada kullanılan net yaklaşım adımları.",
-    content: `Emlakta satış sürecinin en kritik adımı doğru başlangıç fiyatıdır. Piyasa üstü fiyatlar ilan görünürlüğünü düşürürken, piyasa altı fiyatlar da mülk sahibinin değer kaybına yol açabilir.
+      "Doğru fiyat bandı, satış süresini ve teklif kalitesini doğrudan etkiler. Uygulamada kullanılan net yaklaşım adımları.",
+    content: `Gayrimenkul satış sürecinin en kritik adımı doğru başlangıç fiyatıdır. Piyasa üstü fiyatlar ilan görünürlüğünü düşürürken, piyasa altı fiyatlar mülk sahibinin değer kaybına yol açabilir.
 
 Doğru fiyatlandırma için benzer portföy karşılaştırması, bölge arz-talep dengesi ve ilan performans metrikleri birlikte değerlendirilmelidir.
 
-Econi Invest modelinde danışmanlar, fiyat aralığını tek bir rakamdan çok stratejik bant olarak belirler. Bu yöntem, hem daha hızlı teklif almayı hem de müzakere alanını korumayı sağlar.`,
+Econi Invest modelinde danışmanlar fiyatı tek bir rakamdan çok stratejik bant olarak değerlendirir. Bu yaklaşım, hem daha hızlı teklif almayı hem de müzakere alanını korumayı sağlar.`,
     coverImage: imageSet5.cover,
     authorName: "Selin Yıldız",
     tags: ["Satış", "Fiyatlandırma", "Portföy Yönetimi"],
-    metaTitle: "Emlakta Doğru Fiyatlandırma Stratejisi | Econi Invest Blog",
+    metaTitle: "Portföy Satışında Doğru Fiyatlandırma Stratejisi | Econi Invest Blog",
     metaDescription:
-      "Emlak portföylerinde doğru fiyatlandırma nasıl yapılır? Satış süresini kısaltan temel stratejileri öğrenin.",
+      "Gayrimenkul portföylerinde doğru fiyatlandırma nasıl yapılır? Satış süresini kısaltan temel stratejileri öğrenin.",
     publishedAt: "2026-03-10T11:40:00.000Z",
   },
 ];

@@ -116,7 +116,7 @@ export function UserManagement({
 
     return (
     <section className="space-y-6">
-      <article className="rounded-2xl border border-[var(--line)] bg-white p-6 shadow-sm">
+      <article className="rounded-lg border border-[var(--line)] bg-white p-6 shadow-[0_4px_20px_rgba(0,0,0,0.05)]">
         <span className="admin-kicker">Ekip Yetkileri</span>
         <h2 className="mt-4 text-3xl font-semibold tracking-tight text-[var(--brand-primary)]">Kullanıcı Yönetimi</h2>
         <p className="mt-3 text-sm leading-6 text-[var(--ink-600)]">
@@ -175,7 +175,7 @@ export function UserManagement({
           ) : null}
 
           {requiresAdvisorSelection && advisors.length === 0 ? (
-            <p className="md:col-span-2 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+            <p className="md:col-span-2 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
               Önce danışman kaydı oluşturulmalı. Danışman hesabı seçili danışmana bağlanır.
             </p>
           ) : null}
@@ -193,7 +193,7 @@ export function UserManagement({
         {status.type === "success" ? <p className="mt-3 text-sm text-emerald-700">{status.message}</p> : null}
       </article>
 
-      <article className="rounded-2xl border border-[var(--line)] bg-white p-6 shadow-sm">
+      <article className="rounded-lg border border-[var(--line)] bg-white p-6 shadow-[0_4px_20px_rgba(0,0,0,0.05)]">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
             <h3 className="text-lg font-semibold text-[var(--brand-primary)]">Mevcut Kullanıcılar</h3>

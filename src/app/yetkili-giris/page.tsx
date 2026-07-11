@@ -30,7 +30,7 @@ export default async function AuthorizedLoginPage({ searchParams }: LoginPagePro
     <div className="min-h-screen">
       <SiteHeader />
 
-      <main className="mx-auto w-full max-w-5xl px-4 pb-12 pt-8 sm:px-6">
+      <main className="mx-auto flex w-full max-w-6xl justify-center px-4 pb-16 pt-10 sm:px-6 lg:pt-16">
         <LoginForm nextPath={nextPath} />
       </main>
     </div>

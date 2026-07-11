@@ -66,50 +66,50 @@ function headingClass(type: BlogBuilderBlockType, tone: BlogBlockTone): string {
           : "text-base uppercase tracking-[0.08em]";
 
   if (tone === "accent") {
-    return `${base} font-semibold text-[#7a5c2b]`;
+    return `${base} font-semibold text-[var(--brand-accent-strong)]`;
   }
 
   if (tone === "soft") {
-    return `${base} font-semibold text-[#4e4539]`;
+    return `${base} font-semibold text-[var(--ink-700)]`;
   }
 
-  return `${base} font-semibold text-[#2f271d]`;
+  return `${base} font-semibold text-[var(--brand-primary)]`;
 }
 
 function paragraphClass(tone: BlogBlockTone): string {
   if (tone === "accent") {
-    return "text-[#6d5227]";
+    return "text-[var(--brand-accent-strong)]";
   }
 
   if (tone === "soft") {
-    return "text-[#61584c]";
+    return "text-[var(--ink-600)]";
   }
 
-  return "text-[#4f473d]";
+  return "text-[var(--ink-700)]";
 }
 
 function listClass(tone: BlogBlockTone): string {
   if (tone === "accent") {
-    return "text-[#6d5227] marker:text-[#8a6a34]";
+    return "text-[var(--brand-accent-strong)] marker:text-[var(--brand-green)]";
   }
 
   if (tone === "soft") {
-    return "text-[#61584c] marker:text-[#74695b]";
+    return "text-[var(--ink-600)] marker:text-[var(--ink-500)]";
   }
 
-  return "text-[#4f473d] marker:text-[#6d5d46]";
+  return "text-[var(--ink-700)] marker:text-[var(--brand-green)]";
 }
 
 function quoteClass(tone: BlogBlockTone): string {
   if (tone === "accent") {
-    return "border-[#d6bd90] bg-white text-[#6d5227]";
+    return "border-[var(--brand-green)] bg-white text-[var(--brand-accent-strong)]";
   }
 
   if (tone === "soft") {
-    return "border-[#d9d7d1] bg-white text-[#5c5448]";
+    return "border-[var(--line)] bg-white text-[var(--ink-600)]";
   }
 
-  return "border-[#dfd7c9] bg-white text-[#51493e]";
+  return "border-[var(--line-strong)] bg-white text-[var(--ink-700)]";
 }
 
 function blockRows(type: BlogBuilderBlockType): number {
@@ -409,10 +409,10 @@ export function BlogBlockBuilder({ blocks, onChange }: BlogBlockBuilderProps) {
                 }
 
                 return (
-                  <div key={block.id} className="rounded-xl border border-[#d8c8ad] bg-white p-4">
+                  <div key={block.id} className="rounded-lg border border-[var(--line)] bg-white p-4">
                     <a
                       href={cta.href}
-                      className="inline-flex rounded-full bg-[#2f271d] px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-[#f8e8cd]"
+                      className="inline-flex rounded-lg bg-[var(--brand-green)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-white"
                     >
                       {cta.label}
                     </a>
@@ -427,9 +427,9 @@ export function BlogBlockBuilder({ blocks, onChange }: BlogBlockBuilderProps) {
                 }
 
                 return (
-                  <figure key={block.id} className="overflow-hidden rounded-xl border border-[#dfd2bd] bg-white">
+                  <figure key={block.id} className="overflow-hidden rounded-lg border border-[var(--line)] bg-white">
                     <div className="h-44 bg-cover bg-center" style={{ backgroundImage: `url(${image.src})` }} />
-                    <figcaption className="space-y-1 px-3 py-2 text-xs text-[#5f5548]">
+                    <figcaption className="space-y-1 px-3 py-2 text-xs text-[var(--ink-600)]">
                       <p>
                         <strong>Alt:</strong> {image.alt}
                       </p>

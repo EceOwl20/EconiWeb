@@ -119,7 +119,7 @@ export function AdvisorEditor({ initialAdvisors, canManage }: AdvisorEditorProps
           </span>
           <input type="file" accept=".webp,image/webp" name="imageFile" className="input" />
         </label>
-        <div className="md:col-span-2 overflow-hidden rounded-2xl border border-slate-200 bg-slate-50">
+        <div className="md:col-span-2 overflow-hidden rounded-lg border border-[var(--line)] bg-white">
           <div className="h-56 bg-cover bg-center" style={{ backgroundImage: `url(${selectedAdvisor.image})` }} />
           <p className="px-3 py-2 text-xs text-slate-600">Mevcut danışman görseli</p>
         </div>

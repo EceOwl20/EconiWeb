@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useMemo, useState, type KeyboardEvent, type MouseEvent } from "react";
 
+import { ImageLightbox, type ImageLightboxItem } from "@/components/image-lightbox";
 import { useSitePreferences } from "@/components/use-site-preferences";
 import { isUnoptimizedImageSrc } from "@/lib/image-src";
 import { propertyDetailGalleryCopy } from "@/lib/site-copy";
@@ -44,7 +45,21 @@ export function PropertyDetailGallery({
     const images = [coverImage, ...galleryImages].filter((image) => Boolean(image?.trim()));
     return Array.from(new Set(images));
   }, [coverImage, galleryImages]);
+  const lightboxImages = useMemo<ImageLightboxItem[]>(
+    () =>
+      gallery.map((image, index) => {
+        const label = imageLabels[index - 1] ?? (index === 0 ? copy.cover : `${copy.image} ${index + 1}`);
+
+        return {
+          src: image,
+          alt: `${title} - ${label}`,
+          label,
+        };
+      }),
+    [copy.cover, copy.image, gallery, imageLabels, title],
+  );
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   const activeImage = gallery[activeImageIndex] ?? coverImage;
   const activeLabel =
@@ -70,9 +85,40 @@ export function PropertyDetailGallery({
     });
   }
 
+  function handleGalleryStep(event: MouseEvent<HTMLButtonElement>, direction: -1 | 1) {
+    event.stopPropagation();
+    stepGallery(direction);
+  }
+
+  function openGallery(event: MouseEvent<HTMLElement>) {
+    event.stopPropagation();
+    setLightboxOpen(true);
+  }
+
+  function handleGalleryKeyDown(event: KeyboardEvent<HTMLDivElement>) {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      event.stopPropagation();
+      setLightboxOpen(true);
+    }
+  }
+
+  function openThumbnail(index: number) {
+    setActiveImageIndex(index);
+    setLightboxOpen(true);
+  }
+
   return (
-    <div className="relative overflow-hidden">
-      <div className="relative h-[320px] sm:h-[430px]">
+    <>
+      <div className="relative overflow-hidden">
+      <div
+        role="button"
+        tabIndex={0}
+        aria-label={`${title} ${copy.openGallery}`}
+        onClick={openGallery}
+        onKeyDown={handleGalleryKeyDown}
+        className="relative h-[320px] cursor-zoom-in outline-none focus-visible:ring-2 focus-visible:ring-[rgba(102,165,87,0.5)] focus-visible:ring-inset sm:h-[430px]"
+      >
         <Image
           src={activeImage}
           alt={`${title} - ${activeLabel}`}
@@ -88,7 +134,7 @@ export function PropertyDetailGallery({
           <>
             <button
               type="button"
-              onClick={() => stepGallery(-1)}
+              onClick={(event) => handleGalleryStep(event, -1)}
               aria-label={copy.previous}
               className="absolute left-4 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/42 bg-[#0b0f14]/34 text-white backdrop-blur transition hover:bg-[#0b0f14]/52"
             >
@@ -96,7 +142,7 @@ export function PropertyDetailGallery({
             </button>
             <button
               type="button"
-              onClick={() => stepGallery(1)}
+              onClick={(event) => handleGalleryStep(event, 1)}
               aria-label={copy.next}
               className="absolute right-4 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/42 bg-[#0b0f14]/34 text-white backdrop-blur transition hover:bg-[#0b0f14]/52"
             >
@@ -107,18 +153,18 @@ export function PropertyDetailGallery({
 
         <div className="absolute bottom-0 left-0 right-0 p-5 text-white sm:p-8">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="section-kicker border-white/35 bg-white/15 text-[#ecd8b6]">{listingRef}</span>
-            <span className="rounded-full border border-white/26 bg-white/12 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#f2e4c7]">
+            <span className="section-kicker border-white/35 bg-white/15 text-white">{listingRef}</span>
+            <span className="rounded border border-white/26 bg-white/12 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white">
               {activeLabel}
             </span>
           </div>
           <h1 className="mt-3 max-w-3xl text-[2.4rem] leading-[1.02] font-semibold sm:text-[3.2rem]">{title}</h1>
-          <p className="mt-2 text-sm text-[#e7dcc9]">{locationLabel}</p>
+          <p className="mt-2 text-sm text-white/80">{locationLabel}</p>
         </div>
       </div>
 
       {gallery.length > 1 ? (
-        <div className="grid gap-3 border-t border-[#e1d4bf] bg-white p-4 sm:grid-cols-4">
+        <div className="grid gap-3 border-t border-[var(--line)] bg-white p-4 sm:grid-cols-4">
           {gallery.map((image, index) => {
             const label = imageLabels[index - 1] ?? (index === 0 ? copy.cover : `${copy.image} ${index + 1}`);
 
@@ -126,11 +172,11 @@ export function PropertyDetailGallery({
               <button
                 key={`${image}-${index}`}
                 type="button"
-                onClick={() => setActiveImageIndex(index)}
-                className={`overflow-hidden rounded-[1rem] border text-left transition ${
+                onClick={() => openThumbnail(index)}
+                className={`overflow-hidden rounded-lg border text-left transition ${
                   index === activeImageIndex
-                    ? "border-[#d5b27b] bg-white shadow-[0_20px_36px_-28px_rgba(24,18,12,0.55)]"
-                    : "border-[#dfd2bf] bg-white hover:border-[#d4c09c]"
+                    ? "border-[var(--brand-green)] bg-white shadow-[0_4px_18px_rgba(0,0,0,0.08)]"
+                    : "border-[var(--line)] bg-white hover:border-[var(--brand-green)]"
                 }`}
               >
                 <div className="relative h-24">
@@ -143,12 +189,25 @@ export function PropertyDetailGallery({
                     className="object-cover"
                   />
                 </div>
-                <p className="px-3 py-2 text-xs font-semibold text-[#54483a]">{label}</p>
+                <p className="px-3 py-2 text-xs font-semibold text-[var(--brand-primary)]">{label}</p>
               </button>
             );
           })}
         </div>
       ) : null}
-    </div>
+      </div>
+
+      <ImageLightbox
+        images={lightboxImages}
+        activeIndex={activeImageIndex}
+        open={lightboxOpen}
+        title={title}
+        previousLabel={copy.previous}
+        nextLabel={copy.next}
+        closeLabel={copy.closeGallery}
+        onActiveIndexChange={setActiveImageIndex}
+        onOpenChange={setLightboxOpen}
+      />
+    </>
   );
 }

@@ -90,11 +90,11 @@ export function LeadPipelineBoard({ initialLeads, properties, currentUser, advis
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <span className="admin-kicker">CRM Operasyonu</span>
-          <h2 className="mt-4 text-[1.9rem] font-semibold leading-none text-[#231d15]">CRM Lead Pipeline</h2>
-          <p className="mt-2 text-sm text-[#665c4f]">
+          <h2 className="mt-4 text-[1.9rem] font-semibold leading-none text-[var(--brand-primary)]">CRM Talep Takibi</h2>
+          <p className="mt-2 text-sm text-[var(--ink-600)]">
             {currentUser.role === "advisor"
               ? "Size atanmış bilgi ve randevu taleplerini tek ekrandan takip edin."
-              : "Lead aşamalarını güncelleyin, randevu ve teklif sürecini tek ekrandan takip edin."}
+              : "Talep aşamalarını güncelleyin, randevu ve teklif sürecini tek ekrandan takip edin."}
           </p>
         </div>
 

@@ -143,7 +143,7 @@ export default async function PropertyDetailPage({ params }: PropertyDetailProps
                 <PropertyInfoGrid items={property.infoItems} language={language} />
               ) : null}
 
-              <p className="mt-6 text-sm leading-7 text-[#5f5649]">{propertyDescription}</p>
+              <p className="mt-6 text-sm leading-7 text-[var(--ink-600)]">{propertyDescription}</p>
 
               <div className="mt-6 grid gap-4 sm:grid-cols-2">
                 <InfoList title={copy.highlights} items={propertyHighlights} />
@@ -153,10 +153,10 @@ export default async function PropertyDetailPage({ params }: PropertyDetailProps
 
             <div className="space-y-4">
               {advisor ? (
-                <aside className="rounded-2xl border border-[#dccfbc] bg-white p-5">
+                <aside className="rounded-lg border border-[var(--line)] bg-white p-5">
                   <div className="flex flex-col gap-4 sm:flex-row-reverse sm:items-center sm:justify-between">
                     <div className="flex justify-center sm:justify-end">
-                      <div className="rounded-[2rem] border border-[#dbcbb3] bg-white p-3">
+                      <div className="rounded-lg border border-[var(--line)] bg-white p-3">
                         <Image
                           src={advisor.image}
                           alt={advisor.name}
@@ -165,22 +165,22 @@ export default async function PropertyDetailPage({ params }: PropertyDetailProps
                           width={128}
                           height={128}
                           sizes="128px"
-                          className="h-32 w-32 rounded-full border border-white/70 object-cover shadow-[0_18px_32px_-24px_rgba(0,0,0,0.55)]"
+                          className="h-32 w-32 rounded-full border border-white/70 object-cover shadow-[0_4px_18px_rgba(0,0,0,0.12)]"
                         />
                       </div>
                     </div>
 
                     <div className="text-left">
-                      <h2 className="text-[1.8rem] font-semibold leading-none text-[#251e16]">{copy.advisorTitle}</h2>
-                      <p className="mt-2 text-sm font-semibold text-[#3a3228]">{advisor.name}</p>
-                      <p className="text-sm text-[#655b4e]">{advisor.title}</p>
-                      <p className="mt-2 text-sm text-[#726758]">{copy.specialty}: {advisor.focusArea}</p>
+                      <h2 className="text-[1.8rem] font-semibold leading-none text-[var(--brand-primary)]">{copy.advisorTitle}</h2>
+                      <p className="mt-2 text-sm font-semibold text-[var(--brand-primary)]">{advisor.name}</p>
+                      <p className="text-sm text-[var(--ink-600)]">{advisor.title}</p>
+                      <p className="mt-2 text-sm text-[var(--ink-600)]">{copy.specialty}: {advisor.focusArea}</p>
 
                       <div className="mt-4 flex flex-wrap gap-2 text-sm">
                         {phoneHref ? (
                           <a
                             href={phoneHref}
-                            className="rounded-full border border-[#d0c2ad] bg-white px-4 py-2 font-semibold text-[#4d4336] transition hover:bg-white"
+                            className="rounded-lg border border-[var(--line)] bg-white px-4 py-2 font-semibold text-[var(--brand-primary)] transition hover:border-[var(--brand-green)]"
                           >
                             {copy.call}
                           </a>
@@ -190,7 +190,7 @@ export default async function PropertyDetailPage({ params }: PropertyDetailProps
                             href={whatsappHref}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="rounded-full border border-[#b8d9c4] bg-[#ebf8ef] px-4 py-2 font-semibold text-[#2f7d4b] transition hover:bg-[#def2e5]"
+                            className="rounded-lg border border-[rgba(102,165,87,0.32)] bg-[rgba(102,165,87,0.1)] px-4 py-2 font-semibold text-[var(--brand-accent-strong)] transition hover:bg-[rgba(102,165,87,0.16)]"
                           >
                             WhatsApp
                           </a>
@@ -226,8 +226,8 @@ type DetailItemProps = {
 function DetailItem({ label, value, icon, highlight = false, compact = false }: DetailItemProps) {
   return (
     <div
-      className={`rounded-xl border p-4 ${
-        highlight ? "border-[#deceae] bg-white" : "border-[#ddd0bd] bg-white"
+      className={`rounded-lg border p-4 ${
+        highlight ? "border-[rgba(102,165,87,0.36)] bg-white" : "border-[var(--line)] bg-white"
       }`}
     >
       <div className="flex items-start gap-3">
@@ -236,17 +236,17 @@ function DetailItem({ label, value, icon, highlight = false, compact = false }: 
             className={`flex shrink-0 items-center justify-center rounded-full border ${
               compact ? "h-9 w-9" : "h-10 w-10"
             } ${
-              highlight ? "border-[#d1ba8d] bg-white text-[#6a4f22]" : "border-[#d9cfbf] bg-white text-[#6a5a44]"
+              highlight ? "border-[rgba(102,165,87,0.36)] bg-white text-[var(--brand-accent-strong)]" : "border-[var(--line)] bg-white text-[var(--ink-600)]"
             }`}
           >
             {icon}
           </span>
         ) : null}
         <div className="min-w-0">
-          <p className="text-[10px] uppercase tracking-[0.18em] text-[#9a8d78]">{label}</p>
+          <p className="text-[10px] uppercase tracking-[0.18em] text-[var(--ink-500)]">{label}</p>
           <p
             className={`mt-1 font-semibold ${compact ? "text-base" : "text-xl"} ${
-              highlight ? "text-[#6a4f22]" : "text-[#2f271d]"
+              highlight ? "text-[var(--brand-accent-strong)]" : "text-[var(--brand-primary)]"
             }`}
           >
             {value}
@@ -264,9 +264,9 @@ type InfoListProps = {
 
 function InfoList({ title, items }: InfoListProps) {
   return (
-    <section className="rounded-xl border border-[#ddd0bd] bg-white p-4">
-      <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-[#8e7f67]">{title}</h3>
-      <ul className="mt-3 space-y-2 text-sm text-[#5b5145]">
+    <section className="rounded-lg border border-[var(--line)] bg-white p-4">
+      <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--brand-accent-strong)]">{title}</h3>
+      <ul className="mt-3 space-y-2 text-sm text-[var(--ink-600)]">
         {items.map((item) => (
           <li key={item} className="rounded bg-white px-3 py-2">
             {item}
@@ -279,20 +279,20 @@ function InfoList({ title, items }: InfoListProps) {
 
 function PropertyInfoGrid({ items, language }: { items: PropertyInfoItem[]; language: SiteLanguage }) {
   return (
-    <section className="mt-6 rounded-2xl border border-[#ddd0bd] bg-white p-4 sm:p-5">
+    <section className="mt-6 rounded-lg border border-[var(--line)] bg-white p-4 sm:p-5">
       <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#9a8d78]">
         {translateInfoHeading(language)}
       </p>
       <div className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
         {items.map((item, index) => (
-          <article key={`${item.icon}-${item.value}-${index}`} className="rounded-2xl border border-[#e1d5c6] bg-white px-4 py-4 text-center">
-            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-[#d7c8b3] bg-white text-[#7b6a52]">
+          <article key={`${item.icon}-${item.value}-${index}`} className="rounded-lg border border-[var(--line)] bg-white px-4 py-4 text-center">
+            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-lg border border-[var(--line)] bg-white text-[var(--brand-accent-strong)]">
               <PropertyInfoIcon icon={item.icon} />
             </div>
-            <p className="mt-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#8e7f67]">
+            <p className="mt-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--brand-accent-strong)]">
               {translateInfoLabel(item.icon, language)}
             </p>
-            <p className="mt-1 text-sm font-semibold text-[#2f271d]">{item.value}</p>
+            <p className="mt-1 text-sm font-semibold text-[var(--brand-primary)]">{item.value}</p>
           </article>
         ))}
       </div>

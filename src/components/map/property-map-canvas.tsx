@@ -94,7 +94,7 @@ export function PropertyMapCanvas({
   const style = mapStyles[mapStyle];
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-[#d9cdbb]">
+    <div className="overflow-hidden rounded-lg border border-[var(--line)]">
       <MapContainer
         center={center}
         zoom={zoom}

@@ -19,50 +19,50 @@ type BlogDetailPageProps = {
 
 function headingToneClass(tone: "default" | "accent" | "soft"): string {
   if (tone === "accent") {
-    return "text-[#7a5c2b]";
+    return "text-[var(--brand-accent-strong)]";
   }
 
   if (tone === "soft") {
-    return "text-[#4e4539]";
+    return "text-[var(--ink-700)]";
   }
 
-  return "text-[#2f271d]";
+  return "text-[var(--brand-primary)]";
 }
 
 function paragraphToneClass(tone: "default" | "accent" | "soft"): string {
   if (tone === "accent") {
-    return "text-[#6d5227]";
+    return "text-[var(--brand-accent-strong)]";
   }
 
   if (tone === "soft") {
-    return "text-[#61584c]";
+    return "text-[var(--ink-600)]";
   }
 
-  return "text-[#4f473d]";
+  return "text-[var(--ink-700)]";
 }
 
 function listToneClass(tone: "default" | "accent" | "soft"): string {
   if (tone === "accent") {
-    return "text-[#6d5227] marker:text-[#87652f]";
+    return "text-[var(--brand-accent-strong)] marker:text-[var(--brand-green)]";
   }
 
   if (tone === "soft") {
-    return "text-[#61584c] marker:text-[#74695b]";
+    return "text-[var(--ink-600)] marker:text-[var(--ink-500)]";
   }
 
-  return "text-[#4f473d] marker:text-[#705f46]";
+  return "text-[var(--ink-700)] marker:text-[var(--brand-green)]";
 }
 
 function quoteToneClass(tone: "default" | "accent" | "soft"): string {
   if (tone === "accent") {
-    return "border-[#d4bb8f] bg-white text-[#694f24]";
+    return "border-[var(--brand-green)] bg-white text-[var(--brand-accent-strong)]";
   }
 
   if (tone === "soft") {
-    return "border-[#d9d6ce] bg-white text-[#5a5247]";
+    return "border-[var(--line)] bg-white text-[var(--ink-600)]";
   }
 
-  return "border-[#dfd4c0] bg-white text-[#554c40]";
+  return "border-[var(--line-strong)] bg-white text-[var(--ink-700)]";
 }
 
 function headingAnchor(text: string, index: number): string {
@@ -121,7 +121,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
       <SiteHeader />
 
       <main className="w-full pb-24">
-        <section className="frame-wide relative overflow-hidden rounded-[1.4rem] border border-[#3f3022] bg-[#0f1621] shadow-[0_48px_88px_-64px_rgba(0,0,0,0.95)]">
+        <section className="frame-wide relative overflow-hidden rounded-lg border border-[var(--line)] bg-[var(--brand-primary)] shadow-[0_4px_20px_rgba(0,0,0,0.08)]">
           <div className="relative h-[280px] sm:h-[380px]">
             <Image
               src={post.coverImage}
@@ -134,11 +134,11 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             />
             <div className="hero-overlay absolute inset-0" />
 
-            <div className="absolute bottom-0 left-0 right-0 p-6 text-[#f4ead8] sm:p-9">
-              <Link href="/blog" className="text-sm font-semibold text-[#ebd8bb] underline">
+            <div className="absolute bottom-0 left-0 right-0 p-6 text-white sm:p-9">
+              <Link href="/blog" className="text-sm font-semibold text-white underline">
                 {copy.back}
               </Link>
-              <p className="mt-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#d8bc8d]">
+              <p className="mt-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/78">
                 {formatDate(post.publishedAt, language)} • {post.authorName}
               </p>
               <h1 className="mt-2 max-w-4xl text-[2.2rem] leading-[1.02] font-semibold sm:text-[3.4rem]">{post.title}</h1>
@@ -148,7 +148,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
         <section className="frame mt-8 grid gap-6 lg:grid-cols-[1fr_320px]">
           <article className="luxury-card p-6 sm:p-8">
-            <p className="text-base leading-8 text-[#5f5548]">{post.excerpt}</p>
+            <p className="text-base leading-8 text-[var(--ink-600)]">{post.excerpt}</p>
 
             <div className="mt-6 space-y-5 text-sm leading-8 sm:text-base">
               {contentBlocks.map((block, index) => {
@@ -236,10 +236,10 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
                 if (block.type === "cta") {
                   return (
-                    <div key={`cta-${index}`} className="rounded-xl border border-[#dcccb0] bg-white px-4 py-4">
+                    <div key={`cta-${index}`} className="rounded-lg border border-[var(--line)] bg-white px-4 py-4">
                       <a
                         href={block.href}
-                        className="inline-flex rounded-full bg-[#2f271d] px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-[#f7e6c8]"
+                        className="inline-flex rounded-lg bg-[var(--brand-green)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-white"
                       >
                         {block.label}
                       </a>
@@ -249,10 +249,10 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
                 if (block.type === "image") {
                   return (
-                    <figure key={`image-${index}`} className="overflow-hidden rounded-xl border border-[#dfd2bd] bg-white">
+                    <figure key={`image-${index}`} className="overflow-hidden rounded-lg border border-[var(--line)] bg-white">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src={block.src} alt={block.alt} className="h-auto w-full object-cover" loading="lazy" />
-                      <figcaption className="space-y-1 px-4 py-3 text-xs text-[#5f5548]">
+                      <figcaption className="space-y-1 px-4 py-3 text-xs text-[var(--ink-600)]">
                         <p className="font-semibold">{block.alt}</p>
                         {block.caption ? <p>{block.caption}</p> : null}
                       </figcaption>
@@ -272,13 +272,13 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
           <aside className="space-y-4">
             {tableOfContents.length > 0 ? (
               <section className="luxury-card p-5">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8d7348]">{copy.contents}</p>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--brand-accent-strong)]">{copy.contents}</p>
                 <nav className="mt-3 space-y-2">
                   {tableOfContents.map((item) => (
                     <a
                       key={item.id}
                       href={`#${item.id}`}
-                      className={`block text-sm text-[#4f473d] hover:underline ${item.level >= 4 ? "pl-3" : item.level === 3 ? "pl-2" : ""}`}
+                      className={`block text-sm text-[var(--ink-700)] hover:underline ${item.level >= 4 ? "pl-3" : item.level === 3 ? "pl-2" : ""}`}
                     >
                       {item.text}
                     </a>
@@ -288,12 +288,12 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             ) : null}
 
             <section className="luxury-card p-5">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8d7348]">{copy.tags}</p>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--brand-accent-strong)]">{copy.tags}</p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {post.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full border border-[#e2d5c2] bg-white px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#7b6744]"
+                    className="rounded border border-[var(--line)] bg-white px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--brand-accent-strong)]"
                   >
                     {tag}
                   </span>
@@ -302,11 +302,11 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             </section>
 
             <section className="luxury-card p-5">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8d7348]">{copy.related}</p>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--brand-accent-strong)]">{copy.related}</p>
               <div className="mt-3 space-y-3">
                 {relatedPosts.map((item) => (
-                  <article key={item.id} className="rounded-xl border border-[#e3d7c4] bg-white p-3">
-                    <h2 className="text-sm font-semibold text-[#241f18]">{item.title}</h2>
+                  <article key={item.id} className="rounded-lg border border-[var(--line)] bg-white p-3">
+                    <h2 className="text-sm font-semibold text-[var(--brand-primary)]">{item.title}</h2>
                     <Link href={`/blog/${item.slug}`} className="mt-1 inline-block text-xs font-semibold underline">
                       {copy.read}
                     </Link>
